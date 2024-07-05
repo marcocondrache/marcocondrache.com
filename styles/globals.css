@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+em {
+  @apply font-serif italic;
+}
+
+@layer utilities {
+  .step:before {
+    @apply absolute w-1.5 h-1.5 bg-stone-300 rounded-full -indent-px;
+    @apply ml-[-35.5px] mt-[10px];
+    content: "";
+  }
+}
