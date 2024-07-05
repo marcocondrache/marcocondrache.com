@@ -4,13 +4,13 @@ export default function Page() {
       <h1>Marco Mihai Condrache</h1>
       <h2 className="text-xl">Work experience</h2>
       <div className="[&>h3]:step mb-12 ml-4 border-l pl-8">
-        <h3 className="mt-8 scroll-m-20 text-lg tracking-tight font-medium">
+        <h3 className="mt-8 scroll-m-20 text-lg font-medium tracking-tight">
           Junior Software Developer
         </h3>
         <h4 className="text-sm text-stone-500">
           at <em>Danfoss</em>
         </h4>
-        <div className="space-y-3 mt-3 text-sm">
+        <div className="mt-3 space-y-3 text-sm">
           <p>
             IoT platform frontend developer using TypeScript and React.
             Maintains and enhances management platform, focusing on integration
@@ -21,13 +21,13 @@ export default function Page() {
             solutions.
           </p>
         </div>
-        <h3 className="mt-8 scroll-m-20 text-lg tracking-tight font-medium">
+        <h3 className="mt-8 scroll-m-20 text-lg font-medium tracking-tight">
           Embedded Software Developer
         </h3>
         <h4 className="text-sm text-stone-500">
           at <em>XTEE</em>
         </h4>
-        <div className="space-y-3 mt-3 text-sm">
+        <div className="mt-3 space-y-3 text-sm">
           <p>
             Developed custom hardware and software for advanced archery
             equipment. Used Python for machine control software.
@@ -41,13 +41,13 @@ export default function Page() {
       </div>
       <h2 className="text-xl">Education</h2>
       <div className="[&>h3]:step mb-12 ml-4 border-l pl-8">
-        <h3 className="mt-8 scroll-m-20 text-lg tracking-tight font-medium">
+        <h3 className="mt-8 scroll-m-20 text-lg font-medium tracking-tight">
           Bachelor&apos;s Degree in Computer Science
         </h3>
         <h4 className="text-sm text-stone-500">
           at <em>Università Ca Foscari</em>
         </h4>
-        <div className="space-y-3 mt-3 text-sm">
+        <div className="mt-3 space-y-3 text-sm">
           <p>
             IoT platform frontend developer using TypeScript and React.
             Maintains and enhances management platform, focusing on integration
@@ -58,13 +58,13 @@ export default function Page() {
             solutions.
           </p>
         </div>
-        <h3 className="mt-8 scroll-m-20 text-lg tracking-tight font-medium">
+        <h3 className="mt-8 scroll-m-20 text-lg font-medium tracking-tight">
           Diploma in Computer Science
         </h3>
         <h4 className="text-sm text-stone-500">
           at <em>ITTS Vito Volterra</em>
         </h4>
-        <div className="space-y-3 mt-3 text-sm">
+        <div className="mt-3 space-y-3 text-sm">
           <p>Graduated with honors.</p>
         </div>
       </div>

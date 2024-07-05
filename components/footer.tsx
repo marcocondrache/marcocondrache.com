@@ -19,16 +19,16 @@ export function Footer() {
         <DrawerTrigger
           className={cn(
             buttonVariants({ variant: "outline" }),
-            "fixed bottom-5 left-1/2 -translate-x-1/2 z-40 max-w-[calc(712px-2rem)] w-full",
-            "justify-between font-normal px-3 py-1.5 h-[unset] transition-all"
+            "fixed bottom-5 left-1/2 z-40 w-full max-w-[calc(712px-2rem)] -translate-x-1/2",
+            "h-[unset] justify-between px-3 py-1.5 font-normal transition-all"
           )}
         >
           <Inspiration />
           <span>2024</span>
         </DrawerTrigger>
         <DrawerContent>
-          <div className="container max-w-[712px] mx-auto py-10 px-4">
-            <h1 className="text-2xl font-serif italic">mmc</h1>
+          <div className="container mx-auto max-w-[712px] px-4 py-10">
+            <h1 className="font-serif text-2xl italic">mmc</h1>
           </div>
         </DrawerContent>
       </Drawer>
