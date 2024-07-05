@@ -12,9 +12,9 @@ export default function Home() {
       </div>
       <div className="mt-10 space-y-10">
         <p>
-          I'm a software engineer with a passion for continuous learning and
-          staying updated with the latest tech. I thrive on using cutting-edge
-          tools to solve complex challenges efficiently.
+          I&apos;m a software engineer with a passion for continuous learning
+          and staying updated with the latest tech. I thrive on using
+          cutting-edge tools to solve complex challenges efficiently.
         </p>
         <p>
           My current focus is on mastering <em>TypeScript</em> and <em>Rust</em>

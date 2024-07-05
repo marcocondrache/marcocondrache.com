@@ -19,7 +19,10 @@ export default function Page({ params: { slug } }: ProjectProps) {
   return (
     <>
       {projects.map((project) => (
-        <div dangerouslySetInnerHTML={{ __html: project.content }}></div>
+        <div
+          key={project.title}
+          dangerouslySetInnerHTML={{ __html: project.content }}
+        ></div>
       ))}
     </>
   );

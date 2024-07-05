@@ -42,7 +42,7 @@ export default function Page() {
       <h2 className="text-xl">Education</h2>
       <div className="[&>h3]:step mb-12 ml-4 border-l pl-8">
         <h3 className="mt-8 scroll-m-20 text-lg tracking-tight font-medium">
-          Bachelor's Degree in Computer Science
+          Bachelor&apos;s Degree in Computer Science
         </h3>
         <h4 className="text-sm text-stone-500">
           at <em>Università Ca Foscari</em>
