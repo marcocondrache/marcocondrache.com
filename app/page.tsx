@@ -3,10 +3,10 @@ import { ModeToggle } from "@/components/mode-toggle";
 export default function Home() {
   return (
     <section>
-      <div className="flex items-center justify-between mb-4">
+      <div className="mb-4 flex items-center justify-between">
         <div>
           <h1 className="text-2xl">Marco Mihai Condrache</h1>
-          <h3 className="text-stone-500 text-md mt-1">Software Engineer</h3>
+          <h3 className="mt-1 text-stone-500">Software Engineer</h3>
         </div>
         <ModeToggle />
       </div>

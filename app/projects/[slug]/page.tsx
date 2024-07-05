@@ -1,5 +1,5 @@
-import { projects } from "@/content";
 import { notFound } from "next/navigation";
+import { projects } from "@/content";
 
 function getBySlug(slug: string) {
   return projects.find((project) => project.title === slug);
