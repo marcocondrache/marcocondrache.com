@@ -8,5 +8,8 @@ export const config = {
 export async function middleware(req: NextRequest) {
   const isMaintenanceMode = await get("isMaintenanceMode");
 
-  if (isMaintenanceMode) return NextResponse.error();
+  if (isMaintenanceMode) {
+    req.nextUrl.pathname = "/maintenance";
+    return NextResponse.rewrite(req.nextUrl);
+  }
 }

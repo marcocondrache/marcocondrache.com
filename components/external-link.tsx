@@ -7,14 +7,14 @@ import { cn } from "@/lib/utils";
 export type ExternalLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> &
   LinkProps;
 
-function ExternalLinkComponent({
-  children,
-  className,
-  ...props
-}: ExternalLinkProps) {
+function ExternalLinkComponent(
+  { children, className, ...props }: ExternalLinkProps,
+  ref: React.Ref<HTMLAnchorElement>
+) {
   return (
     <Link
       {...props}
+      ref={ref}
       className={cn("flex flex-row items-center gap-1", className)}
       target="_blank"
     >
