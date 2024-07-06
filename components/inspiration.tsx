@@ -1,13 +1,18 @@
 "use client";
 
+import Link from "next/link";
+
 export function Inspiration() {
   return (
     <span>
       Inspired by
-      <a href="https://duncan.land" onClick={(e) => e.stopPropagation()}>
+      <Link
+        href="https://duncan.land"
+        target="_blank"
+        onClick={(e) => e.stopPropagation()}
+      >
         <em> duncan</em>
-      </a>
-      .
+      </Link>
     </span>
   );
 }
