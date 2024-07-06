@@ -6,7 +6,7 @@ export const config = {
 };
 
 export async function middleware(req: NextRequest) {
-  const isMaintenanceMode = false;
+  const isMaintenanceMode = await get("isMaintenanceMode");
 
   if (isMaintenanceMode) return NextResponse.error();
 }
