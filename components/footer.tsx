@@ -47,13 +47,13 @@ export function Footer() {
         </div>
         <DrawerContent>
           <div className="container mx-auto max-w-[712px] space-y-6 px-4 py-10">
-            {/* <h1 className="font-serif text-2xl italic">marcocondrache</h1> */}
             <div className="flex flex-row justify-between">
               <div className="w-3/5 space-y-5 text-left text-xs">
                 <h2 className="text-lg">Disclaimer</h2>
                 <p>
-                  This personal website is a work in progress. I'm excited to
-                  add interactive surprise features to enhance user experience.
+                  This personal website is a work in progress. I&apos;m excited
+                  to add interactive surprise features to enhance user
+                  experience.
                 </p>
                 <p>
                   I&apos;d like to express my gratitude to
