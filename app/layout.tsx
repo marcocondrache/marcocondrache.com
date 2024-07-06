@@ -14,6 +14,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 export const metadata: Metadata = {
   title: "Marco Condrache",
   description: "Personal website, blog, and portfolio of Marco Condrache.",
+  metadataBase: new URL("https://marcocondrache.com"),
 };
 
 export default function RootLayout({

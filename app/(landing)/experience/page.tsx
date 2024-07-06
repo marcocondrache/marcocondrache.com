@@ -7,6 +7,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { ExternalLink } from "@/components/external-link";
 
+export const metadata = {
+  robots: "noindex,nofollow",
+};
+
 type StepProps = PropsWithChildren<{
   title: string;
   from: Date;
@@ -33,9 +37,6 @@ function Step({ children, title, from, to }: StepProps) {
 export default function Page() {
   return (
     <>
-      <Head>
-        <meta key="robots" name="robots" content="noindex,nofollow" />
-      </Head>
       <section>
         <Card className="mb-12">
           <CardContent className="space-y-5 py-6">
