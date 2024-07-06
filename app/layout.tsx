@@ -22,14 +22,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn(GeistSans.variable, GeistMono.variable)}>
       <body className="bg-stone-50 antialiased dark:bg-stone-950">
-        <ThemeProvider attribute="class" enableSystem>
-          <main className="container mx-auto max-w-[712px] px-4 py-10">
-            <Navigation />
-
-            {children}
-          </main>
-
-          <Footer />
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
         </ThemeProvider>
       </body>
     </html>
