@@ -1,7 +1,7 @@
 import { projects } from "@/content";
 
 function Empty() {
-  return <span>Currently there are no available projects.</span>;
+  return <span>Currently there are no published projects.</span>;
 }
 
 export default function Page() {

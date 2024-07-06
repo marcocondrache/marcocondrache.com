@@ -1,13 +1,15 @@
 "use client";
 
-import { ArrowUpIcon } from "@radix-ui/react-icons";
+import Link from "next/link";
+import { ArrowTopRightIcon, ArrowUpIcon } from "@radix-ui/react-icons";
 import { useWindowScroll } from "@uidotdev/usehooks";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
-import { Inspiration } from "./inspiration";
-import { Button, buttonVariants } from "./ui/button";
+import { ExternalLink } from "./external-link";
+import { Badge } from "./ui/badge";
+import { buttonVariants } from "./ui/button";
 import { Drawer, DrawerContent, DrawerTrigger } from "./ui/drawer";
 
 export function Footer() {
@@ -44,8 +46,44 @@ export function Footer() {
           )}
         </div>
         <DrawerContent>
-          <div className="container mx-auto max-w-[712px] px-4 py-10">
-            <h1 className="font-serif text-2xl italic">mmc</h1>
+          <div className="container mx-auto max-w-[712px] space-y-6 px-4 py-10">
+            {/* <h1 className="font-serif text-2xl italic">marcocondrache</h1> */}
+            <div className="flex flex-row justify-between">
+              <div className="w-3/5 space-y-5 text-left text-xs">
+                <h2 className="text-lg">Disclaimer</h2>
+                <p>
+                  This personal website is a work in progress. I'm excited to
+                  add interactive surprise features to enhance user experience.
+                </p>
+                <p>
+                  I&apos;d like to express my gratitude to
+                  <Link
+                    className="font-serif italic underline"
+                    href="https://duncan.land"
+                    target="_blank"
+                  >
+                    &nbsp;duncan&nbsp;
+                  </Link>
+                  for the inspiration, and to the entire open source community
+                  whose contributions made this website possible.
+                </p>
+              </div>
+              <div>
+                <h2 className="mb-3 text-lg">Useful links</h2>
+                <div>
+                  <ExternalLink href="https://github.com">github</ExternalLink>
+                  <ExternalLink href="https://github.com">
+                    linkedin
+                  </ExternalLink>
+                  <ExternalLink href="https://github.com/mossida">
+                    mossida
+                  </ExternalLink>
+                  <ExternalLink href="https://github.com/marcocondrache/web">
+                    source
+                  </ExternalLink>
+                </div>
+              </div>
+            </div>
           </div>
         </DrawerContent>
       </Drawer>

@@ -3,13 +3,9 @@ import Head from "next/head";
 import Link from "next/link";
 import { ArrowTopRightIcon, SewingPinFilledIcon } from "@radix-ui/react-icons";
 
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { ExternalLink } from "@/components/external-link";
 
 type StepProps = PropsWithChildren<{
   title: string;
@@ -59,38 +55,11 @@ export default function Page() {
             <Separator />
             <div className="flex w-full flex-row items-center justify-between">
               <div className="flex flex-row flex-wrap gap-3">
-                <Link
-                  href="https://github.com"
-                  className="flex flex-row items-center gap-1"
-                  target="_blank"
-                >
-                  <ArrowTopRightIcon />
-                  mail
-                </Link>
-                <Link
-                  href="https://github.com"
-                  className="flex flex-row items-center gap-1"
-                  target="_blank"
-                >
-                  <ArrowTopRightIcon />
-                  github
-                </Link>
-                <Link
-                  href="https://github.com"
-                  className="flex flex-row items-center gap-1"
-                  target="_blank"
-                >
-                  <ArrowTopRightIcon />
-                  linkedin
-                </Link>
-                <Link
-                  href="https://github.com/mossida"
-                  className="flex flex-row items-center gap-1"
-                  target="_blank"
-                >
-                  <ArrowTopRightIcon />
+                <ExternalLink href="https://github.com">github</ExternalLink>
+                <ExternalLink href="https://github.com">linkedin</ExternalLink>
+                <ExternalLink href="https://github.com/mossida">
                   mossida
-                </Link>
+                </ExternalLink>
               </div>
               <div className="flex flex-row items-center gap-2">
                 <SewingPinFilledIcon />

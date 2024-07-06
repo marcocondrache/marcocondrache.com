@@ -16,7 +16,7 @@ import {
 export function ModeToggle() {
   const { theme, setTheme } = useTheme();
 
-  const order = ["light", "dark", "system"];
+  const order = ["light", "dark"];
   const nextTheme = order[(order.indexOf(theme ?? "light") + 1) % order.length];
 
   return (
