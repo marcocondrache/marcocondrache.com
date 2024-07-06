@@ -23,7 +23,9 @@ export function Footer() {
               "h-[unset] grow justify-between px-3 py-1.5 font-normal transition-all"
             )}
           >
-            <Inspiration />
+            <span>
+              <em>marcocondrache &copy;</em>
+            </span>
             <span>2024</span>
           </DrawerTrigger>
 
@@ -32,8 +34,8 @@ export function Footer() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className={cn(
-                buttonVariants({ variant: "outline" }),
-                "h-[unset] px-2"
+                buttonVariants({ variant: "outline", size: "icon" }),
+                "h-[unset]"
               )}
               onClick={() => scrollTo({ left: 0, top: 0, behavior: "smooth" })}
             >

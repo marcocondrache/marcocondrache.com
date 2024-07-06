@@ -3,7 +3,6 @@ import Head from "next/head";
 import Link from "next/link";
 import { ArrowTopRightIcon, SewingPinFilledIcon } from "@radix-ui/react-icons";
 
-import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardContent,
@@ -59,7 +58,7 @@ export default function Page() {
             </div>
             <Separator />
             <div className="flex w-full flex-row items-center justify-between">
-              <div className="flex flex-row gap-3">
+              <div className="flex flex-row flex-wrap gap-3">
                 <Link
                   href="https://github.com"
                   className="flex flex-row items-center gap-1"
