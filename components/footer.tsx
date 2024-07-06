@@ -1,14 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowTopRightIcon, ArrowUpIcon } from "@radix-ui/react-icons";
+import { ArrowUpIcon } from "@radix-ui/react-icons";
 import { useWindowScroll } from "@uidotdev/usehooks";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
 import { ExternalLink } from "./external-link";
-import { Badge } from "./ui/badge";
 import { buttonVariants } from "./ui/button";
 import { Drawer, DrawerContent, DrawerTrigger } from "./ui/drawer";
 
@@ -32,7 +31,7 @@ export function Footer() {
           </DrawerTrigger>
 
           {(y ?? 0) > 20 && (
-            <motion.button
+            <m.button
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className={cn(
@@ -42,7 +41,7 @@ export function Footer() {
               onClick={() => scrollTo({ left: 0, top: 0, behavior: "smooth" })}
             >
               <ArrowUpIcon />
-            </motion.button>
+            </m.button>
           )}
         </div>
         <DrawerContent>

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 export default function Template({
   children,
@@ -8,7 +8,7 @@ export default function Template({
   children: React.ReactNode;
 }>) {
   return (
-    <motion.div
+    <m.div
       animate={{
         opacity: 1,
       }}
@@ -17,6 +17,6 @@ export default function Template({
       }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
