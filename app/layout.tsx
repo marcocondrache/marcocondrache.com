@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import "@/styles/globals.css";
 
 import type { Metadata } from "next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 
@@ -25,6 +26,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class">
           <TooltipProvider>{children}</TooltipProvider>
         </ThemeProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
