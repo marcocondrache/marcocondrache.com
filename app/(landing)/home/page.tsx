@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ArrowTopRightIcon } from "@radix-ui/react-icons";
 
 import { ModeToggle } from "@/components/mode-toggle";
 
