@@ -1,7 +1,5 @@
 import { PropsWithChildren } from "react";
-import Head from "next/head";
-import Link from "next/link";
-import { ArrowTopRightIcon, SewingPinFilledIcon } from "@radix-ui/react-icons";
+import { SewingPinFilledIcon } from "@radix-ui/react-icons";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";

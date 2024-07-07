@@ -6,7 +6,6 @@ import "@/styles/globals.css";
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { domAnimation, LazyMotion } from "framer-motion";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 
