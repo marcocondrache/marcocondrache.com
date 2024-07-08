@@ -8,7 +8,10 @@ export default function Layout({
 }>) {
   return (
     <>
-      <main className="container mx-auto max-w-[712px] px-4 py-10">
+      <main
+        className="container mx-auto max-w-[712px] px-4 py-10"
+        tabIndex={-1}
+      >
         <Navigation />
 
         {children}
