@@ -8,7 +8,7 @@ export default function Home() {
       <div className="mb-4 flex items-center justify-between">
         <div>
           <h1 className="text-2xl">Marco Mihai Condrache</h1>
-          <h3 className="mt-1 text-stone-500">Software Engineer and Student</h3>
+          <h2 className="mt-1 text-stone-500">Software Engineer and Student</h2>
         </div>
         <ModeToggle />
       </div>

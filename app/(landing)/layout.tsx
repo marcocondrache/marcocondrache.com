@@ -11,6 +11,7 @@ export default function Layout({
       <main
         className="container mx-auto max-w-[712px] px-4 py-10"
         tabIndex={-1}
+        role="main"
       >
         <Navigation />
 
