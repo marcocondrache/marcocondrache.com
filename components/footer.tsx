@@ -22,7 +22,7 @@ export function Footer() {
   const [{ y }, scrollTo] = useWindowScroll();
 
   return (
-    <footer>
+    <footer tabIndex={-1} role="contentinfo">
       <Drawer>
         <VisuallyHidden>
           <DrawerTitle>Footer</DrawerTitle>
