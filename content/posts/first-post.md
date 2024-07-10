@@ -1,6 +1,7 @@
 ---
 title: my first post
 slug: my-first-post
+published: true
 ---
 
 **Advertisement :)**
