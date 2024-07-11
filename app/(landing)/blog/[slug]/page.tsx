@@ -1,9 +1,11 @@
 import { cache } from "react";
 import { notFound } from "next/navigation";
+import { incrementView } from "@/server/queries";
 
 import { getPostsIndex } from "@/lib/posts";
 
 const getIndex = cache(getPostsIndex);
+const increment = cache(incrementView);
 
 export default function Page({
   params,
@@ -15,6 +17,8 @@ export default function Page({
   const post = getIndex()[params.slug];
 
   if (!post) return notFound();
+
+  increment(params.slug);
 
   return (
     <section>
