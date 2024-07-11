@@ -1,12 +1,15 @@
+import "server-only";
+
 import { unstable_noStore as noStore } from "next/cache";
-import db from "@/db/connection";
-import { view } from "@/db/schema";
 import { sql } from "drizzle-orm";
+
+import { db } from "./db";
+import { view } from "./db/schema";
 
 export async function getViews() {
   noStore();
 
-  return await db.select().from(view);
+  return await db.query.view.findMany();
 }
 
 export async function incrementView(slug: string) {

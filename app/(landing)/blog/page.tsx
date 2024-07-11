@@ -1,6 +1,6 @@
 import { cache, Suspense } from "react";
 import Link from "next/link";
-import { getViews } from "@/actions/views";
+import { getViews } from "@/server/queries";
 
 import { getPublishedPosts } from "@/lib/posts";
 

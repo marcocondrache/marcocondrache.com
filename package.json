@@ -11,8 +11,7 @@
     "build": "bun run build:content & bun run build:next",
     "start": "next start",
     "lint": "next lint",
-    "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
@@ -46,6 +45,7 @@
     "react-dom": "^18",
     "rehype-pretty-code": "^0.13.2",
     "remeda": "^2.3.0",
+    "server-only": "^0.0.1",
     "shiki": "^1.10.3",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
