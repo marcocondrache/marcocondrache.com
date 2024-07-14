@@ -1,6 +1,7 @@
 import { cache } from "react";
 import { notFound } from "next/navigation";
 import { incrementView } from "@/server/queries";
+import { format } from "@formkit/tempo";
 
 import { getPostsIndex } from "@/lib/posts";
 
@@ -21,11 +22,13 @@ export default function Page({
   increment(params.slug);
 
   return (
-    <section>
+    <section className="mb-10">
       <h1 className="text-2xl">{post.title}</h1>
-      <div className="mb-8 mt-2"></div>
+      <div className="flex justify-between items-center mt-2 mb-8 text-sm text-stone-500">
+        <time dateTime={post.date}>{format(post.date, "full")}</time>
+      </div>
       <article
-        className="prose prose-stone dark:prose-invert prose-headings:font-medium"
+        className="prose prose-stone dark:prose-invert prose-headings:font-medium prose-a:font-normal prose-a:decoration-1 prose-a:underline-offset-[2.5px]"
         dangerouslySetInnerHTML={{ __html: post.content }}
       />
     </section>

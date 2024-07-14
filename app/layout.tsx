@@ -4,12 +4,20 @@ import { ThemeProvider } from "@/components/theme-provider";
 import "@/styles/globals.css";
 
 import type { Metadata } from "next";
+import { Newsreader } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 
 import { Motion } from "@/components/motion";
+
+const newsreader = Newsreader({
+  style: ["italic"],
+  variable: "--font-newsreader",
+});
+
+const fonts = [GeistSans, GeistMono, newsreader];
 
 export const metadata: Metadata = {
   title: "Marco Condrache",
@@ -23,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn(GeistSans.variable, GeistMono.variable)}>
+    <html lang="en" className={cn(fonts.map((f) => f.variable))}>
       <body className="bg-stone-50 antialiased dark:bg-stone-950">
         <ThemeProvider attribute="class">
           <Motion>{children}</Motion>

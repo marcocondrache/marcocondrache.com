@@ -31,7 +31,7 @@ export function Footer() {
           <DrawerTrigger
             className={cn(
               buttonVariants({ variant: "outline" }),
-              "h-[unset] grow justify-between px-3 py-1.5 font-normal transition-all"
+              "h-[unset] grow justify-between px-3 py-1.5 font-normal transition-none"
             )}
           >
             <span>

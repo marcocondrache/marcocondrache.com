@@ -7,7 +7,7 @@ export function Navigation() {
         <Link href="/home">home</Link>
         <Link href="/blog">blog</Link>
         {/* <Link href="/projects">projects</Link> */}
-        <Link href="/experience">experience</Link>
+        {/*<Link href="/experience">experience</Link>*/}
       </nav>
     </aside>
   );
