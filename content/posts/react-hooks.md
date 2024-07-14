@@ -1,14 +1,15 @@
 ---
-title: A react pattern for writting hooks
 slug: hooks-getters
+date: 07-14-2024
+title: A react pattern for writting hooks
+summary: Pattern that ensures efficient rendering by re-rendering components only when the specific state values they use change
 published: true
 ---
 
-One thing that I've learned during my experience with React is the hook getters pattern.
+In my journey with React, I've come across a powerful pattern known as the hook getter pattern. This approach, utilized by popular libraries like <a href="https://github.com/vercel/swr/blob/1585a3e37d90ad0df8097b099db38f1afb43c95d/src/core/use-swr.ts#L733" target="_blank">SWR</a> and <a href="https://github.com/react-hook-form/react-hook-form/blob/5e92c1b5634bbcf18e3df14d173bced620f7392d/src/logic/getProxyFormState.ts#L16" target="_blank">react-hook-form</a>, embodies a fundamental React principle: render only what changes.
 
-It's a pattern used by libraries like <a href="https://github.com/vercel/swr/blob/1585a3e37d90ad0df8097b099db38f1afb43c95d/src/core/use-swr.ts#L733" target="_blank">swr</a> and <a href="https://github.com/react-hook-form/react-hook-form/blob/5e92c1b5634bbcf18e3df14d173bced620f7392d/src/logic/getProxyFormState.ts#L16" target="_blank">react-hook-form</a>, and it states a basic idea of React. Don't render what is not used.
-
-Take this example
+Let's explore this pattern by evolving a simple localStorage wrapper into a more sophisticated hook.
+We'll start with a basic implementation:
 
 ```ts
 function useLocalStorage() {
@@ -19,21 +20,16 @@ function useLocalStorage() {
 }
 ```
 
-This is just a basic wrapper on window's localStorage functions. Can we make something more advanced?
+While functional, this hook doesn't leverage React's re-rendering capabilities. How can we make it re-render components when specific localStorage values change?
+The answer lies in using Proxy and React refs.
 
-How can we subscribe to re-render everytime the value of a key changes?
+#### Core idea
 
-We can use `Proxy` and some React refs.
+- Maintain state outside of React's render cycle
+- Use a proxy to detect which keys are accessed
+- Listen for storage events to identify changes
 
-### Implementation
-
-This is the main idea:
-
-- Keep state outside of render state
-- Return a proxy to detect which keys are used
-- Listen to storage events to detect changes
-
-What we want to achieve is something like this
+Our goal is to create a hook that allows for elegant usage like this:
 
 ```tsx
 function ThemeProvider({ children }) {
@@ -43,47 +39,7 @@ function ThemeProvider({ children }) {
 }
 ```
 
-Let's create our hook
-
-```ts
-function useLocalStorage() {
-  const render = useState()[1];
-  const state = useRef({});
-  const deps = useRef({});
-
-  /* ... */
-}
-```
-
-`state` will keep our values (syncronized with the storage), `deps` will track which values we are currently using and `render` is a function to force a react re-render.
-
-Now, let's use a proxy to understand which props we are using.
-
-```ts
-function useLocalStorage() {
-  const render = useState()[1];
-  const state = useRef({});
-  const deps = useRef({});
-
-  return useMemo(
-    () =>
-      new Proxy(
-        {},
-        {
-          get(_, property) {
-            deps.current[property] = true;
-            return state.current[property];
-          },
-        }
-      ),
-    []
-  );
-}
-```
-
-Note how our proxy is memoized. We don't need to recreate it every time. The getter will define which properties we are listening to!
-
-Let's add now the listener.
+Let's build our enhanced hook step by step:
 
 ```ts
 function useLocalStorage() {
@@ -116,12 +72,24 @@ function useLocalStorage() {
 }
 ```
 
-For each storage event, we will update the state only for those that are actually used by the hook and trigger the render after the update.
+Let's break down the key components:
 
-And that's it! For each destructured property we will listen for changes inside localStorage. Creating a nice and safe state syncronization.
+1. `state` stores our values, synced with localStorage.
+2. `deps` tracks which values are currently in use.
+3. `render` is a function to trigger a React re-render.
+4. We use a memoized `Proxy` to detect property access and mark dependencies.
+5. A `useLayoutEffect` sets up a listener for storage events, updating state and triggering re-renders only for tracked properties.
 
-This is still a basic example, this pattern can be applied to more complex states and cases.
+This implementation creates an efficient state synchronization mechanism. When you destructure properties from the hook's return value, it automatically listens for changes in localStorage for those specific keys.
 
----
+By leveraging this pattern, you ensure that your components only re-render when the specific data they use changes, leading to more efficient and responsive React applications.
 
-1. Some of the code takes inspiration from the external store of React ([link](https://github.com/facebook/react/blob/main/packages/use-sync-external-store/src/useSyncExternalStoreShimClient.js))
+### Key Principles
+
+To summarize, the hook getter pattern generally follows these principles:
+
+- Keep state outside of the render cycle
+- Synchronize state, update tracked dependencies, and trigger renders
+- Return getters for known properties or use a Proxy
+
+These principles allow for fine-grained control over when and why your components re-render, helping to optimize performance in React applications.

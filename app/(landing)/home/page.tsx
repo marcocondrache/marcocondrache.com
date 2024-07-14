@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import { ModeToggle } from "@/components/mode-toggle";
 
 export default function Home() {
@@ -8,7 +6,7 @@ export default function Home() {
       <div className="mb-4 flex items-center justify-between">
         <div>
           <h1 className="text-2xl">Marco Mihai Condrache</h1>
-          <h2 className="mt-1 text-stone-500">Software Engineer and Student</h2>
+          <h2 className="mt-1 text-stone-500">Software Engineer</h2>
         </div>
         <ModeToggle />
       </div>
@@ -24,15 +22,6 @@ export default function Home() {
           These skills allow me to tackle a wide range of projects with
           creativity and precision.
         </p>
-      </div>
-      <div className="mt-4 flex flex-row text-sm text-stone-500">
-        Read more in
-        <Link
-          className="font-serif italic hover:underline"
-          href={"/experience"}
-        >
-          &nbsp;experience
-        </Link>
       </div>
     </section>
   );

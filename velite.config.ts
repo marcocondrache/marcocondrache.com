@@ -7,9 +7,10 @@ const posts = defineCollection({
   pattern: "posts/**/*.md",
   schema: s.object({
     slug: s.slug("posts"),
+    date: s.isodate(),
     title: s.string(),
+    summary: s.string(),
     content: s.markdown(),
-    excerpt: s.excerpt(),
     metadata: s.metadata(),
     published: s.boolean().default(false),
   }),
@@ -31,9 +32,15 @@ export default defineConfig({
       [
         rehypePrettyCode,
         {
-          theme: JSON.parse(
-            fs.readFileSync("./lib/themes/markdown.json", "utf-8")
-          ),
+          keepBackground: true,
+          theme: {
+            dark: JSON.parse(
+              fs.readFileSync("./lib/themes/dark.json", "utf-8")
+            ),
+            light: JSON.parse(
+              fs.readFileSync("./lib/themes/light.json", "utf-8")
+            ),
+          },
         },
       ],
     ],

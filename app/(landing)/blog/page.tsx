@@ -35,7 +35,7 @@ export default function Page() {
         >
           <div className="flex w-4/6 flex-col space-y-1">
             <h2 className="text-lg">{post.title}</h2>
-            <p className="truncate text-sm text-gray-500">{post.excerpt}</p>
+            <p className="truncate text-sm text-stone-500">{post.summary}</p>
           </div>
           <div className="flex flex-col justify-center">
             <span className="text-xs">
