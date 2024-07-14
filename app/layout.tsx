@@ -14,6 +14,7 @@ import { Motion } from "@/components/motion";
 
 const newsreader = Newsreader({
   style: ["italic"],
+  subsets: ["latin"],
   variable: "--font-newsreader",
 });
 
