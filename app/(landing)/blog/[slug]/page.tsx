@@ -24,7 +24,7 @@ export default function Page({
   return (
     <section className="mb-10">
       <h1 className="text-2xl">{post.title}</h1>
-      <div className="flex justify-between items-center mt-2 mb-8 text-sm text-stone-500">
+      <div className="mb-8 mt-2 flex items-center justify-between text-sm text-stone-500">
         <time dateTime={post.date}>{format(post.date, "full")}</time>
       </div>
       <article

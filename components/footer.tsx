@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { ArrowUpIcon } from "@radix-ui/react-icons";
 import { useWindowScroll } from "@uidotdev/usehooks";
 import { m } from "framer-motion";
@@ -65,21 +64,13 @@ export function Footer() {
               <div className="w-3/5 space-y-5 text-left text-xs">
                 <h2 className="text-lg">Disclaimer</h2>
                 <p>
-                  This personal website is a work in progress. I&apos;m excited
-                  to add interactive surprise features to enhance user
-                  experience.
+                  This personal website is a work in progress. I am constantly
+                  learning and evolving, and so is this website.
                 </p>
                 <p>
-                  I&apos;d like to express my gratitude to
-                  <Link
-                    className="font-serif italic underline"
-                    href="https://duncan.land"
-                    target="_blank"
-                  >
-                    &nbsp;duncan&nbsp;
-                  </Link>
-                  for the inspiration, and to the entire open source community
-                  whose contributions made this website possible.
+                  I&apos;d like to express my gratitude to all the designers and
+                  developers for the inspiration, and to the entire open source
+                  community whose contributions made this website possible.
                 </p>
               </div>
               <div>

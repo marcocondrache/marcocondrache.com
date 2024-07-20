@@ -5,9 +5,10 @@
     "prettier",
     "plugin:tailwindcss/recommended"
   ],
-  "plugins": ["tailwindcss"],
+  "plugins": ["tailwindcss", "eslint-plugin-react-compiler"],
   "rules": {
-    "tailwindcss/classnames-order": "error"
+    "tailwindcss/classnames-order": "error",
+    "react-compiler/react-compiler": "error"
   },
   "settings": {
     "tailwindcss": {

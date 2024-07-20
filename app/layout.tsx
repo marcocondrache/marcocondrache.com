@@ -33,7 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={cn(fonts.map((f) => f.variable))}>
-      <body className="bg-stone-50 antialiased dark:bg-stone-950">
+      <body className="touch-none overscroll-x-none bg-stone-50 antialiased dark:bg-stone-950">
         <ThemeProvider attribute="class">
           <Motion>{children}</Motion>
         </ThemeProvider>

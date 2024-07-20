@@ -1,6 +1,6 @@
 "use client";
 
-import { domAnimation, LazyMotion } from "framer-motion";
+import { domMax, LazyMotion } from "framer-motion";
 
 export function Motion({
   children,
@@ -8,7 +8,7 @@ export function Motion({
   children: React.ReactNode;
 }>) {
   return (
-    <LazyMotion features={domAnimation} strict>
+    <LazyMotion features={domMax} strict>
       {children}
     </LazyMotion>
   );

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 em {
-  @apply font-serif italic;
+  @apply font-serif italic text-base/5 text-[1.075rem];
 }
 
 @layer utilities {
@@ -11,6 +11,17 @@ em {
     @apply absolute w-1.5 h-1.5 bg-stone-300 rounded-full -indent-px;
     @apply ml-[-35.5px] mt-[10px];
     content: "";
+  }
+
+  /* For Webkit-based browsers (Chrome, Safari and Opera) */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* For IE, Edge and Firefox */
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }
 }
 
