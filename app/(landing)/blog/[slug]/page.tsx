@@ -19,7 +19,7 @@ export default function Page({
 
   if (!post) return notFound();
 
-  increment(params.slug);
+  void increment(params.slug);
 
   return (
     <section className="mb-10">

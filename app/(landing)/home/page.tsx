@@ -1,12 +1,6 @@
-import { api } from "@/server/strava";
-
 import { ModeToggle } from "@/components/mode-toggle";
 
 export default async function Home() {
-  const activities = await api.getActivities();
-
-  console.log(activities);
-
   return (
     <section>
       <div className="mb-4 flex items-center justify-between">
