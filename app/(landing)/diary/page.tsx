@@ -4,7 +4,6 @@ import { useCallback, useMemo, useState } from "react";
 import {
   addDay,
   dayOfYear,
-  format,
   isBefore,
   monthStart,
   sameDay,
@@ -12,11 +11,16 @@ import {
   yearStart,
 } from "@formkit/tempo";
 
-import { Line, Timeline, TimelineProps } from "@/components/timeline";
+import { useMediaQuery } from "@/hooks/use-media-query";
+
+import { Activity } from "./_components/activity";
+import { Line } from "./_components/line";
+import { Timeline } from "./_components/timeline";
 
 export default function Page() {
   const [day, setDay] = useState(new Date());
-  const [offset, setOffset] = useState(0);
+
+  const easierLayout = useMediaQuery("(any-pointer: coarse)");
 
   const days = useMemo(() => {
     const now = new Date();
@@ -30,37 +34,39 @@ export default function Page() {
   }, []);
 
   const renderLine = useCallback(
-    ((date, ref) => (
+    (date: Date) => (
       <Line
         key={date.toISOString()}
-        ref={ref as React.LegacyRef<HTMLDivElement>}
         variant={sameDay(date, monthStart(date)) ? "starter" : "default"}
         style={{
           height: `${Math.floor(Math.random() * (160 - 40 + 1)) + 40}px`,
         }}
       />
-    )) satisfies TimelineProps<Date>["renderLine"],
+    ),
     []
   );
 
   return (
-    <section>
-      <div className="relative overflow-hidden">
-        <div className="absolute left-0 z-10 h-full w-[100px] bg-gradient-to-r from-stone-50 to-transparent dark:from-stone-950" />
-        <div className="absolute right-0 z-10 h-full w-[100px] bg-gradient-to-l from-stone-50 to-transparent dark:from-stone-950" />
-        <div
-          ref={(e) => setOffset(e?.offsetLeft ?? 0)}
-          className="absolute left-1/2 z-20 h-[100px] w-[1.5px] -translate-x-1/2 bg-black"
-        />
-        <Timeline
-          data={days}
-          offset={offset}
-          renderLine={renderLine}
-          defaultIndex={dayOfYear(new Date()) - 1}
-          currentLine={setDay}
-        />
-      </div>
-      {format(day)}
+    <section className="space-y-8">
+      <Activity day={day} />
+      <Timeline
+        data={days}
+        offset={0}
+        renderLine={renderLine}
+        selectedLine={(date) => setDay(date || new Date())}
+        defaultIndex={dayOfYear(new Date()) - 1}
+        easierLayout={easierLayout}
+      />
+      <p>
+        This component allows me to scroll through the entire year and view my
+        activities on a day-by-day basis. This is useful for observing the
+        <em> consistency</em> of my training plan throughout the year.
+      </p>
+      <p>
+        By visualizing my activities in this format, I can easily identify
+        <em> patterns</em> in my workout routine and assess how well I&apos;m
+        adhering to my <em>fitness</em> goals.
+      </p>
     </section>
   );
 }
