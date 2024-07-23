@@ -1,3 +1,5 @@
+import "server-only";
+
 import { isAfter } from "@formkit/tempo";
 import { get } from "@vercel/edge-config";
 

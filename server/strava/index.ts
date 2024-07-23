@@ -1,3 +1,5 @@
+import "server-only";
+
 import { StravaApi } from "./api";
 import { StravaAuth } from "./auth";
 

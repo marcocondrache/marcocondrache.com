@@ -1,14 +1,17 @@
 import { Suspense } from "react";
 import { api } from "@/server/strava";
 
-import { ActivitiesTimeline } from "./_components/activities-timeline";
+import {
+  ActivitiesTimeline,
+  ActivitiesTimelineSkeleton,
+} from "./_components/activities-timeline";
 
-export default async function Page() {
+export default function Page() {
   const activitiesPromise = api.getActivities();
 
   return (
     <section className="space-y-8">
-      <Suspense>
+      <Suspense fallback={<ActivitiesTimelineSkeleton />}>
         <ActivitiesTimeline activitiesPromise={activitiesPromise} />
       </Suspense>
       <p>

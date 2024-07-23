@@ -4,19 +4,9 @@ import { getViews } from "@/server/queries";
 
 import { getPublishedPosts } from "@/lib/posts";
 
+import { ViewsCounter } from "./_components/views-counter";
+
 const getPosts = cache(getPublishedPosts);
-
-async function ViewsCounter({
-  slug,
-  promise,
-}: {
-  slug: string;
-  promise: Promise<{ slug: string; count: number }[]>;
-}) {
-  const data = await promise;
-
-  return <>{data.find((item) => item.slug === slug)?.count ?? 0} views</>;
-}
 
 export default function Page() {
   const posts = getPosts();

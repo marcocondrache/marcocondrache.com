@@ -1,3 +1,5 @@
+import "server-only";
+
 import { Activity } from "@/types/strava";
 
 import { StravaAuth } from "./auth";
@@ -19,10 +21,14 @@ export class StravaApi {
     return await response.json();
   }
 
+  preloadActivities() {
+    void this.getActivities();
+  }
+
   async getActivities() {
     return this.request<Activity[]>(
       `https://www.strava.com/api/v3/athlete/activities`,
-      { next: { revalidate: 24 * 60 * 60 } }
+      { next: { tags: ["stravaActivities"], revalidate: 3600 } }
     );
   }
 }
