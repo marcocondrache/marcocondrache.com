@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useMemo, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import {
   animate,
   m,
@@ -10,37 +10,39 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
+import { useSetAtom } from "jotai";
+import { atomWithReset, RESET } from "jotai/utils";
 import { clamp } from "remeda";
 
 import { cn } from "@/lib/utils";
+import { useMediaQuery } from "@/hooks/use-media-query";
 
-export interface TimelineProps<D = unknown>
-  extends React.HTMLAttributes<HTMLDivElement> {
-  data: D[];
+export const selectedDay = atomWithReset(new Date());
+
+export interface TimelineProps extends React.HTMLAttributes<HTMLDivElement> {
+  data: Date[];
   offset?: number;
   defaultIndex?: number;
-  renderLine: (data: D) => React.ReactNode;
-  selectedLine?: (data?: D) => void;
-  easierLayout?: boolean;
   lineOffset?: number;
-  lineWidth?: number;
+  onDateChange?: (date?: Date) => void;
 }
 
-export function Timeline<D = unknown>({
+export function Timeline({
   data,
   offset = 0,
   defaultIndex = 0,
   lineOffset = 7,
-  renderLine,
-  selectedLine,
-  easierLayout = false,
   className,
   children,
+  onDateChange,
   ...props
-}: TimelineProps<D>) {
+}: TimelineProps) {
   const wrapper = useRef<HTMLDivElement>(null);
   const timeline = useRef<HTMLDivElement>(null);
   const container = useRef<HTMLDivElement>(null);
+
+  const setDay = useSetAtom(selectedDay);
+  const easierLayout = useMediaQuery("(any-pointer: coarse)");
 
   const { scrollX } = useScroll({ container: wrapper });
 
@@ -107,16 +109,11 @@ export function Timeline<D = unknown>({
     animate(cursorOpacity, 1);
   }, [defaultIndex, moveTo, cursorOpacity]);
 
-  useMotionValueEvent(cursorIndex, "change", (i) => selectedLine?.(data[i]));
+  useMotionValueEvent(cursorIndex, "change", (i) => setDay(data[i]));
   useMotionValueEvent(
     cursorOpacity,
     "animationComplete",
-    () => cursorOpacity.get() === 0 && selectedLine?.(undefined)
-  );
-
-  const lines = useMemo(
-    () => data.map((date) => renderLine(date)),
-    [data, renderLine]
+    () => cursorOpacity.get() === 0 && setDay(RESET)
   );
 
   return (
@@ -148,7 +145,7 @@ export function Timeline<D = unknown>({
           ref={timeline}
           className="flex flex-row flex-nowrap items-baseline justify-start gap-1.5"
         >
-          {lines}
+          {children}
         </m.div>
       </div>
     </div>

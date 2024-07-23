@@ -1,25 +1,29 @@
 import { isAfter } from "@formkit/tempo";
+import { get } from "@vercel/edge-config";
 
 export interface StravaAuthConfig {
-  client_id: string;
-  client_secret: string;
-  refresh_token: string;
+  refreshToken: string;
 }
 
 export class StravaAuth {
+  client: number;
+  secret: string;
   expires_at: Date = new Date(0);
   access_token: string = "";
 
-  constructor(private auth: StravaAuthConfig) {
-    this.auth = auth;
+  constructor() {
+    this.client = parseInt(process.env.STRAVA_CLIENT_ID!);
+    this.secret = process.env.STRAVA_CLIENT_SECRET!;
   }
 
   private async refresh() {
+    const stravaConfig = (await get("strava")) as StravaAuthConfig;
+
     const body = {
       grant_type: "refresh_token",
-      refresh_token: this.auth.refresh_token,
-      client_id: parseInt(this.auth.client_id),
-      client_secret: this.auth.client_secret,
+      client_id: this.client,
+      client_secret: this.secret,
+      refresh_token: stravaConfig.refreshToken,
     };
 
     const response = await fetch("https://www.strava.com/oauth/token", {

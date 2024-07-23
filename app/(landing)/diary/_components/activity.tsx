@@ -2,14 +2,14 @@
 
 import { format } from "@formkit/tempo";
 import { WidthIcon } from "@radix-ui/react-icons";
+import { useAtomValue } from "jotai";
 
 import { useMounted } from "@/hooks/use-mounted";
 
-export interface ActivityProps extends React.ComponentProps<"div"> {
-  day: Date;
-}
+import { selectedDay } from "./timeline";
 
-export function Activity({ day, ...props }: ActivityProps) {
+export function Activity({ ...props }: React.ComponentProps<"div">) {
+  const day = useAtomValue(selectedDay);
   const isMounted = useMounted();
 
   if (!isMounted) return null;

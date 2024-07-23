@@ -9,6 +9,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
+import { Provider as StateProvider } from "jotai";
 
 import { Motion } from "@/components/motion";
 
@@ -34,11 +35,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn(fonts.map((f) => f.variable))}>
       <body className="overscroll-x-none bg-stone-50 antialiased dark:bg-stone-950">
-        <ThemeProvider attribute="class">
-          <Motion>{children}</Motion>
-        </ThemeProvider>
-        <SpeedInsights />
-        <Analytics />
+        <StateProvider>
+          <ThemeProvider attribute="class">
+            <Motion>{children}</Motion>
+          </ThemeProvider>
+          <SpeedInsights />
+          <Analytics />
+        </StateProvider>
       </body>
     </html>
   );
