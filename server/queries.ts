@@ -1,15 +1,14 @@
 import "server-only";
 
+import { unstable_noStore } from "next/cache";
 import { sql } from "drizzle-orm";
 
 import { db } from "./db";
 import { view } from "./db/schema";
 
-export async function getViews() {
-  return await db.query.view.findMany();
-}
+export const incrementView = async (slug: string) => {
+  unstable_noStore();
 
-export async function incrementView(slug: string) {
   return await db
     .insert(view)
     .values({ slug, count: 1 })
@@ -19,4 +18,10 @@ export async function incrementView(slug: string) {
         count: sql`${view.count} + 1`,
       },
     });
-}
+};
+
+export const getViews = async () => {
+  unstable_noStore();
+
+  return await db.query.view.findMany();
+};

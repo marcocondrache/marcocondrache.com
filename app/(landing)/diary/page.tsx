@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import { api } from "@/server/strava";
 
 import {
   ActivitiesTimeline,
@@ -7,12 +6,10 @@ import {
 } from "./_components/activities-timeline";
 
 export default function Page() {
-  const activitiesPromise = api.getActivities();
-
   return (
     <section className="space-y-8">
       <Suspense fallback={<ActivitiesTimelineSkeleton />}>
-        <ActivitiesTimeline activitiesPromise={activitiesPromise} />
+        <ActivitiesTimeline />
       </Suspense>
       <p>
         This component allows to scroll through the entire year and view my

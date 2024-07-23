@@ -1,6 +1,5 @@
 import { cache, Suspense } from "react";
 import Link from "next/link";
-import { getViews } from "@/server/queries";
 
 import { getPublishedPosts } from "@/lib/posts";
 
@@ -10,7 +9,6 @@ const getPosts = cache(getPublishedPosts);
 
 export default function Page() {
   const posts = getPosts();
-  const views = getViews();
 
   if (posts.length === 0)
     return <span>Currently there are no published posts.</span>;
@@ -29,8 +27,8 @@ export default function Page() {
           </div>
           <div className="flex flex-col justify-center">
             <span className="text-xs">
-              <Suspense>
-                <ViewsCounter promise={views} slug={post.slug} />
+              <Suspense fallback={<></>}>
+                <ViewsCounter slug={post.slug} />
               </Suspense>
             </span>
           </div>

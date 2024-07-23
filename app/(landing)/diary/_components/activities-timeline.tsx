@@ -1,4 +1,4 @@
-import { use, useCallback, useMemo } from "react";
+import { api } from "@/server/strava";
 import {
   addDay,
   dayOfYear,
@@ -9,7 +9,6 @@ import {
   yearStart,
 } from "@formkit/tempo";
 
-import { Activity } from "@/types/strava";
 import { Skeleton } from "@/components/ui/skeleton";
 
 import { Activity as ActivityComponent } from "./activity";
@@ -28,16 +27,10 @@ export function ActivitiesTimelineSkeleton() {
   );
 }
 
-export interface ActivitiesTimelineProps {
-  activitiesPromise: Promise<Activity[]>;
-}
+export async function ActivitiesTimeline() {
+  const activities = await api.getActivities();
 
-export function ActivitiesTimeline({
-  activitiesPromise,
-}: ActivitiesTimelineProps) {
-  const activities = use(activitiesPromise);
-
-  const days = useMemo(() => {
+  const getDays = () => {
     const now = new Date();
     const start = yearStart(now);
     const end = yearEnd(now);
@@ -46,20 +39,19 @@ export function ActivitiesTimeline({
     for (let i = start; isBefore(i, end); i = addDay(i)) days.push(i);
 
     return days;
-  }, []);
+  };
 
-  const renderLine = useCallback(
-    (date: Date) => (
-      <Line
-        key={date.toISOString()}
-        variant={sameDay(date, monthStart(date)) ? "starter" : "default"}
-        style={{
-          height: `${Math.floor(Math.random() * (160 - 40 + 1)) + 40}px`,
-        }}
-      />
-    ),
-    []
+  const renderLine = (date: Date) => (
+    <Line
+      key={date.toISOString()}
+      variant={sameDay(date, monthStart(date)) ? "starter" : "default"}
+      style={{
+        height: `${Math.floor(Math.random() * (160 - 40 + 1)) + 40}px`,
+      }}
+    />
   );
+
+  const days = getDays();
 
   return (
     <>

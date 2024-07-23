@@ -10,5 +10,17 @@
       "wordCount": 388
     },
     "published": true
+  },
+  {
+    "slug": "hooks-gettersfff",
+    "date": "2024-07-13T22:00:00.000Z",
+    "title": "A react pattern for writting hooks",
+    "summary": "Pattern that ensures efficient rendering by re-rendering components only when the specific state values they use change",
+    "content": "",
+    "metadata": {
+      "readingTime": 0,
+      "wordCount": 0
+    },
+    "published": true
   }
 ]
