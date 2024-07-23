@@ -58,11 +58,11 @@ export default function Page() {
         easierLayout={easierLayout}
       />
       <p>
-        This component allows me to scroll through the entire year and view my
+        This component allows to scroll through the entire year and view my
         activities on a day-by-day basis. This is useful for observing the
         <em> consistency</em> of my training plan throughout the year.
       </p>
-      <p>
+      <p className="!mb-20">
         By visualizing my activities in this format, I can easily identify
         <em> patterns</em> in my workout routine and assess how well I&apos;m
         adhering to my <em>fitness</em> goals.

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useMemo, useRef } from "react";
+import React, { useCallback, useEffect, useMemo, useRef } from "react";
 import {
   animate,
   m,
@@ -10,6 +10,7 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
+import { clamp } from "remeda";
 
 import { cn } from "@/lib/utils";
 
@@ -30,7 +31,6 @@ export function Timeline<D = unknown>({
   offset = 0,
   defaultIndex = 0,
   lineOffset = 7,
-  lineWidth = 1,
   renderLine,
   selectedLine,
   easierLayout = false,
@@ -45,31 +45,51 @@ export function Timeline<D = unknown>({
   const { scrollX } = useScroll({ container: wrapper });
 
   const cursorPoint = useMotionValue(0);
-  const cursorOpacity = useMotionValue(easierLayout ? 1 : 0);
+  const cursorOpacity = useMotionValue(0);
 
   const step = useCallback(
     (x: number) => lineOffset * Math.round(x / lineOffset),
     [lineOffset]
   );
 
+  const moveTo = useCallback(
+    (index: number) => {
+      const rect = container.current?.getBoundingClientRect();
+      const left = rect?.left || 0;
+      const width = rect?.width || 0;
+      const point = width / 2;
+
+      cursorPoint.set(point + left);
+      wrapper.current?.scroll({
+        left: index * lineOffset - point,
+        behavior: "smooth",
+      });
+    },
+    [lineOffset, wrapper, cursorPoint]
+  );
+
   const calculateStep = useCallback(() => {
-    if (easierLayout) return 0;
+    const rect = container.current?.getBoundingClientRect();
 
-    const offset = container.current?.getBoundingClientRect().left || 0;
+    const left = rect?.left || 0;
+    const width = rect?.width || 0;
+
     const shift = scrollX.get() % lineOffset;
+    const point = easierLayout ? (width + left) / 2 : cursorPoint.get();
 
-    return step(cursorPoint.get() - offset) - shift;
-  }, [lineOffset]);
-
-  const calculateIndex = useCallback(() => {
-    const i = scrollX.get() / lineOffset;
-    const s = scrollX.get() % lineOffset;
-    const e = cursorStep.get() / lineOffset;
-
-    return e + i - s;
-  }, [lineOffset]);
+    return clamp(step(point - left) - shift, { min: 0 });
+  }, [cursorPoint, easierLayout, lineOffset, scrollX, step]);
 
   const cursorStep = useTransform(calculateStep);
+
+  const calculateIndex = useCallback(() => {
+    const s = scrollX.get() % lineOffset;
+    const i = scrollX.get() / lineOffset;
+    const e = (cursorStep.get() + s) / lineOffset;
+
+    return ~~(e + i);
+  }, [cursorStep, lineOffset, scrollX]);
+
   const cursorIndex = useTransform(calculateIndex);
 
   const cursorX = useSpring(cursorStep, {
@@ -77,6 +97,15 @@ export function Timeline<D = unknown>({
     damping: 18,
     mass: 0.7,
   });
+
+  useEffect(() => {
+    if (easierLayout) animate(cursorOpacity, 1);
+  }, [cursorOpacity, easierLayout]);
+
+  useEffect(() => {
+    moveTo(defaultIndex);
+    animate(cursorOpacity, 1);
+  }, [defaultIndex, moveTo, cursorOpacity]);
 
   useMotionValueEvent(cursorIndex, "change", (i) => selectedLine?.(data[i]));
   useMotionValueEvent(
@@ -95,32 +124,24 @@ export function Timeline<D = unknown>({
       key="container"
       ref={container}
       className="relative cursor-none"
+      onDoubleClick={() => moveTo(defaultIndex)}
       onMouseEnter={() => !easierLayout && animate(cursorOpacity, 1)}
       onMouseMove={(e) => cursorPoint.set(e.clientX)}
       onMouseLeave={() => !easierLayout && animate(cursorOpacity, 0)}
     >
-      <div className="absolute left-0 z-20 h-full w-[100px] bg-gradient-to-r from-stone-50 to-transparent dark:from-stone-950" />
-      <div className="absolute right-0 z-20 h-full w-[100px] bg-gradient-to-l from-stone-50 to-transparent dark:from-stone-950" />
+      <div className="absolute left-0 z-20 h-full w-1/6 bg-gradient-to-r from-stone-50 to-transparent dark:from-stone-950" />
+      <div className="absolute right-0 z-20 h-full w-1/6 bg-gradient-to-l from-stone-50 to-transparent dark:from-stone-950" />
       <m.div
         key="cursor"
         className={cn(
-          "absolute top-0 z-10 h-full w-px bg-black dark:bg-white",
-          easierLayout ? "left-1/2" : "left-0"
+          "absolute left-0 top-0 z-10 h-full w-[1.5px] bg-orange-600"
         )}
         style={{
           x: cursorX,
           opacity: cursorOpacity,
         }}
       />
-      <div
-        ref={wrapper}
-        key="wrapper"
-        className="overflow-auto"
-        style={{
-          scrollbarWidth: "none",
-        }}
-      >
-        <div className="w-1/2" />
+      <div ref={wrapper} key="wrapper" className="scrollbar-hide overflow-auto">
         <m.div
           dir="ltr"
           key="timeline"
@@ -129,7 +150,6 @@ export function Timeline<D = unknown>({
         >
           {lines}
         </m.div>
-        <div className="w-1/2" />
       </div>
     </div>
   );
