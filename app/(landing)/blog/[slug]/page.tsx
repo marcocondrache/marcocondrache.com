@@ -8,7 +8,7 @@ import { getPostsIndex } from "@/lib/posts";
 const getIndex = cache(getPostsIndex);
 const increment = cache(incrementView);
 
-export default function Page({
+export default async function Page({
   params,
 }: {
   params: {
@@ -19,7 +19,7 @@ export default function Page({
 
   if (!post) return notFound();
 
-  void increment(params.slug);
+  await increment(params.slug);
 
   return (
     <section className="mb-10">
