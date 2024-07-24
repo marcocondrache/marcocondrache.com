@@ -3,7 +3,7 @@ import { incrementView } from "@/server/db/queries";
 import { getPostsIndex } from "@/lib/posts";
 import { format } from "date-fns";
 
-export default function Page({
+export default async function Page({
   params,
 }: {
   params: {
@@ -13,7 +13,7 @@ export default function Page({
   const post = getPostsIndex()[params.slug];
   if (!post) return notFound();
 
-  incrementView(params.slug);
+  await incrementView(params.slug);
 
   return (
     <section className="mb-10">
