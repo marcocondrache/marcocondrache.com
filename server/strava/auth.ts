@@ -1,7 +1,7 @@
 import "server-only";
 
-import { isAfter } from "@formkit/tempo";
 import { get } from "@vercel/edge-config";
+import { isAfter } from "date-fns";
 
 export interface StravaAuthConfig {
   refreshToken: string;

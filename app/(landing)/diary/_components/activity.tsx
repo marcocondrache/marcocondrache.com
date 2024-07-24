@@ -1,6 +1,5 @@
 "use client";
 
-import { format } from "@formkit/tempo";
 import { WidthIcon } from "@radix-ui/react-icons";
 import { useAtomValue } from "jotai";
 
@@ -11,11 +10,12 @@ import { formatDuration } from "@/lib/utils";
 import { useMounted } from "@/hooks/use-mounted";
 
 import { selectedDay } from "./timeline";
+import { format } from "date-fns";
 
 function DayIndicator({ day }: { day: Date }) {
   if (!useMounted()) return null;
 
-  return <h1 className="text-sm">{format(day)}</h1>;
+  return <h1 className="text-sm">{format(day, "eee, MMMM d")}</h1>;
 }
 
 function SportIndicator({ activity }: { activity: ActivityType }) {
@@ -32,7 +32,7 @@ function SportIndicator({ activity }: { activity: ActivityType }) {
 
 function ScrollIndicator() {
   return (
-    <div className="flex items-center gap-2 text-xs text-stone-500">
+    <div className="flex items-center gap-2 text-xs text-stone-400">
       <WidthIcon />
       Scroll
     </div>
