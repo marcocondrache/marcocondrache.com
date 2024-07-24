@@ -27,7 +27,7 @@ export default function Page() {
           </div>
           <div className="flex flex-col justify-center">
             <span className="text-xs">
-              <Suspense fallback={<></>}>
+              <Suspense>
                 <ViewsCounter slug={post.slug} />
               </Suspense>
             </span>

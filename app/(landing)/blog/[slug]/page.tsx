@@ -1,6 +1,6 @@
 import { cache } from "react";
 import { notFound } from "next/navigation";
-import { incrementView } from "@/server/queries";
+import { incrementView } from "@/server/db/queries";
 import { format } from "@formkit/tempo";
 
 import { getPostsIndex } from "@/lib/posts";

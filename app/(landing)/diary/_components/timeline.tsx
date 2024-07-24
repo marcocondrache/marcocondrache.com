@@ -55,7 +55,7 @@ export function Timeline({
   );
 
   const moveTo = useCallback(
-    (index: number) => {
+    (index: number, smooth: boolean = true) => {
       const rect = container.current?.getBoundingClientRect();
       const left = rect?.left || 0;
       const width = rect?.width || 0;
@@ -64,7 +64,7 @@ export function Timeline({
       cursorPoint.set(point + left);
       wrapper.current?.scroll({
         left: index * lineOffset - point,
-        behavior: "smooth",
+        behavior: smooth ? "smooth" : "instant",
       });
     },
     [lineOffset, wrapper, cursorPoint]
@@ -105,7 +105,7 @@ export function Timeline({
   }, [cursorOpacity, easierLayout]);
 
   useEffect(() => {
-    moveTo(defaultIndex);
+    moveTo(defaultIndex, false);
     animate(cursorOpacity, 1);
   }, [defaultIndex, moveTo, cursorOpacity]);
 
@@ -126,8 +126,8 @@ export function Timeline({
       onMouseMove={(e) => cursorPoint.set(e.clientX)}
       onMouseLeave={() => !easierLayout && animate(cursorOpacity, 0)}
     >
-      <div className="absolute left-0 z-20 h-full w-1/6 bg-gradient-to-r from-stone-50 to-transparent dark:from-stone-950" />
-      <div className="absolute right-0 z-20 h-full w-1/6 bg-gradient-to-l from-stone-50 to-transparent dark:from-stone-950" />
+      <div className="pointer-events-none absolute left-0 z-20 h-full w-1/6 bg-gradient-to-r from-stone-50 to-transparent dark:from-stone-950" />
+      <div className="pointer-events-none absolute right-0 z-20 h-full w-1/6 bg-gradient-to-l from-stone-50 to-transparent dark:from-stone-950" />
       <m.div
         key="cursor"
         className={cn(

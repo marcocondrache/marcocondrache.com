@@ -1,16 +1,13 @@
-import { Suspense } from "react";
+import { api } from "@/server/strava";
 
-import {
-  ActivitiesTimeline,
-  ActivitiesTimelineSkeleton,
-} from "./_components/activities-timeline";
+import { ActivitiesLoader } from "./_components/activities-loader";
 
-export default function Page() {
+export default async function Page() {
+  const promise = api.getActivities();
+
   return (
     <section className="space-y-8">
-      <Suspense fallback={<ActivitiesTimelineSkeleton />}>
-        <ActivitiesTimeline />
-      </Suspense>
+      <ActivitiesLoader promise={promise} />
       <p>
         This component allows to scroll through the entire year and view my
         activities on a day-by-day basis. This is useful for observing the

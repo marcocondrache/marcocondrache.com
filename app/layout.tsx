@@ -12,6 +12,7 @@ import { GeistSans } from "geist/font/sans";
 import { Provider as StateProvider } from "jotai";
 
 import { Motion } from "@/components/motion";
+import { QueryProvider } from "@/components/query-provider";
 
 const newsreader = Newsreader({
   style: ["italic"],
@@ -35,13 +36,15 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn(fonts.map((f) => f.variable))}>
       <body className="overscroll-x-none bg-stone-50 antialiased dark:bg-stone-950">
-        <StateProvider>
-          <ThemeProvider attribute="class">
-            <Motion>{children}</Motion>
-          </ThemeProvider>
-          <SpeedInsights />
-          <Analytics />
-        </StateProvider>
+        <QueryProvider>
+          <StateProvider>
+            <ThemeProvider attribute="class">
+              <Motion>{children}</Motion>
+            </ThemeProvider>
+            <SpeedInsights />
+            <Analytics />
+          </StateProvider>
+        </QueryProvider>
       </body>
     </html>
   );
