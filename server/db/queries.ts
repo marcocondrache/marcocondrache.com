@@ -3,16 +3,10 @@ import "server-only";
 import { unstable_noStore as noStore } from "next/cache";
 import { sql } from "drizzle-orm";
 
-import { db } from "./db";
-import { view } from "./db/schema";
+import { db } from ".";
+import { view } from "./schema";
 
-export async function getViews() {
-  noStore();
-
-  return await db.query.view.findMany();
-}
-
-export async function incrementView(slug: string) {
+export const incrementView = async (slug: string) => {
   noStore();
 
   return await db
@@ -24,4 +18,10 @@ export async function incrementView(slug: string) {
         count: sql`${view.count} + 1`,
       },
     });
-}
+};
+
+export const getViews = async () => {
+  noStore();
+
+  return await db.query.view.findMany();
+};

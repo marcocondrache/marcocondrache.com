@@ -1,26 +1,12 @@
-import { cache, Suspense } from "react";
+import { Suspense } from "react";
 import Link from "next/link";
-import { getViews } from "@/server/queries";
 
 import { getPublishedPosts } from "@/lib/posts";
 
-const getPosts = cache(getPublishedPosts);
-
-async function ViewsCounter({
-  slug,
-  promise,
-}: {
-  slug: string;
-  promise: Promise<{ slug: string; count: number }[]>;
-}) {
-  const data = await promise;
-
-  return <>{data.find((item) => item.slug === slug)?.count ?? 0} views</>;
-}
+import { ViewsCounter } from "./_components/views-counter";
 
 export default function Page() {
-  const posts = getPosts();
-  const views = getViews();
+  const posts = getPublishedPosts();
 
   if (posts.length === 0)
     return <span>Currently there are no published posts.</span>;
@@ -40,7 +26,7 @@ export default function Page() {
           <div className="flex flex-col justify-center">
             <span className="text-xs">
               <Suspense>
-                <ViewsCounter promise={views} slug={post.slug} />
+                <ViewsCounter slug={post.slug} />
               </Suspense>
             </span>
           </div>
