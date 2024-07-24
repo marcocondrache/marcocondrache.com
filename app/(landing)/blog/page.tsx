@@ -1,14 +1,12 @@
-import { cache, Suspense } from "react";
+import { Suspense } from "react";
 import Link from "next/link";
 
 import { getPublishedPosts } from "@/lib/posts";
 
 import { ViewsCounter } from "./_components/views-counter";
 
-const getPosts = cache(getPublishedPosts);
-
 export default function Page() {
-  const posts = getPosts();
+  const posts = getPublishedPosts();
 
   if (posts.length === 0)
     return <span>Currently there are no published posts.</span>;
