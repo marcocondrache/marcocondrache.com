@@ -12,9 +12,9 @@ export default async function Home() {
       </div>
       <div className="mt-10 space-y-8">
         <p>
-          I&apos;m driven by an insatiable appetite for learning and
-          self-improvement. I excel at leveraging state-of-the-art technologies
-          to tackle intricate problems with precision and efficiency.
+          I work as a software engineer for <em>Danfoss</em> in Italy. My
+          passion for learning and self-improvement drives my professional
+          growth and innovation in the field.
         </p>
         <p>
           Currently, I&apos;m immersing myself in <em>TypeScript</em> and{" "}

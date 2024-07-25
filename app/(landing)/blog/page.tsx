@@ -5,6 +5,11 @@ import { getPublishedPosts } from "@/lib/posts";
 
 import { ViewsCounter } from "./_components/views-counter";
 
+export const metadata = {
+  title: "Blog",
+  description: "My personal blog where I share my thoughts and learnings.",
+};
+
 export default function Page() {
   const posts = getPublishedPosts();
 

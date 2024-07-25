@@ -5,8 +5,9 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: "*",
-        disallow: "/experience",
       },
     ],
+    sitemap: "https://marcocondrache.com/sitemap",
+    host: "https://marcocondrache.com",
   };
 }

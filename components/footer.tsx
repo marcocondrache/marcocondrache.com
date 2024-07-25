@@ -83,9 +83,6 @@ export function Footer() {
                   <ExternalLink href="https://github.com/mossida">
                     mossida
                   </ExternalLink>
-                  <ExternalLink href="https://github.com/marcocondrache/marcocondrache.com">
-                    source
-                  </ExternalLink>
                 </div>
               </div>
             </div>
