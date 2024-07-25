@@ -5,6 +5,7 @@ export function Transition({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <m.div
+      layoutId="transition"
       animate={{
         opacity: 1,
       }}

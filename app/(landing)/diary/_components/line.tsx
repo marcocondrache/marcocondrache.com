@@ -9,7 +9,7 @@ export const lineVariants = cva("h-9 w-px shrink-0", {
   variants: {
     variant: {
       default: "bg-stone-300 dark:bg-stone-500",
-      starter: "bg-stone-900 dark:bg-stone-400",
+      starter: "bg-stone-950 dark:bg-white",
     },
     state: {
       loading: "animate-pulse",

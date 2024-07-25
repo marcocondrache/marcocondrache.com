@@ -2,10 +2,10 @@
 
 import React, { useCallback, useEffect, useRef } from "react";
 import {
-  animate,
-  m,
+  useAnimate,
   useMotionValue,
   useMotionValueEvent,
+  useReducedMotion,
   useScroll,
   useSpring,
   useTransform,
@@ -14,8 +14,11 @@ import { useSetAtom } from "jotai";
 import { atomWithReset, RESET } from "jotai/utils";
 import { clamp } from "remeda";
 
-import { cn } from "@/lib/utils";
 import { useMediaQuery } from "@/hooks/use-media-query";
+
+import { Cursor } from "./cursor";
+import { OverlayLeft, OverlayRight } from "./overlay";
+import { Slider } from "./slider";
 
 export const selectedDay = atomWithReset(new Date());
 
@@ -38,12 +41,14 @@ export function Timeline({
   ...props
 }: TimelineProps) {
   const wrapper = useRef<HTMLDivElement>(null);
-  const timeline = useRef<HTMLDivElement>(null);
-  const container = useRef<HTMLDivElement>(null);
 
   const setDay = useSetAtom(selectedDay);
-  const easierLayout = useMediaQuery("(any-pointer: coarse)");
+  const noPointer = useMediaQuery("(any-pointer: coarse)");
+  const reducedMotion = useReducedMotion();
 
+  const easierLayout = noPointer || reducedMotion;
+
+  const [container, animate] = useAnimate();
   const { scrollX } = useScroll({ container: wrapper });
 
   const cursorPoint = useMotionValue(0);
@@ -67,7 +72,7 @@ export function Timeline({
         behavior: smooth ? "smooth" : "instant",
       });
     },
-    [lineOffset, wrapper, cursorPoint]
+    [container, cursorPoint, lineOffset]
   );
 
   const calculateStep = useCallback(() => {
@@ -80,7 +85,7 @@ export function Timeline({
     const point = easierLayout ? (width + left) / 2 : cursorPoint.get();
 
     return clamp(step(point - left) - shift, { min: 0 });
-  }, [cursorPoint, easierLayout, lineOffset, scrollX, step]);
+  }, [container, cursorPoint, easierLayout, lineOffset, scrollX, step]);
 
   const cursorStep = useTransform(calculateStep);
 
@@ -102,12 +107,12 @@ export function Timeline({
 
   useEffect(() => {
     if (easierLayout) animate(cursorOpacity, 1);
-  }, [cursorOpacity, easierLayout]);
+  }, [animate, cursorOpacity, easierLayout]);
 
   useEffect(() => {
     moveTo(defaultIndex, false);
     animate(cursorOpacity, 1);
-  }, [defaultIndex, moveTo, cursorOpacity]);
+  }, [defaultIndex, moveTo, cursorOpacity, animate]);
 
   useMotionValueEvent(cursorIndex, "change", (i) => setDay(data[i]));
   useMotionValueEvent(
@@ -126,28 +131,15 @@ export function Timeline({
       onMouseMove={(e) => cursorPoint.set(e.clientX)}
       onMouseLeave={() => !easierLayout && animate(cursorOpacity, 0)}
     >
-      <div className="pointer-events-none absolute left-0 z-20 h-full w-1/6 bg-gradient-to-r from-stone-50 to-transparent dark:from-stone-950" />
-      <div className="pointer-events-none absolute right-0 z-20 h-full w-1/6 bg-gradient-to-l from-stone-50 to-transparent dark:from-stone-950" />
-      <m.div
-        key="cursor"
-        className={cn(
-          "absolute left-0 top-0 z-10 h-full w-[1.5px] bg-orange-600"
-        )}
-        style={{
-          x: cursorX,
-          opacity: cursorOpacity,
-        }}
-      />
-      <div ref={wrapper} key="wrapper" className="scrollbar-hide overflow-auto">
-        <m.div
-          dir="ltr"
-          key="timeline"
-          ref={timeline}
-          className="flex flex-row flex-nowrap items-baseline justify-start gap-1.5"
-        >
-          {children}
-        </m.div>
-      </div>
+      <OverlayLeft />
+      <OverlayRight />
+      <Cursor x={cursorX} opacity={cursorOpacity} />
+      <Slider
+        ref={wrapper}
+        className="flex flex-row flex-nowrap items-baseline justify-start gap-1.5"
+      >
+        {children}
+      </Slider>
     </div>
   );
 }
