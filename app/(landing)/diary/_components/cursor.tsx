@@ -11,7 +11,7 @@ export function Cursor({
     <m.div
       key="cursor"
       className="absolute left-0 top-0 z-10 h-full w-[1.5px] bg-orange-600"
-      style={{ x, opacity }}
+      style={{ x, opacity, willChange: "transform, opacity" }}
     />
   );
 }
