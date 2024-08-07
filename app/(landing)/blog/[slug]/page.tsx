@@ -3,6 +3,7 @@ import { incrementView } from "@/server/db/queries";
 import { format } from "date-fns";
 
 import { getPostsIndex } from "@/lib/posts";
+import { Section } from "@/components/layout/section";
 
 export async function generateMetadata({
   params,
@@ -32,7 +33,7 @@ export default async function Page({
   await incrementView(params.slug);
 
   return (
-    <section className="mb-10">
+    <Section className="mb-10">
       <h1 className="text-2xl">{post.title}</h1>
       <div className="mb-8 mt-2 flex items-center justify-between text-sm text-stone-500">
         <time dateTime={post.date}>
@@ -40,9 +41,9 @@ export default async function Page({
         </time>
       </div>
       <article
-        className="prose prose-stone dark:prose-invert prose-headings:font-medium prose-a:font-normal prose-a:decoration-1 prose-a:underline-offset-[2.5px]"
+        className="markdown"
         dangerouslySetInnerHTML={{ __html: post.content }}
       />
-    </section>
+    </Section>
   );
 }

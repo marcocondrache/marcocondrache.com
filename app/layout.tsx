@@ -15,7 +15,7 @@ import { Motion } from "@/components/motion";
 import { QueryProvider } from "@/components/query-provider";
 
 const newsreader = Newsreader({
-  style: ["italic"],
+  style: ["italic", "normal"],
   subsets: ["latin"],
   variable: "--font-newsreader",
 });
@@ -35,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={cn(fonts.map((f) => f.variable))}>
-      <body className="overscroll-x-none bg-stone-50 antialiased dark:bg-stone-950">
+      <body>
         <QueryProvider>
           <StateProvider>
             <ThemeProvider attribute="class">

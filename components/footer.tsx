@@ -26,7 +26,7 @@ export function Footer() {
         <VisuallyHidden>
           <DrawerTitle>Footer</DrawerTitle>
         </VisuallyHidden>
-        <div className="fixed bottom-5 left-1/2 z-40 flex w-full max-w-[calc(712px-2rem)] -translate-x-1/2 flex-row gap-3">
+        <div className="fixed inset-x-6 bottom-5 z-40 flex max-w-[calc(712px-2rem)] flex-row gap-3 md:left-1/2 md:w-full md:-translate-x-1/2">
           <DrawerTrigger
             className={cn(
               buttonVariants({ variant: "outline" }),

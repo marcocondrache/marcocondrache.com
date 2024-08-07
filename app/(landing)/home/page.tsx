@@ -1,8 +1,9 @@
+import { Section } from "@/components/layout/section";
 import { ModeToggle } from "@/components/mode-toggle";
 
 export default async function Home() {
   return (
-    <section>
+    <Section>
       <div className="mb-4 flex items-center justify-between">
         <div>
           <h1 className="text-2xl">Marco Mihai Condrache</h1>
@@ -28,6 +29,6 @@ export default async function Home() {
           process.
         </p>
       </div>
-    </section>
+    </Section>
   );
 }

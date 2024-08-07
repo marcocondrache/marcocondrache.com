@@ -2,15 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  @apply scroll-smooth;
+}
+
+body {
+  @apply overscroll-x-none bg-stone-50 antialiased dark:bg-stone-950;
+}
+
 em {
   @apply font-serif italic text-base/5 text-[1.075rem];
 }
 
 @layer utilities {
-  .step:before {
-    @apply absolute w-1.5 h-1.5 bg-stone-300 rounded-full -indent-px;
-    @apply ml-[-35.5px] mt-[10px];
-    content: "";
+  .linear-border {
+    @apply border border-stone-200 dark:border-stone-800;
+  }
+
+  .special-link {
+    @apply underline decoration-1 decoration-stone-300 underline-offset-4 hover:decoration-black motion-safe:transition-all dark:decoration-stone-500 dark:hover:decoration-white;
+  }
+
+  .markdown {
+    @apply prose prose-stone dark:prose-invert prose-headings:font-medium prose-a:font-normal prose-a:decoration-1 prose-a:underline-offset-[2.5px] prose-pre:linear-border;
   }
 
   /* For Webkit-based browsers (Chrome, Safari and Opera) */

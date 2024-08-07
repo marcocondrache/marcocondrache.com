@@ -8,14 +8,12 @@ export default function Layout({
 }>) {
   return (
     <>
-      <main
-        className="container mx-auto max-w-[712px] px-4 py-10"
-        tabIndex={-1}
-        role="main"
-      >
-        <Navigation />
+      <main className="container relative max-w-6xl py-10">
+        <div className="grid grid-flow-row grid-cols-1 gap-y-8 md:grid-cols-[1fr_42.5rem_1fr]">
+          <Navigation className="pb-4 pt-10 md:col-start-2" />
 
-        {children}
+          {children}
+        </div>
       </main>
 
       <Footer />

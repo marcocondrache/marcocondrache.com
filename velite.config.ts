@@ -6,6 +6,7 @@ const posts = defineCollection({
   name: "Posts",
   pattern: "posts/**/*.md",
   schema: s.object({
+    toc: s.toc(),
     slug: s.slug("posts"),
     date: s.isodate(),
     title: s.string(),
@@ -16,17 +17,19 @@ const posts = defineCollection({
   }),
 });
 
-const projects = defineCollection({
-  name: "Projects",
-  pattern: "projects/**/*.md",
+const crafts = defineCollection({
+  name: "Crafts",
+  pattern: "crafts/**/*.mdx",
   schema: s.object({
+    slug: s.slug("crafts"),
     title: s.string(),
-    content: s.markdown(),
+    summary: s.string(),
+    content: s.mdx(),
   }),
 });
 
 export default defineConfig({
-  collections: { projects, posts },
+  collections: { crafts, posts },
   markdown: {
     rehypePlugins: [
       [

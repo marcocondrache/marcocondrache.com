@@ -1,5 +1,7 @@
 import { api } from "@/server/strava";
 
+import { Section } from "@/components/layout/section";
+
 import { ActivitiesLoader } from "./_components/activities-loader";
 
 export const metadata = {
@@ -11,7 +13,7 @@ export default async function Page() {
   const promise = api.getActivities();
 
   return (
-    <section className="space-y-8">
+    <Section className="space-y-8">
       <ActivitiesLoader promise={promise} />
       <p>
         This component allows to scroll through the entire year and view my
@@ -23,6 +25,6 @@ export default async function Page() {
         <em> patterns</em> in my workout routine and assess how well I&apos;m
         adhering to my <em>fitness</em> goals.
       </p>
-    </section>
+    </Section>
   );
 }
