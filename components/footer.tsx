@@ -1,7 +1,7 @@
 "use client";
 
+import { useSyncExternalStore } from "react";
 import { ArrowUpIcon } from "@radix-ui/react-icons";
-import { useWindowScroll } from "@uidotdev/usehooks";
 import { m } from "framer-motion";
 
 import { cn } from "@/lib/utils";
@@ -18,7 +18,14 @@ import {
 import { VisuallyHidden } from "./visually-hidden";
 
 export function Footer() {
-  const [{ y }, scrollTo] = useWindowScroll();
+  const y = useSyncExternalStore(
+    (change) => {
+      window.addEventListener("scroll", change);
+      return () => window.removeEventListener("scroll", change);
+    },
+    () => window.scrollY,
+    () => 0
+  );
 
   return (
     <footer tabIndex={-1} role="contentinfo">
@@ -33,9 +40,7 @@ export function Footer() {
               "h-[unset] grow justify-between px-3 py-1.5 font-normal transition-none"
             )}
           >
-            <span>
-              <em>marcocondrache &copy;</em>
-            </span>
+            <span>marcocondrache &copy;</span>
             <span>2024</span>
           </DrawerTrigger>
 
@@ -47,7 +52,9 @@ export function Footer() {
                 buttonVariants({ variant: "outline", size: "icon" }),
                 "h-[unset]"
               )}
-              onClick={() => scrollTo({ left: 0, top: 0, behavior: "smooth" })}
+              onClick={() =>
+                window.scrollTo({ left: 0, top: 0, behavior: "smooth" })
+              }
             >
               <ArrowUpIcon />
             </m.button>

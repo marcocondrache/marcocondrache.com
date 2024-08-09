@@ -10,7 +10,7 @@ export function CraftContainer({
   return (
     <section
       className={cn(
-        "not-prose linear-border isolate my-5 inline-flex flex-row place-content-center overflow-auto rounded-md bg-alabster dark:bg-black md:col-span-3 md:!col-start-1",
+        "not-prose linear-border isolate my-5 inline-flex flex-row place-content-center overflow-auto rounded-md bg-alabster md:col-span-3 md:!col-start-1 dark:bg-black",
         className
       )}
       {...props}

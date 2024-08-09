@@ -1,11 +1,15 @@
-import { IconBarbell, IconProps } from "@tabler/icons-react";
+import { IconBaseProps } from "react-icons";
+import { TbBarbell } from "react-icons/tb";
 
 import { SportType } from "@/types/strava";
 
-export function sportTypeToIcon(sportType: SportType, props?: IconProps) {
+export function sportTypeToIcon(
+  sportType: SportType,
+  props?: React.ComponentProps<"svg"> & IconBaseProps
+) {
   switch (sportType) {
     case SportType.WeightTraining:
-      return <IconBarbell {...props} />;
+      return <TbBarbell {...props} />;
     default:
       return <></>;
   }

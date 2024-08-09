@@ -10,8 +10,6 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import { useSetAtom } from "jotai";
-import { atomWithReset, RESET } from "jotai/utils";
 import { clamp } from "remeda";
 
 import { useMediaQuery } from "@/hooks/use-media-query";
@@ -20,14 +18,13 @@ import { Cursor } from "./cursor";
 import { OverlayLeft, OverlayRight } from "./overlay";
 import { Slider } from "./slider";
 
-export const selectedDay = atomWithReset(new Date());
-
 export interface TimelineProps extends React.HTMLAttributes<HTMLDivElement> {
   data: Date[];
   offset?: number;
   defaultIndex?: number;
   lineOffset?: number;
-  onDateChange?: (date?: Date) => void;
+  selectedDay: Date;
+  onDateChange?: (date: Date) => void;
 }
 
 export function Timeline({
@@ -37,12 +34,12 @@ export function Timeline({
   lineOffset = 7,
   className,
   children,
+  selectedDay,
   onDateChange,
   ...props
 }: TimelineProps) {
   const wrapper = useRef<HTMLDivElement>(null);
 
-  const setDay = useSetAtom(selectedDay);
   const noPointer = useMediaQuery("(any-pointer: coarse)");
   const reducedMotion = useReducedMotion();
 
@@ -114,11 +111,11 @@ export function Timeline({
     animate(cursorOpacity, 1);
   }, [defaultIndex, moveTo, cursorOpacity, animate]);
 
-  useMotionValueEvent(cursorIndex, "change", (i) => setDay(data[i]));
+  useMotionValueEvent(cursorIndex, "change", (i) => onDateChange?.(data[i]));
   useMotionValueEvent(
     cursorOpacity,
     "animationComplete",
-    () => cursorOpacity.get() === 0 && setDay(RESET)
+    () => cursorOpacity.get() === 0 && onDateChange?.(new Date())
   );
 
   return (
@@ -135,6 +132,7 @@ export function Timeline({
       <OverlayRight />
       <Cursor x={cursorX} opacity={cursorOpacity} />
       <Slider
+        day={selectedDay}
         ref={wrapper}
         className="flex flex-row flex-nowrap items-baseline justify-start gap-1.5"
       >

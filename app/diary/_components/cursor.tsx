@@ -1,6 +1,7 @@
+import { memo } from "react";
 import { m, MotionValue } from "framer-motion";
 
-export function Cursor({
+function Component({
   x,
   opacity,
 }: {
@@ -15,3 +16,5 @@ export function Cursor({
     />
   );
 }
+
+export const Cursor = memo(Component);

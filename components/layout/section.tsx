@@ -1,11 +1,10 @@
 "use client";
 
 import { cva, VariantProps } from "class-variance-authority";
-import { HTMLMotionProps, m } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
-export const contentVariants = cva("place-content-center", {
+export const contentVariants = cva("animate-children place-content-center", {
   variants: {
     type: {
       subgrid: "grid grid-cols-subgrid",
@@ -21,7 +20,7 @@ export const contentVariants = cva("place-content-center", {
 });
 
 export interface SectionProps
-  extends HTMLMotionProps<"section">,
+  extends React.ComponentProps<"section">,
     VariantProps<typeof contentVariants> {}
 
 export function Section({
@@ -32,13 +31,11 @@ export function Section({
   ...props
 }: SectionProps) {
   return (
-    <m.section
+    <section
       className={cn(contentVariants({ type, size }), className)}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
       {...props}
     >
       {children}
-    </m.section>
+    </section>
   );
 }

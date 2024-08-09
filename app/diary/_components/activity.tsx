@@ -1,16 +1,12 @@
 "use client";
 
-import { WidthIcon } from "@radix-ui/react-icons";
-import { useAtomValue } from "jotai";
+import { format } from "date-fns";
+import { RxWidth } from "react-icons/rx";
 
-import { Activity as ActivityType } from "@/types/strava"; // Assuming ActivityType is defined in a file named types.ts
-
+import { Activity as ActivityType } from "@/types/strava";
 import { sportTypeToIcon } from "@/lib/strava";
 import { formatDuration } from "@/lib/utils";
 import { useMounted } from "@/hooks/use-mounted";
-
-import { selectedDay } from "./timeline";
-import { format } from "date-fns";
 
 function DayIndicator({ day }: { day: Date }) {
   if (!useMounted()) return null;
@@ -23,7 +19,7 @@ function SportIndicator({ activity }: { activity: ActivityType }) {
     <>
       {sportTypeToIcon(activity.sport_type, {
         size: 20,
-        stroke: 1,
+        className: "stroke-1",
       })}
       <span className="text-sm">{formatDuration(activity.elapsed_time)}</span>
     </>
@@ -33,18 +29,18 @@ function SportIndicator({ activity }: { activity: ActivityType }) {
 function ScrollIndicator() {
   return (
     <div className="flex items-center gap-2 text-xs text-stone-400">
-      <WidthIcon />
+      <RxWidth />
       Scroll
     </div>
   );
 }
 
 export interface ActivityProps extends React.ComponentProps<"div"> {
+  day: Date;
   activitiesMap: Record<string, ActivityType[]>;
 }
 
-export function Activity({ activitiesMap, ...props }: ActivityProps) {
-  const day = useAtomValue(selectedDay);
+export function Activity({ day, activitiesMap, ...props }: ActivityProps) {
   const activities = activitiesMap[day.toISOString()];
 
   return (

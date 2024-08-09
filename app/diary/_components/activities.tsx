@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   eachDayOfInterval,
   endOfYear,
@@ -17,10 +18,14 @@ import { Timeline } from "./timeline";
 export function Activities({
   activities = [],
   isLoading = false,
+  maxHeight = 160,
 }: {
+  maxHeight?: number;
   activities?: Activity[];
   isLoading?: boolean;
 }) {
+  const [day, setDay] = useState(new Date());
+
   const activitiesMap = groupBy(activities, (a) =>
     startOfDay(a.start_date).toISOString()
   );
@@ -38,9 +43,9 @@ export function Activities({
     const activity = activitiesMap[date.toISOString()];
     const elapsed_time = sumBy(activity ?? [], prop("elapsed_time"));
     const size = isLoading
-      ? 160
+      ? maxHeight
       : activity && longestActivity
-        ? (elapsed_time * 160) / longestActivity.elapsed_time
+        ? (elapsed_time * maxHeight) / longestActivity.elapsed_time
         : 20;
 
     return (
@@ -49,22 +54,25 @@ export function Activities({
         variant={isFirstDayOfMonth(date) ? "starter" : "default"}
         state={isLoading ? "loading" : null}
         height={size}
-        maxHeight={160}
+        maxHeight={maxHeight}
       />
     );
   };
 
   const days = getDays();
+  const lines = days.map((date) => renderLine(date));
 
   return (
     <>
-      <ActivityComponent activitiesMap={activitiesMap} />
+      <ActivityComponent day={day} activitiesMap={activitiesMap} />
       <Timeline
         data={days}
         offset={0}
+        selectedDay={day}
         defaultIndex={getDayOfYear(new Date()) - 1}
+        onDateChange={setDay}
       >
-        {days.map((date) => renderLine(date))}
+        {lines}
       </Timeline>
     </>
   );

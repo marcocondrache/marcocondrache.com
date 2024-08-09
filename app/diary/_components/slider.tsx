@@ -1,18 +1,15 @@
 import { getDayOfYear, isLeapYear } from "date-fns";
-import { useAtomValue } from "jotai";
 
 import { cn } from "@/lib/utils";
 
-import { selectedDay } from "./timeline";
-
 export function Slider({
+  day,
   ref,
   children,
   className,
   ...props
-}: React.ComponentProps<"div">) {
-  const day = useAtomValue(selectedDay);
-  const isLeap = isLeapYear(new Date());
+}: React.ComponentProps<"div"> & { day: Date }) {
+  const isLeap = isLeapYear(day);
 
   return (
     <div

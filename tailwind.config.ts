@@ -2,7 +2,6 @@ import type { Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
 
 const config = {
-  darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
@@ -27,9 +26,31 @@ const config = {
         mono: ["var(--font-geist-mono)", ...fontFamily.mono],
         serif: ["var(--font-newsreader)", ...fontFamily.serif],
       },
+      animation: {
+        intro: "intro 0.3s forwards ease-in-out",
+      },
+      keyframes: {
+        intro: {
+          "0%": {
+            transform: "translateY(10px)",
+            opacity: "0",
+            filter: "blur(5px)",
+          },
+          "95%": {
+            transform: "translateY(-1px)",
+            opacity: "1",
+            filter: "blur(0px)",
+          },
+          "100%": {
+            transform: "translateY(0px)",
+            opacity: "1",
+            filter: "blur(0px)",
+          },
+        },
+      },
     },
   },
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+  plugins: [require("@tailwindcss/typography")],
 } satisfies Config;
 
 export default config;
