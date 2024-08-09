@@ -51,6 +51,7 @@ export default function RootLayout({
 
           <Footer />
         </Motion>
+
         <SpeedInsights />
         <Analytics />
       </body>
