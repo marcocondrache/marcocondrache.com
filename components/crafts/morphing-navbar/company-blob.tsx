@@ -3,19 +3,21 @@ import { MotionCompanyLogo, MotionCompanyText } from "./company-logo";
 
 export function CompanyBlob({
   hasText,
+  multiplier,
   children,
   ...props
-}: BlobProps & { hasText?: boolean }) {
+}: BlobProps & { hasText?: boolean; multiplier: number }) {
   return (
-    <Blob layout layoutId="companyBlob" transition={{ duration: 2 }} {...props}>
-      <MotionCompanyLogo layout className="h-4" />
+    <Blob key="companyBlob" layout layoutId="companyBlob" {...props}>
+      <MotionCompanyLogo key="companyLogo" layout className="h-4" />
       {hasText && (
         <MotionCompanyText
+          key="companyText"
           layout
           className="h-3"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.7, duration: 0.4 }}
+          transition={{ delay: 0.4 / multiplier, duration: 0.4 / multiplier }}
         />
       )}
       {children}

@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import { HTMLMotionProps, m } from "framer-motion";
+import { AnimatePresence, HTMLMotionProps, m } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
@@ -19,7 +19,7 @@ export function Blob({ className, children, ...props }: BlobProps) {
       }}
       {...props}
     >
-      {children}
+      <AnimatePresence>{children}</AnimatePresence>
     </m.div>
   );
 }

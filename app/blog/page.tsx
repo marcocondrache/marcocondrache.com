@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import Link from "next/link";
 
 import { getPublishedPosts } from "@/lib/posts";
-import { Section } from "@/components/layout/section";
+import { Section } from "@/components/section";
 
 import { ViewsCounter } from "./_components/views-counter";
 

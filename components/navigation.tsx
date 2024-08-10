@@ -9,7 +9,7 @@ export function Navigation({ className }: React.ComponentProps<"aside">) {
         <Link href="/">home</Link>
         <Link href="/blog">blog</Link>
         <Link href="/diary">gym</Link>
-        <Link href="/crafts">crafts</Link>
+        <Link href="/lab">lab</Link>
       </nav>
     </aside>
   );

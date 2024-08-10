@@ -1,12 +1,7 @@
-"use client";
-
-import { useSyncExternalStore } from "react";
-import { ArrowUpIcon } from "@radix-ui/react-icons";
-import { m } from "framer-motion";
-
 import { cn } from "@/lib/utils";
 
 import { ExternalLink } from "./external-link";
+import { ScrollButton } from "./scroll-button";
 import { buttonVariants } from "./ui/button";
 import {
   Drawer,
@@ -18,15 +13,6 @@ import {
 import { VisuallyHidden } from "./visually-hidden";
 
 export function Footer() {
-  const y = useSyncExternalStore(
-    (change) => {
-      window.addEventListener("scroll", change);
-      return () => window.removeEventListener("scroll", change);
-    },
-    () => window.scrollY,
-    () => 0
-  );
-
   return (
     <footer tabIndex={-1} role="contentinfo">
       <Drawer>
@@ -44,21 +30,7 @@ export function Footer() {
             <span>2024</span>
           </DrawerTrigger>
 
-          {(y ?? 0) > 20 && (
-            <m.button
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className={cn(
-                buttonVariants({ variant: "outline", size: "icon" }),
-                "h-[unset]"
-              )}
-              onClick={() =>
-                window.scrollTo({ left: 0, top: 0, behavior: "smooth" })
-              }
-            >
-              <ArrowUpIcon />
-            </m.button>
-          )}
+          <ScrollButton />
         </div>
         <DrawerContent>
           <VisuallyHidden>
@@ -82,7 +54,7 @@ export function Footer() {
               </div>
               <div>
                 <h2 className="mb-3 text-lg">Useful links</h2>
-                <div>
+                <div className="flex flex-col">
                   <ExternalLink href="https://github.com">github</ExternalLink>
                   <ExternalLink href="https://www.linkedin.com/in/marco-mihai-condrache/">
                     linkedin

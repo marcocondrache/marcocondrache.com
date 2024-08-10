@@ -3,7 +3,7 @@ import { incrementView } from "@/server/db/queries";
 import { format } from "date-fns";
 
 import { getPostsIndex } from "@/lib/posts";
-import { Section } from "@/components/layout/section";
+import { Section } from "@/components/section";
 
 export async function generateMetadata({
   params,

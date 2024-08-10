@@ -2,9 +2,9 @@ import { crafts } from "@/content";
 import { indexBy, prop } from "remeda";
 
 export function getCraftsIndex() {
-  return indexBy(crafts, prop("slug"));
+  return indexBy(getCrafts(), prop("slug"));
 }
 
 export function getCrafts() {
-  return crafts;
+  return crafts.filter((c) => c.published);
 }

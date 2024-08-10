@@ -1,11 +1,9 @@
-import { Section } from "@/components/layout/section";
+import { Section } from "@/components/section";
 
 export default function NotFound() {
   return (
     <Section>
-      <h1 className="mb-8 text-2xl font-medium tracking-tighter">
-        This page doesn&apos;t exist.
-      </h1>
+      <h1 className="mb-8 text-2xl tracking-tighter">are you lost?</h1>
     </Section>
   );
 }

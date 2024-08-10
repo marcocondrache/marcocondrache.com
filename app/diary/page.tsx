@@ -1,6 +1,6 @@
 import { api } from "@/server/strava";
 
-import { Section } from "@/components/layout/section";
+import { Section } from "@/components/section";
 
 import { ActivitiesLoader } from "./_components/activities-loader";
 

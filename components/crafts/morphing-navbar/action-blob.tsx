@@ -11,29 +11,35 @@ import { Blob, BlobProps } from "./blob";
 
 export function ActionBlob({
   hasButton,
+  multiplier,
   children,
   className,
   ...props
-}: BlobProps & { hasButton?: boolean }) {
+}: BlobProps & { hasButton?: boolean; multiplier: number }) {
   return (
     <Blob
+      key="actionBlob"
       layout
       layoutId="actionBlob"
-      transition={{ duration: 2 }}
       className={cn("px-2", className)}
       {...props}
     >
-      <MotionAvatar layout className="size-6">
+      <MotionAvatar
+        key="actionAvatar"
+        layout
+        className="hidden size-6 sm:block"
+      >
         <AvatarImage src="https://github.com/marcocondrache.png" />
         <AvatarFallback>MC</AvatarFallback>
       </MotionAvatar>
       {hasButton && (
         <m.button
+          key="actionButton"
           layout
           className="text-nowrap rounded-full border border-stone-700 px-3 py-1 text-xs text-white dark:text-stone-700"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1.4, delay: 0.8 }}
+          transition={{ delay: 0.4 / multiplier, duration: 0.4 / multiplier }}
         >
           Let&apos;s talk
         </m.button>

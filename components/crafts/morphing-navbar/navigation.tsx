@@ -14,7 +14,6 @@ export function Navigation() {
     <LayoutGroup>
       <m.div
         layout="position"
-        transition={{ duration: 2 }}
         className="flex flex-row justify-center space-x-7 px-7"
       >
         {links.map((value, i) => (
