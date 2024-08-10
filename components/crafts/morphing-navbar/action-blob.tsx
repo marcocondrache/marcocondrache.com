@@ -27,7 +27,7 @@ export function ActionBlob({
       <MotionAvatar
         key="actionAvatar"
         layout
-        className="hidden size-6 sm:block"
+        className="hidden size-6 fine:block sm:block"
       >
         <AvatarImage src="https://github.com/marcocondrache.png" />
         <AvatarFallback>MC</AvatarFallback>

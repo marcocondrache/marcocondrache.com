@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
+import plugin from "tailwindcss/plugin";
 
 const config = {
   content: [
@@ -50,7 +51,13 @@ const config = {
       },
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [
+    require("@tailwindcss/typography"),
+    plugin(function ({ addVariant, e }) {
+      addVariant("fine", "@media (any-pointer: fine)");
+      addVariant("coarse", "@media (any-pointer: coarse)");
+    }),
+  ],
 } satisfies Config;
 
 export default config;

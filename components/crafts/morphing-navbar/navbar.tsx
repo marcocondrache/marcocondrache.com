@@ -26,47 +26,44 @@ export default function MorphingNavbar() {
       <Button
         size="sm"
         variant="outline"
-        className="right-3 top-3 h-auto rounded-full px-2.5 py-0.5"
+        className="absolute right-3 top-3 block h-auto rounded-full px-2.5 py-0.5"
         onClick={() => cycleMultiplier()}
       >{`${multiplier}x`}</Button>
       <BlobFilter />
-      <div>
-        <nav
-          className="inline-flex flex-row space-x-7"
-          style={{ filter: "url('#blobFilter')" }}
-          onMouseEnter={() => setIsOpen(true)}
-          onMouseLeave={() => setIsOpen(false || isCoarse)}
-        >
-          <MotionConfig transition={{ duration: baseDuration / multiplier }}>
-            <LayoutGroup>
-              {!isOpen && <CompanyBlob multiplier={multiplier} />}
 
-              <m.div
-                layout
-                layoutDependency={isOpen}
-                className="flex h-10 flex-row items-center justify-between bg-black dark:bg-white"
-                style={{
-                  borderRadius: "9999px",
-                }}
-              >
-                {isOpen && (
-                  <CompanyBlob hasText={true} multiplier={multiplier} />
-                )}
+      <nav
+        className="inline-flex flex-row space-x-7"
+        style={{ filter: "url('#blobFilter')" }}
+        onMouseEnter={() => setIsOpen(true)}
+        onMouseLeave={() => setIsOpen(false || isCoarse)}
+      >
+        <MotionConfig transition={{ duration: baseDuration / multiplier }}>
+          <LayoutGroup>
+            {!isOpen && <CompanyBlob multiplier={multiplier} />}
 
-                <Navigation />
+            <m.div
+              layout
+              layoutDependency={isOpen}
+              className="flex h-10 flex-row items-center justify-between bg-black dark:bg-white"
+              style={{
+                borderRadius: "9999px",
+              }}
+            >
+              {isOpen && <CompanyBlob hasText={true} multiplier={multiplier} />}
 
-                {isOpen && (
-                  <div className="flex flex-row">
-                    <ActionBlob hasButton={true} multiplier={multiplier} />
-                  </div>
-                )}
-              </m.div>
+              <Navigation />
 
-              {!isOpen && <ActionBlob multiplier={multiplier} />}
-            </LayoutGroup>
-          </MotionConfig>
-        </nav>
-      </div>
+              {isOpen && (
+                <div className="flex flex-row">
+                  <ActionBlob hasButton={true} multiplier={multiplier} />
+                </div>
+              )}
+            </m.div>
+
+            {!isOpen && <ActionBlob multiplier={multiplier} />}
+          </LayoutGroup>
+        </MotionConfig>
+      </nav>
     </>
   );
 }

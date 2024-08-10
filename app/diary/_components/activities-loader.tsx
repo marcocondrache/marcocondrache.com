@@ -18,6 +18,6 @@ export function ActivitiesLoader({
   }, [promise]);
 
   return (
-    <Activities activities={data ?? []} isLoading={!data} maxHeight={300} />
+    <Activities activities={data ?? []} isLoading={!data} maxHeight={160} />
   );
 }
