@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { LayoutGroup, m, MotionConfig, useCycle } from "framer-motion";
 
 import { useMediaQuery } from "@/hooks/use-media-query";
@@ -19,8 +19,6 @@ export default function MorphingNavbar() {
   const [isOpen, setIsOpen] = useState(isCoarse);
   const [multiplier, cycleMultiplier] = useCycle(1, 0.25);
 
-  useEffect(() => setIsOpen(isCoarse), [isCoarse]);
-
   return (
     <>
       <Button
@@ -31,39 +29,43 @@ export default function MorphingNavbar() {
       >{`${multiplier}x`}</Button>
       <BlobFilter />
 
-      <nav
-        className="inline-flex flex-row space-x-7"
-        style={{ filter: "url('#blobFilter')" }}
-        onMouseEnter={() => setIsOpen(true)}
-        onMouseLeave={() => setIsOpen(false || isCoarse)}
-      >
-        <MotionConfig transition={{ duration: baseDuration / multiplier }}>
-          <LayoutGroup>
-            {!isOpen && <CompanyBlob multiplier={multiplier} />}
+      <div className="flex w-full items-center justify-center self-stretch overflow-auto px-4">
+        <nav
+          className="inline-flex flex-row space-x-7"
+          style={{ filter: "url('#blobFilter')" }}
+          onMouseEnter={() => setIsOpen(true)}
+          onMouseLeave={() => setIsOpen(false)}
+        >
+          <MotionConfig transition={{ duration: baseDuration / multiplier }}>
+            <LayoutGroup>
+              {!isOpen && <CompanyBlob multiplier={multiplier} />}
 
-            <m.div
-              layout
-              layoutDependency={isOpen}
-              className="flex h-10 flex-row items-center justify-between bg-black dark:bg-white"
-              style={{
-                borderRadius: "9999px",
-              }}
-            >
-              {isOpen && <CompanyBlob hasText={true} multiplier={multiplier} />}
+              <m.div
+                layout
+                layoutDependency={isOpen}
+                className="flex h-10 flex-row items-center justify-between bg-black dark:bg-white"
+                style={{
+                  borderRadius: "9999px",
+                }}
+              >
+                {isOpen && (
+                  <CompanyBlob hasText={true} multiplier={multiplier} />
+                )}
 
-              <Navigation />
+                <Navigation />
 
-              {isOpen && (
-                <div className="flex flex-row">
-                  <ActionBlob hasButton={true} multiplier={multiplier} />
-                </div>
-              )}
-            </m.div>
+                {isOpen && (
+                  <div className="flex flex-row">
+                    <ActionBlob hasButton={true} multiplier={multiplier} />
+                  </div>
+                )}
+              </m.div>
 
-            {!isOpen && <ActionBlob multiplier={multiplier} />}
-          </LayoutGroup>
-        </MotionConfig>
-      </nav>
+              {!isOpen && <ActionBlob multiplier={multiplier} />}
+            </LayoutGroup>
+          </MotionConfig>
+        </nav>
+      </div>
     </>
   );
 }

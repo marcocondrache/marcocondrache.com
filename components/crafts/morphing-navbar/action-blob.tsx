@@ -24,11 +24,7 @@ export function ActionBlob({
       className={cn("px-2", className)}
       {...props}
     >
-      <MotionAvatar
-        key="actionAvatar"
-        layout
-        className="hidden size-6 fine:block sm:block"
-      >
+      <MotionAvatar key="actionAvatar" layout className="size-6">
         <AvatarImage src="https://github.com/marcocondrache.png" />
         <AvatarFallback>MC</AvatarFallback>
       </MotionAvatar>

@@ -14,7 +14,7 @@ export function Craft({ craft, className, children, ...props }: CraftProps) {
         <h3 className="text-lg">{craft.title}</h3>
         <p className="truncate text-sm text-stone-500">{craft.summary}</p>
       </div>
-      <div className="linear-border relative flex min-h-96 w-full items-center overflow-auto rounded-xl bg-alabster sm:justify-center dark:bg-black">
+      <div className="linear-border relative flex min-h-96 w-full items-center rounded-xl bg-alabster sm:justify-center dark:bg-black">
         {children}
       </div>
       <div className="flex flex-row gap-3">
