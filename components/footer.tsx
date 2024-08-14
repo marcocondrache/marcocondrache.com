@@ -1,12 +1,7 @@
-"use client";
-
-import { ArrowUpIcon } from "@radix-ui/react-icons";
-import { useWindowScroll } from "@uidotdev/usehooks";
-import { m } from "framer-motion";
-
 import { cn } from "@/lib/utils";
 
 import { ExternalLink } from "./external-link";
+import { ScrollButton } from "./scroll-button";
 import { buttonVariants } from "./ui/button";
 import {
   Drawer,
@@ -18,40 +13,24 @@ import {
 import { VisuallyHidden } from "./visually-hidden";
 
 export function Footer() {
-  const [{ y }, scrollTo] = useWindowScroll();
-
   return (
     <footer tabIndex={-1} role="contentinfo">
       <Drawer>
         <VisuallyHidden>
           <DrawerTitle>Footer</DrawerTitle>
         </VisuallyHidden>
-        <div className="fixed bottom-5 left-1/2 z-40 flex w-full max-w-[calc(712px-2rem)] -translate-x-1/2 flex-row gap-3">
+        <div className="fixed inset-x-6 bottom-5 z-40 flex max-w-[calc(712px-2rem)] flex-row gap-3 md:left-1/2 md:w-full md:-translate-x-1/2">
           <DrawerTrigger
             className={cn(
               buttonVariants({ variant: "outline" }),
               "h-[unset] grow justify-between px-3 py-1.5 font-normal transition-none"
             )}
           >
-            <span>
-              <em>marcocondrache &copy;</em>
-            </span>
+            <span>marcocondrache &copy;</span>
             <span>2024</span>
           </DrawerTrigger>
 
-          {(y ?? 0) > 20 && (
-            <m.button
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className={cn(
-                buttonVariants({ variant: "outline", size: "icon" }),
-                "h-[unset]"
-              )}
-              onClick={() => scrollTo({ left: 0, top: 0, behavior: "smooth" })}
-            >
-              <ArrowUpIcon />
-            </m.button>
-          )}
+          <ScrollButton />
         </div>
         <DrawerContent>
           <VisuallyHidden>
@@ -75,7 +54,7 @@ export function Footer() {
               </div>
               <div>
                 <h2 className="mb-3 text-lg">Useful links</h2>
-                <div>
+                <div className="flex flex-col">
                   <ExternalLink href="https://github.com">github</ExternalLink>
                   <ExternalLink href="https://www.linkedin.com/in/marco-mihai-condrache/">
                     linkedin

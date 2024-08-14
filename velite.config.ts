@@ -3,9 +3,10 @@ import rehypePrettyCode from "rehype-pretty-code";
 import { defineCollection, defineConfig, s } from "velite";
 
 const posts = defineCollection({
-  name: "Posts",
+  name: "Post",
   pattern: "posts/**/*.md",
   schema: s.object({
+    toc: s.toc(),
     slug: s.slug("posts"),
     date: s.isodate(),
     title: s.string(),
@@ -16,17 +17,21 @@ const posts = defineCollection({
   }),
 });
 
-const projects = defineCollection({
-  name: "Projects",
-  pattern: "projects/**/*.md",
+const crafts = defineCollection({
+  name: "Craft",
+  pattern: "crafts/**/*.mdx",
   schema: s.object({
+    slug: s.slug("crafts"),
     title: s.string(),
-    content: s.markdown(),
+    summary: s.string(),
+    tags: s.array(s.string()),
+    content: s.mdx(),
+    published: s.boolean().default(false),
   }),
 });
 
 export default defineConfig({
-  collections: { projects, posts },
+  collections: { crafts, posts },
   markdown: {
     rehypePlugins: [
       [
