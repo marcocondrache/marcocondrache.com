@@ -11,12 +11,26 @@ export async function generateMetadata({
   params: { slug: string };
 }) {
   const post = getPostsIndex()[params.slug];
-
   if (!post) return notFound();
 
+  const { title, summary: description, date } = post;
+
   return {
-    title: post.title,
-    description: post.summary,
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      publishedTime: date,
+      url: `https://marcocondrache.com/blog/${post.slug}`,
+      author: "Marco Condrache",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
 }
 

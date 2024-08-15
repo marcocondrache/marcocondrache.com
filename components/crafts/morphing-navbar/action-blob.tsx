@@ -1,11 +1,7 @@
 import { m } from "framer-motion";
 
 import { cn } from "@/lib/utils";
-import {
-  AvatarFallback,
-  AvatarImage,
-  MotionAvatar,
-} from "@/components/ui/avatar";
+import { MotionImage } from "@/components/motion-image";
 
 import { Blob, BlobProps } from "./blob";
 
@@ -24,10 +20,16 @@ export function ActionBlob({
       className={cn("px-2", className)}
       {...props}
     >
-      <MotionAvatar key="actionAvatar" layout className="size-6">
-        <AvatarImage src="https://github.com/marcocondrache.png" />
-        <AvatarFallback>MC</AvatarFallback>
-      </MotionAvatar>
+      <MotionImage
+        key="actionAvatar"
+        layout={"position"}
+        className="aspect-square size-6 overflow-hidden rounded-full"
+        src={"https://github.com/marcocondrache.png"}
+        alt=""
+        width={100}
+        height={100}
+      />
+
       {hasButton && (
         <m.button
           key="actionButton"

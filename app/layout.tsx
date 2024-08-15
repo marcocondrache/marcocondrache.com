@@ -4,32 +4,55 @@ import "@/styles/globals.css";
 
 import type { Metadata } from "next";
 import { Newsreader } from "next/font/google";
+import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
 
+import { Blur } from "@/components/blur";
 import { Footer } from "@/components/footer";
 import { Motion } from "@/components/motion";
 import { Navigation } from "@/components/navigation";
 
 const newsreader = Newsreader({
-  display: "swap",
   style: ["italic", "normal"],
   subsets: ["latin"],
   variable: "--font-newsreader",
 });
 
-const fonts = [GeistSans, GeistMono, newsreader];
+const switzer = localFont({
+  src: "../fonts/switzer.ttf",
+  variable: "--font-switzer",
+});
+
+const fonts = [switzer, newsreader];
 
 export const metadata: Metadata = {
   title: "Marco Condrache",
   creator: "Marco Condrache",
   publisher: "Marco Condrache",
-  description: "Personal website, blog, and portfolio of Marco Condrache.",
+  description: "Personal website, blog, and portfolio.",
   authors: [{ name: "Marco Condrache", url: "https://marcocondrache.com" }],
   category: "technology",
   metadataBase: new URL("https://marcocondrache.com"),
+  openGraph: {
+    title: "Marco Condrache",
+    description: "Personal website, blog, and portfolio.",
+    url: "https://marcocondrache.com",
+    siteName: "Marco Condrache",
+    locale: "en-US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Marco Mihai Condrache",
+    description: "Personal website, blog, and portfolio.",
+    siteId: "marcocondrache",
+    creator: "@marcocondrache",
+    creatorId: "marcocondrache",
+  },
+  icons: {
+    icon: "/icons/favicon.png",
+  },
 };
 
 export default function RootLayout({
@@ -51,6 +74,9 @@ export default function RootLayout({
 
           <Footer />
         </Motion>
+
+        <Blur className="top-0 [mask-image:linear-gradient(to_bottom,black,transparent)]" />
+        <Blur className="bottom-0 [mask-image:linear-gradient(to_top,black,transparent)]" />
 
         <SpeedInsights />
         <Analytics />

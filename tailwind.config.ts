@@ -23,8 +23,7 @@ const config = {
         alabster: "#f5f5f4",
       },
       fontFamily: {
-        sans: ["var(--font-geist-sans)", ...fontFamily.sans],
-        mono: ["var(--font-geist-mono)", ...fontFamily.mono],
+        sans: ["var(--font-switzer)", ...fontFamily.sans],
         serif: ["var(--font-newsreader)", ...fontFamily.serif],
       },
       animation: {
@@ -43,9 +42,7 @@ const config = {
             filter: "blur(0px)",
           },
           "100%": {
-            transform: "translateY(0px)",
             opacity: "1",
-            filter: "blur(0px)",
           },
         },
       },
@@ -53,9 +50,18 @@ const config = {
   },
   plugins: [
     require("@tailwindcss/typography"),
-    plugin(function ({ addVariant, e }) {
+    plugin(function ({ addVariant, addUtilities }) {
       addVariant("fine", "@media (any-pointer: fine)");
       addVariant("coarse", "@media (any-pointer: coarse)");
+
+      addUtilities({
+        ".contain-strict": {
+          contain: "strict",
+        },
+        ".contain-content": {
+          contain: "content",
+        },
+      });
     }),
   ],
 } satisfies Config;

@@ -1,15 +1,18 @@
 import Link from "next/link";
 
-import { cn } from "@/lib/utils";
-
 export function Navigation({ className }: React.ComponentProps<"aside">) {
   return (
-    <aside className={cn("tracking-tight", className)}>
+    <aside className={className}>
       <nav className="flex flex-row items-start gap-3" role="navigation">
-        <Link href="/">home</Link>
-        <Link href="/blog">blog</Link>
-        <Link href="/diary">gym</Link>
-        <Link href="/lab">lab</Link>
+        <Link className="exclude" href="/">
+          home
+        </Link>
+        <Link className="exclude" href="/blog">
+          blog
+        </Link>
+        <Link className="exclude" href="/lab">
+          lab
+        </Link>
       </nav>
     </aside>
   );

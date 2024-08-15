@@ -19,7 +19,7 @@ export function Navigation() {
         {links.map((value, i) => (
           <div
             key={value}
-            className="flex flex-col items-center justify-center space-y-1"
+            className=" flex flex-col items-center justify-center space-y-1"
           >
             <m.a
               href="#"
@@ -28,7 +28,7 @@ export function Navigation() {
                 e.preventDefault();
                 setIndex(i);
               }}
-              className={cn("text-xs", {
+              className={cn("exclude text-xs", {
                 "text-stone-500": i !== index,
                 "text-white dark:text-black": i === index,
               })}
@@ -39,7 +39,8 @@ export function Navigation() {
             {i === index && (
               <m.div
                 layoutId="selectionIndicator"
-                className="text-sm leading-[1px] text-white dark:text-black"
+                className="text-sm font-thin leading-[1px] text-white dark:text-black"
+                transition={{ ease: "linear" }}
               >
                 •
               </m.div>
