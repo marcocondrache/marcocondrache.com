@@ -58,7 +58,6 @@ export default function MorphingNavbar() {
               </m.div>
 
               <m.div
-                ref={main}
                 layout
                 layoutDependency={isOpen}
                 className={cn(
