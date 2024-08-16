@@ -3,7 +3,7 @@ import { cva, VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 export const contentVariants = cva(
-  "animate-children place-content-center contain-content",
+  "motion-safe:animate-children place-content-center contain-content",
   {
     variants: {
       type: {

@@ -1,20 +1,21 @@
 "use client";
 
 import { useState } from "react";
-import { LayoutGroup, m } from "framer-motion";
+import { HTMLMotionProps, LayoutGroup, m } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
 const links = ["Products", "Pricing", "Features", "Benefits"];
 
-export function Navigation() {
+export function Navigation({ className, ...props }: HTMLMotionProps<"div">) {
   const [index, setIndex] = useState(0);
 
   return (
     <LayoutGroup>
       <m.div
         layout="position"
-        className="flex flex-row justify-center space-x-7 px-7"
+        className={cn("flex flex-row justify-center space-x-7 px-7", className)}
+        {...props}
       >
         {links.map((value, i) => (
           <div
