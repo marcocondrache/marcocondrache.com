@@ -10,18 +10,12 @@ export interface CraftProps extends React.ComponentProps<"article"> {
 
 export function Craft({ craft, className, children, ...props }: CraftProps) {
   return (
-    <article className={cn("space-y-8", className)} {...props}>
+    <article className={cn("space-y-6", className)} {...props}>
       <div className="flex flex-col space-y-0.5">
         <h3 className="text-lg">{craft.title}</h3>
         <p className="truncate text-sm text-stone-500">{craft.summary}</p>
       </div>
-      <div
-        className={cn(
-          "linear-border relative flex min-h-96 w-full items-center rounded-xl bg-alabster contain-strict sm:justify-center dark:bg-black"
-        )}
-      >
-        {children}
-      </div>
+      {children}
       <div className="flex flex-row justify-between">
         <div className="flex flex-row gap-3">
           {craft.tags.map((tag) => (

@@ -23,6 +23,13 @@ a:not(.exclude) {
   @apply bg-stone-950 text-stone-50 dark:bg-stone-100/30 dark:text-current;
 }
 
+.footer {
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.08),
+    0 1px 1px rgba(0, 0, 0, 0.02),
+    0 4px 8px rgba(0, 0, 0, 0.04);
+}
+
 @layer utilities {
   .linear-border {
     @apply border border-stone-200 dark:border-stone-800;
@@ -44,7 +51,7 @@ a:not(.exclude) {
   }
 }
 
-@media (prefers-color-scheme: light) {
+.light {
   pre[data-theme*=" "],
   code[data-theme*=" "],
   code[data-theme*=" "] span {
@@ -56,7 +63,7 @@ a:not(.exclude) {
   }
 }
 
-@media (prefers-color-scheme: dark) {
+.dark {
   pre[data-theme*=" "],
   code[data-theme*=" "],
   code[data-theme*=" "] span {
@@ -65,6 +72,10 @@ a:not(.exclude) {
     font-style: var(--shiki-dark-font-style);
     font-weight: var(--shiki-dark-font-weight);
     text-decoration: var(--shiki-dark-text-decoration);
+  }
+
+  .footer {
+    box-shadow: 0 0 0 1px theme("colors.stone.800");
   }
 }
 

@@ -30,7 +30,7 @@ export default function Page() {
       {posts.map((post, index) => (
         <div key={index} className="mb-4 flex flex-row justify-between">
           <div className="flex w-4/6 flex-col space-y-1">
-            <Link href={`/blog/${post.slug}`} className="text-lg">
+            <Link href={`/writing/${post.slug}`} className="text-lg">
               {post.title}
             </Link>
             <p className="truncate text-sm text-stone-500">{post.summary}</p>

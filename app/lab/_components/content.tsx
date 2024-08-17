@@ -1,5 +1,7 @@
+import { ComponentProps } from "react";
 import dynamic from "next/dynamic";
 
+import { cn } from "@/lib/utils";
 import { MDXContent } from "@/components/mdx-content";
 
 const MorphingNavbar = dynamic(
@@ -10,11 +12,23 @@ const ExclusionTabs = dynamic(
   () => import("@/components/crafts/exclusion-tabs/tabs")
 );
 
-export function CraftContent({ content }: { content: string }) {
+export function CraftContent({
+  content,
+  className,
+  ...props
+}: { content: string } & ComponentProps<"div">) {
   return (
-    <MDXContent
-      content={content}
-      components={{ MorphingNavbar, ExclusionTabs }}
-    />
+    <div
+      className={cn(
+        "linear-border relative flex min-h-96 w-full items-center rounded-xl bg-alabster contain-strict dark:bg-black sm:justify-center",
+        className
+      )}
+      {...props}
+    >
+      <MDXContent
+        content={content}
+        components={{ MorphingNavbar, ExclusionTabs }}
+      />
+    </div>
   );
 }

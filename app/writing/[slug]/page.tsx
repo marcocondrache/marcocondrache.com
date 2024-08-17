@@ -23,7 +23,7 @@ export async function generateMetadata({
       description,
       type: "article",
       publishedTime: date,
-      url: `https://marcocondrache.com/blog/${post.slug}`,
+      url: `https://marcocondrache.com/writing/${post.slug}`,
       authors: ["Marco Condrache"],
     },
     twitter: {
@@ -32,7 +32,7 @@ export async function generateMetadata({
       description,
     },
     alternates: {
-      canonical: `https://marcocondrache.com/blog/${post.slug}`,
+      canonical: `https://marcocondrache.com/writing/${post.slug}`,
     },
   } satisfies Metadata;
 }

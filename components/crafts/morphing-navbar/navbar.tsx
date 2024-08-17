@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { LayoutGroup, m, MotionConfig } from "framer-motion";
+import { LayoutGroup, m, MotionConfig, useReducedMotion } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 import { useMediaQuery } from "@/hooks/use-media-query";
@@ -17,8 +17,9 @@ const baseDuration = 0.5;
 export default function MorphingNavbar() {
   const blobXOffset = 55;
   const isCoarse = useMediaQuery("(any-pointer:coarse)");
+  const isReduced = useReducedMotion();
 
-  const [isOpen, setIsOpen] = useState(isCoarse);
+  const [isOpen, setIsOpen] = useState(isCoarse || isReduced);
 
   return (
     <>
@@ -29,7 +30,7 @@ export default function MorphingNavbar() {
           className="relative flex w-full min-w-[40.5rem] flex-row justify-center"
           style={{ filter: "url('#blobFilter')" }}
           onMouseEnter={() => setIsOpen(true)}
-          onMouseLeave={() => setIsOpen(false)}
+          onMouseLeave={() => !isReduced && setIsOpen(false)}
         >
           <MotionConfig
             transition={{

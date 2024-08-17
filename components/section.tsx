@@ -3,11 +3,11 @@ import { cva, VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 export const contentVariants = cva(
-  "motion-safe:animate-children place-content-center contain-content",
+  "animate-children place-content-center contain-content",
   {
     variants: {
       type: {
-        subgrid: "grid grid-cols-subgrid",
+        subgrid: "grid grid-cols-subgrid place-content-start",
       },
       size: {
         full: "col-span-3",

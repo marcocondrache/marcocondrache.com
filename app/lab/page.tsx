@@ -18,9 +18,10 @@ export default function Page() {
   return (
     <Section className="space-y-8 pb-12">
       {crafts.map((craft) => (
-        <Craft key={craft.slug} craft={craft}>
+        <>
+          <Craft key={craft.slug} craft={craft} />
           <CraftContent content={craft.content} />
-        </Craft>
+        </>
       ))}
     </Section>
   );
