@@ -31,7 +31,7 @@ export function Navigation({ className, ...props }: HTMLMotionProps<"div">) {
               }}
               className={cn("exclude text-xs", {
                 "text-stone-500": i !== index,
-                "text-white dark:text-black": i === index,
+                "text-black dark:text-white": i === index,
               })}
             >
               {value}
@@ -40,7 +40,7 @@ export function Navigation({ className, ...props }: HTMLMotionProps<"div">) {
             {i === index && (
               <m.div
                 layoutId="selectionIndicator"
-                className="text-sm font-thin leading-[1px] text-white dark:text-black"
+                className="text-sm font-thin leading-[1px] text-black dark:text-white"
                 transition={{ ease: "linear" }}
               >
                 •

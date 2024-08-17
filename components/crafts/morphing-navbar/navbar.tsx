@@ -62,7 +62,7 @@ export default function MorphingNavbar() {
                 layout
                 layoutDependency={isOpen}
                 className={cn(
-                  "z-20 flex h-10 flex-row items-center bg-black dark:bg-white"
+                  "elevation-border z-20 flex h-10 flex-row items-center bg-white dark:bg-stone-900"
                 )}
                 style={{
                   contain: "paint",
@@ -86,7 +86,7 @@ export default function MorphingNavbar() {
                   <m.button
                     layout
                     key="actionButton"
-                    className="ml-7 mr-2 text-nowrap rounded-full border border-stone-700 px-3 py-1 text-xs text-white dark:text-stone-700"
+                    className="ml-7 mr-2 text-nowrap rounded-full border border-stone-300 px-3 py-1 text-xs text-black dark:border-stone-700 dark:text-white"
                   >
                     Let&apos;s talk
                   </m.button>

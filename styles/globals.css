@@ -23,7 +23,7 @@ a:not(.exclude) {
   @apply bg-stone-950 text-stone-50 dark:bg-stone-100/30 dark:text-current;
 }
 
-.footer {
+.elevation-border {
   box-shadow:
     0 0 0 1px rgba(0, 0, 0, 0.08),
     0 1px 1px rgba(0, 0, 0, 0.02),
@@ -74,7 +74,7 @@ a:not(.exclude) {
     text-decoration: var(--shiki-dark-text-decoration);
   }
 
-  .footer {
+  .elevation-border {
     box-shadow: 0 0 0 1px theme("colors.stone.800");
   }
 }

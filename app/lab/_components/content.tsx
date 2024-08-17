@@ -20,7 +20,7 @@ export function CraftContent({
   return (
     <div
       className={cn(
-        "linear-border relative flex min-h-96 w-full items-center rounded-xl bg-alabster contain-strict dark:bg-black sm:justify-center",
+        "linear-border relative flex min-h-96 w-full items-center rounded-xl bg-alabster contain-strict dark:bg-stone-950 sm:justify-center",
         className
       )}
       {...props}
