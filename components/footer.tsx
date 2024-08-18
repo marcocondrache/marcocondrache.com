@@ -17,6 +17,7 @@ export function Footer() {
       <div className="flex items-center text-base">
         <ScrollButton />
         <Link
+          aria-label="My profile on X"
           href={"https://x.com/marcocondrache"}
           className={cn(
             buttonVariants({ variant: "ghost", size: "icon" }),
@@ -27,6 +28,7 @@ export function Footer() {
           <PiXLogo />
         </Link>
         <Link
+          aria-label="My profile on Linkedin"
           href={"https://www.linkedin.com/in/marco-mihai-condrache/"}
           className={cn(
             buttonVariants({ variant: "ghost", size: "icon" }),

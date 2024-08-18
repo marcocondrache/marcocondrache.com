@@ -9,6 +9,7 @@ export function FooterToggle() {
 
   return (
     <Button
+      aria-label="Change Theme"
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
       className="size-8 rounded-full text-base"
       variant="ghost"
