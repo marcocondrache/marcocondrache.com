@@ -49,6 +49,7 @@ export function Navigation({ className, ...props }: HTMLMotionProps<"div">) {
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: 6, opacity: 0 }}
                   className="text-sm font-thin leading-[1px] text-black dark:text-white"
+                  transition={{ duration: 0.1 }}
                 >
                   •
                 </m.div>
