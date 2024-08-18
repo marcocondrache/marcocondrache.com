@@ -1,7 +1,6 @@
 import { Craft as CraftType } from "@/content";
 
 import { cn } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
 import { ExternalLink } from "@/components/external-link";
 
 export interface CraftProps extends React.ComponentProps<"article"> {
@@ -19,13 +18,12 @@ export function Craft({ craft, className, children, ...props }: CraftProps) {
       <div className="flex flex-row justify-between">
         <div className="flex flex-row gap-3">
           {craft.tags.map((tag) => (
-            <Badge
+            <div
               key={tag + craft.slug}
-              className="rounded-md bg-stone-200 py-1 font-medium text-stone-800 dark:bg-stone-800 dark:text-stone-300"
-              variant={"outline"}
+              className="h-fit rounded-md bg-stone-200/30 px-2 py-[2px] text-xs leading-5 text-black/60 dark:bg-stone-800 dark:text-stone-300"
             >
               {tag}
-            </Badge>
+            </div>
           ))}
         </div>
         <ExternalLink href={craft.link.url}>{craft.link.text}</ExternalLink>

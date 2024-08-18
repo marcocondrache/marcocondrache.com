@@ -6,10 +6,10 @@ export function BlobFilter(props: React.ComponentProps<"svg">) {
       <svg xmlns="http://www.w3.org/2000/svg" version="1.1" {...props}>
         <filter
           id="blobFilter"
-          x="-100%"
-          y="-100%"
-          width="300%"
-          height="300%"
+          x="-50%"
+          width="200%"
+          y="-50%"
+          height="200%"
           colorInterpolationFilters="sRGB"
         >
           <feTurbulence
