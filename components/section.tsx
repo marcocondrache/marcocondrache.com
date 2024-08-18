@@ -2,20 +2,23 @@ import { cva, VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 
-export const contentVariants = cva("animate-children place-content-center", {
-  variants: {
-    type: {
-      subgrid: "grid grid-cols-subgrid",
+export const contentVariants = cva(
+  "animate-children place-content-center contain-content",
+  {
+    variants: {
+      type: {
+        subgrid: "grid grid-cols-subgrid place-content-start",
+      },
+      size: {
+        full: "col-span-3",
+        normal: "md:col-start-2 md:col-end-2",
+      },
     },
-    size: {
-      full: "col-span-3",
-      normal: "md:col-start-2 md:col-end-2",
+    defaultVariants: {
+      size: "normal",
     },
-  },
-  defaultVariants: {
-    size: "normal",
-  },
-});
+  }
+);
 
 export interface SectionProps
   extends React.ComponentProps<"section">,

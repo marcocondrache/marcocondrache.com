@@ -21,12 +21,18 @@ const crafts = defineCollection({
   name: "Craft",
   pattern: "crafts/**/*.mdx",
   schema: s.object({
-    slug: s.slug("crafts"),
     title: s.string(),
     summary: s.string(),
-    tags: s.array(s.string()),
+
     content: s.mdx(),
+
+    slug: s.slug("crafts"),
+    tags: s.array(s.string()),
     published: s.boolean().default(false),
+    link: s.object({
+      url: s.string().url(),
+      text: s.string(),
+    }),
   }),
 });
 

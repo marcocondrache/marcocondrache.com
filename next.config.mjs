@@ -6,6 +6,15 @@ const nextConfig = {
     reactCompiler: true,
     optimizePackageImports: ["remeda"],
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "github.com",
+        pathname: "/*.png",
+      },
+    ],
+  },
   headers: () => [
     {
       source: "/(.*)",

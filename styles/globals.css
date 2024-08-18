@@ -8,10 +8,26 @@ html {
 
 body {
   @apply overscroll-x-none bg-stone-50 antialiased dark:bg-stone-950 dark:text-white;
+  scrollbar-width: thin;
 }
 
 em {
   @apply font-serif italic text-base/5 text-[1.075rem];
+}
+
+a:not(.exclude) {
+  @apply underline underline-offset-[2.5px] decoration-1 decoration-stone-300 transition-colors hover:decoration-stone-600 dark:decoration-stone-600 dark:hover:decoration-stone-500;
+}
+
+::selection {
+  @apply bg-stone-950 text-stone-50 dark:bg-stone-100/30 dark:text-current;
+}
+
+.elevation-border {
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.08),
+    0 1px 1px rgba(0, 0, 0, 0.02),
+    0 4px 8px rgba(0, 0, 0, 0.04);
 }
 
 @layer utilities {
@@ -19,12 +35,8 @@ em {
     @apply border border-stone-200 dark:border-stone-800;
   }
 
-  .special-link {
-    @apply underline decoration-1 decoration-stone-300 underline-offset-4 hover:decoration-black motion-safe:transition-all dark:decoration-stone-500 dark:hover:decoration-white;
-  }
-
   .markdown {
-    @apply prose prose-stone dark:prose-invert prose-headings:font-medium prose-a:font-normal prose-a:decoration-1 prose-a:underline-offset-[2.5px] prose-pre:linear-border;
+    @apply prose prose-stone max-w-none dark:prose-invert prose-headings:font-medium prose-a:font-normal prose-a:decoration-1 prose-a:underline-offset-[2.5px] prose-pre:linear-border;
   }
 
   /* For Webkit-based browsers (Chrome, Safari and Opera) */
@@ -39,7 +51,7 @@ em {
   }
 }
 
-@media (prefers-color-scheme: light) {
+.light {
   pre[data-theme*=" "],
   code[data-theme*=" "],
   code[data-theme*=" "] span {
@@ -51,7 +63,7 @@ em {
   }
 }
 
-@media (prefers-color-scheme: dark) {
+.dark {
   pre[data-theme*=" "],
   code[data-theme*=" "],
   code[data-theme*=" "] span {
@@ -60,6 +72,10 @@ em {
     font-style: var(--shiki-dark-font-style);
     font-weight: var(--shiki-dark-font-weight);
     text-decoration: var(--shiki-dark-text-decoration);
+  }
+
+  .elevation-border {
+    box-shadow: 0 0 0 1px theme("colors.stone.800");
   }
 }
 

@@ -8,7 +8,15 @@ import { ViewsCounter } from "./_components/views-counter";
 
 export const metadata = {
   title: "Blog",
-  description: "My personal blog where I share my thoughts and learnings.",
+  description: "Articles about coding and life.",
+  openGraph: {
+    title: "Blog",
+    description: "Articles about coding and life.",
+  },
+  twitter: {
+    title: "Blog",
+    description: "Articles about coding and life.",
+  },
 };
 
 export default function Page() {
@@ -22,7 +30,7 @@ export default function Page() {
       {posts.map((post, index) => (
         <div key={index} className="mb-4 flex flex-row justify-between">
           <div className="flex w-4/6 flex-col space-y-1">
-            <Link href={`/blog/${post.slug}`} className="special-link text-lg">
+            <Link href={`/writing/${post.slug}`} className="text-lg">
               {post.title}
             </Link>
             <p className="truncate text-sm text-stone-500">{post.summary}</p>

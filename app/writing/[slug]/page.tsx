@@ -1,6 +1,6 @@
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { incrementView } from "@/server/db/queries";
-import { format } from "date-fns";
 
 import { getPostsIndex } from "@/lib/posts";
 import { Section } from "@/components/section";
@@ -11,13 +11,30 @@ export async function generateMetadata({
   params: { slug: string };
 }) {
   const post = getPostsIndex()[params.slug];
-
   if (!post) return notFound();
 
+  const { title, summary: description, date } = post;
+
   return {
-    title: post.title,
-    description: post.summary,
-  };
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      publishedTime: date,
+      url: `https://marcocondrache.com/writing/${post.slug}`,
+      authors: ["Marco Condrache"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+    alternates: {
+      canonical: `https://marcocondrache.com/writing/${post.slug}`,
+    },
+  } satisfies Metadata;
 }
 
 export default async function Page({
@@ -37,7 +54,9 @@ export default async function Page({
       <h1 className="text-2xl">{post.title}</h1>
       <div className="mb-8 mt-2 flex items-center justify-between text-sm text-stone-500">
         <time dateTime={post.date}>
-          {format(post.date, "eeee, MMMM d, yyyy")}
+          {Intl.DateTimeFormat(undefined, {
+            dateStyle: "full",
+          }).format(new Date(post.date))}
         </time>
       </div>
       <article
