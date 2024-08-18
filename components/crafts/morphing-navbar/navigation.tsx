@@ -1,7 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { HTMLMotionProps, LayoutGroup, m } from "framer-motion";
+import {
+  AnimatePresence,
+  HTMLMotionProps,
+  LayoutGroup,
+  m,
+} from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
@@ -37,15 +42,18 @@ export function Navigation({ className, ...props }: HTMLMotionProps<"div">) {
               {value}
             </m.a>
 
-            {i === index && (
-              <m.div
-                layoutId="selectionIndicator"
-                className="text-sm font-thin leading-[1px] text-black dark:text-white"
-                transition={{ ease: "linear" }}
-              >
-                •
-              </m.div>
-            )}
+            <AnimatePresence mode="popLayout">
+              {i === index && (
+                <m.div
+                  initial={{ y: 6, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: 6, opacity: 0 }}
+                  className="text-sm font-thin leading-[1px] text-black dark:text-white"
+                >
+                  •
+                </m.div>
+              )}
+            </AnimatePresence>
           </div>
         ))}
       </m.div>

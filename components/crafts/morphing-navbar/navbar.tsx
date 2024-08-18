@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { LayoutGroup, m, MotionConfig, useReducedMotion } from "framer-motion";
 
@@ -8,11 +8,8 @@ import { cn } from "@/lib/utils";
 import { useMediaQuery } from "@/hooks/use-media-query";
 
 import { Blob } from "./blob";
-import { BlobFilter } from "./blob-filter";
 import { CompanyLogo, MotionCompanyText } from "./company-logo";
 import { Navigation } from "./navigation";
-
-const baseDuration = 0.5;
 
 export default function MorphingNavbar() {
   const blobXOffset = 55;
@@ -21,21 +18,20 @@ export default function MorphingNavbar() {
 
   const [isOpen, setIsOpen] = useState(isCoarse || isReduced);
 
+  useEffect(() => setIsOpen(isReduced), [isReduced]);
+
   return (
     <>
-      <BlobFilter />
-
       <div className="flex w-full items-center self-stretch  overflow-auto px-4 md:justify-center">
         <nav
           className="relative flex w-full min-w-[40.5rem] flex-row justify-center"
-          style={{ filter: "url('#blobFilter')" }}
           onMouseEnter={() => setIsOpen(true)}
           onMouseLeave={() => !isReduced && setIsOpen(false)}
         >
           <MotionConfig
             transition={{
-              type: "tween",
-              duration: 0.3,
+              type: "spring",
+              duration: 0.8,
             }}
           >
             <LayoutGroup>
@@ -45,6 +41,7 @@ export default function MorphingNavbar() {
                   consume: {
                     scale: 0.8,
                     x: -blobXOffset,
+                    boxShadow: "none",
                   },
                 }}
                 className={"absolute left-28 top-0 px-2"}
@@ -62,7 +59,7 @@ export default function MorphingNavbar() {
                 layout
                 layoutDependency={isOpen}
                 className={cn(
-                  "elevation-border z-20 flex h-10 flex-row items-center bg-white dark:bg-stone-900"
+                  "elevation-border z-10 flex h-10 flex-row items-center bg-white dark:bg-stone-900"
                 )}
                 style={{
                   contain: "paint",
@@ -76,7 +73,7 @@ export default function MorphingNavbar() {
                     className="h-3 pl-10"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 0.2 }}
+                    transition={{ delay: 0.3 }}
                   />
                 )}
 
@@ -115,6 +112,7 @@ export default function MorphingNavbar() {
                   consume: {
                     scale: 0.8,
                     x: blobXOffset,
+                    boxShadow: "none",
                   },
                 }}
                 className={"absolute top-0 px-2"}

@@ -8,7 +8,7 @@ export function Blob({ className, children, style, ...props }: BlobProps) {
   return (
     <m.div
       className={cn(
-        "elevation-border z-10 flex size-10 items-center justify-center space-x-3 bg-white px-3 dark:bg-stone-900",
+        "elevation-border z-0 flex size-10 items-center justify-center space-x-3 bg-white px-3 dark:bg-stone-900",
         className
       )}
       style={{
