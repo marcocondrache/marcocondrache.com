@@ -25,33 +25,23 @@ export const GET = async (
   return new ImageResponse(
     (
       <div tw="h-full w-full flex flex-col bg-stone-50 p-10">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <div tw="flex flex-row justify-between items-center">
-          <div tw="h-5 w-5 bg-orange-500" />
-          <span tw="text-stone-600" style={{ fontSize: 20 }}>
-            marcocondrache.com
-          </span>
-        </div>
-        <div
-          tw="flex flex-col h-full w-full justify-center items-center"
+        <header tw="flex flex-row justify-between items-center">
+          <div tw="h-6 w-6 bg-orange-500" />
+          <span tw="text-stone-600 text-2xl">marcocondrache.com</span>
+        </header>
+        <main
+          tw="flex grow flex-col justify-center items-center"
           style={{ gap: 20 }}
         >
-          <span
-            style={{
-              fontSize: 60,
-              textWrap: "balance",
-              maxWidth: "70%",
-              textAlign: "center",
-            }}
-          >
+          <span tw="text-6xl text-center" style={{ textWrap: "balance" }}>
             {post.title}
           </span>
-          <span tw="text-stone-600" style={{ fontSize: 20 }}>
+          <span tw="text-stone-600 text-3xl">
             {new Intl.DateTimeFormat(undefined, { dateStyle: "full" }).format(
               new Date(post.date)
             )}
           </span>
-        </div>
+        </main>
       </div>
     ),
     {

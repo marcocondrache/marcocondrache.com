@@ -6,6 +6,8 @@ import { Balancer } from "react-wrap-balancer";
 import { getPostsIndex } from "@/lib/posts";
 import { Section } from "@/components/section";
 
+const baseUrl = "https://marcocondrache.com/writing";
+
 export async function generateMetadata({
   params,
 }: {
@@ -16,6 +18,8 @@ export async function generateMetadata({
 
   const { title, summary: description, date } = post;
 
+  const ogUrl = `${baseUrl}/${post.slug}/og`;
+
   return {
     title,
     description,
@@ -24,17 +28,18 @@ export async function generateMetadata({
       description,
       type: "article",
       publishedTime: date,
-      url: `https://marcocondrache.com/writing/${post.slug}`,
+      url: `${baseUrl}/${post.slug}`,
       authors: ["Marco Condrache"],
-      images: [{ url: `https://marcocondrache.com/writing/${post.slug}/og` }],
+      images: [{ url: ogUrl }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: [ogUrl],
     },
     alternates: {
-      canonical: `https://marcocondrache.com/writing/${post.slug}`,
+      canonical: `${baseUrl}/${post.slug}`,
     },
   } satisfies Metadata;
 }

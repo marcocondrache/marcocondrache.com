@@ -1,7 +1,7 @@
 ---
 slug: hooks-getters
 date: 07-14-2024
-title: A react pattern for writting hooks
+title: A react pattern for writing hooks
 summary: Pattern that ensures efficient rendering by re-rendering components only when the specific state values they use change
 published: true
 ---
