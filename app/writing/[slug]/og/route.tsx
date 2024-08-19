@@ -24,7 +24,7 @@ export const GET = async (
 
   return new ImageResponse(
     (
-      <div tw="h-full w-full flex flex-col justify-between bg-stone-50 p-10">
+      <div tw="h-full w-full flex flex-col bg-stone-50 p-10">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <div tw="flex flex-row justify-between items-center">
           <div tw="h-5 w-5 bg-orange-500" />
@@ -32,12 +32,16 @@ export const GET = async (
             marcocondrache.com
           </span>
         </div>
-        <div tw="flex flex-col" style={{ gap: 20 }}>
+        <div
+          tw="flex flex-col h-full w-full justify-center items-center"
+          style={{ gap: 20 }}
+        >
           <span
             style={{
               fontSize: 60,
               textWrap: "balance",
               maxWidth: "70%",
+              textAlign: "center",
             }}
           >
             {post.title}
