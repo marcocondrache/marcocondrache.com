@@ -82,7 +82,7 @@ a:not(.exclude) {
 .animate-children > * {
   @apply animate-intro opacity-0;
 
-  animation-delay: calc(200ms + var(--child-index, 0) * 50ms);
+  animation-delay: calc(100ms + var(--child-index, 0) * 120ms);
 }
 
 .animate-children > :nth-child(1) {

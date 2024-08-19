@@ -59,10 +59,9 @@ export default function MorphingNavbar() {
                 layout
                 layoutDependency={isOpen}
                 className={cn(
-                  "elevation-border z-10 flex h-10 flex-row items-center bg-white dark:bg-stone-900"
+                  "elevation-border z-10 flex h-10 flex-row items-center bg-white contain-content dark:bg-stone-900"
                 )}
                 style={{
-                  contain: "paint",
                   borderRadius: "9999px",
                 }}
               >

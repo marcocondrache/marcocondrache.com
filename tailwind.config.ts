@@ -28,19 +28,14 @@ const config = {
         serif: ["var(--font-newsreader)", ...fontFamily.serif],
       },
       animation: {
-        intro: "intro 0.3s forwards ease-in-out",
+        intro: "intro 0.6s both",
       },
       keyframes: {
         intro: {
           "0%": {
             transform: "translateY(10px)",
             opacity: "0",
-            filter: "blur(5px)",
-          },
-          "95%": {
-            transform: "translateY(-1px)",
-            opacity: "1",
-            filter: "blur(0px)",
+            filter: "blur(3px)",
           },
           "100%": {
             opacity: "1",

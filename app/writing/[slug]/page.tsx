@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { incrementView } from "@/server/db/queries";
+import { Balancer } from "react-wrap-balancer";
 
 import { getPostsIndex } from "@/lib/posts";
 import { Section } from "@/components/section";
@@ -25,6 +26,7 @@ export async function generateMetadata({
       publishedTime: date,
       url: `https://marcocondrache.com/writing/${post.slug}`,
       authors: ["Marco Condrache"],
+      images: [{ url: `https://marcocondrache.com/writing/${post.slug}/og` }],
     },
     twitter: {
       card: "summary_large_image",
@@ -51,7 +53,9 @@ export default async function Page({
 
   return (
     <Section className="mb-10">
-      <h1 className="text-2xl">{post.title}</h1>
+      <h1 className="text-2xl">
+        <Balancer>{post.title}</Balancer>
+      </h1>
       <div className="mb-8 mt-2 flex items-center justify-between text-sm text-stone-500">
         <time dateTime={post.date}>
           {Intl.DateTimeFormat(undefined, {

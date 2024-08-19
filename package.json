@@ -36,6 +36,7 @@
     "react": "^19.0.0-rc-ab2135c7-20240724",
     "react-dom": "^19.0.0-rc-ab2135c7-20240724",
     "react-icons": "^5.2.1",
+    "react-wrap-balancer": "^1.1.1",
     "remeda": "^2.6.0",
     "server-only": "^0.0.1",
     "tailwind-merge": "^2.4.0",

@@ -8,6 +8,7 @@ import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from "next-themes";
+import { Provider as BalanceProvider } from "react-wrap-balancer";
 
 import { Blur } from "@/components/blur";
 import { Footer } from "@/components/footer";
@@ -69,17 +70,19 @@ export default function RootLayout({
     >
       <body>
         <ThemeProvider attribute="class" disableTransitionOnChange>
-          <Motion>
-            <main className="container relative min-h-screen max-w-6xl py-10">
-              <div className="grid h-full grid-flow-row grid-cols-1 gap-y-8 md:grid-cols-[1fr_42.5rem_1fr]">
-                <Navigation className="pb-4 pt-5 md:col-start-2 md:pt-10" />
+          <BalanceProvider>
+            <Motion>
+              <main className="container relative min-h-screen max-w-6xl py-10">
+                <div className="grid h-full grid-flow-row grid-cols-1 gap-y-8 md:grid-cols-[1fr_42.5rem_1fr]">
+                  <Navigation className="pb-4 pt-5 md:col-start-2 md:pt-10" />
 
-                {children}
-              </div>
-            </main>
+                  {children}
+                </div>
+              </main>
 
-            <Footer />
-          </Motion>
+              <Footer />
+            </Motion>
+          </BalanceProvider>
 
           <Blur className="top-0 [mask-image:linear-gradient(to_bottom,black,transparent)]" />
           <Blur className="bottom-0 [mask-image:linear-gradient(to_top,black,transparent)]" />

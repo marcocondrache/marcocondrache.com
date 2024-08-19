@@ -6,13 +6,11 @@ const posts = defineCollection({
   name: "Post",
   pattern: "posts/**/*.md",
   schema: s.object({
-    toc: s.toc(),
     slug: s.slug("posts"),
     date: s.isodate(),
     title: s.string(),
     summary: s.string(),
     content: s.markdown(),
-    metadata: s.metadata(),
     published: s.boolean().default(false),
   }),
 });

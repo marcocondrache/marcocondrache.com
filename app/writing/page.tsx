@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import Link from "next/link";
+import { Balancer } from "react-wrap-balancer";
 
 import { getPublishedPosts } from "@/lib/posts";
 import { Section } from "@/components/section";
@@ -30,13 +31,13 @@ export default function Page() {
       {posts.map((post, index) => (
         <div key={index} className="mb-4 flex flex-row justify-between">
           <div className="flex w-4/6 flex-col space-y-1">
-            <Link href={`/writing/${post.slug}`} className="text-lg">
-              {post.title}
+            <Link href={`/writing/${post.slug}`}>
+              <Balancer>{post.title}</Balancer>
             </Link>
             <p className="truncate text-sm text-stone-500">{post.summary}</p>
           </div>
           <div className="flex flex-col justify-center">
-            <span className="text-xs">
+            <span className="text-sm">
               <Suspense>
                 <ViewsCounter slug={post.slug} />
               </Suspense>
