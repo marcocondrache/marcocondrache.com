@@ -1,6 +1,6 @@
-import React from "react";
-import Link, { LinkProps } from "next/link";
-import { ArrowTopRightIcon } from "@radix-ui/react-icons";
+import type React from "react";
+import Link, { type LinkProps } from "next/link";
+import { RxArrowTopRight } from "react-icons/rx";
 
 import { cn } from "@/lib/utils";
 
@@ -17,7 +17,7 @@ export function ExternalLink({
       target="_blank"
       {...props}
     >
-      <ArrowTopRightIcon />
+      <RxArrowTopRight />
       {children}
     </Link>
   );

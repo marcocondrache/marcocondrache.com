@@ -69,6 +69,8 @@
     "@types/react-dom": "npm:types-react-dom@rc"
   },
   "trustedDependencies": [
-    "@vercel/speed-insights"
+    "@vercel/speed-insights",
+    "esbuild",
+    "sharp"
   ]
 }
