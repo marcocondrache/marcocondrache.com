@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
 
 import { getPostsIndex } from "@/lib/posts";
 
@@ -7,8 +7,9 @@ export const runtime = "edge";
 
 export const GET = async (
   _req: NextRequest,
-  { params: { slug } }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) => {
+  const { slug } = await params;
   const posts = getPostsIndex();
   const post = posts[slug];
 

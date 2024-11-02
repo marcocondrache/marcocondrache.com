@@ -48,6 +48,6 @@ const AvatarFallback = React.forwardRef<
 ));
 AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName;
 
-const MotionAvatar = m(Avatar);
+const MotionAvatar = m.create(Avatar);
 
 export { Avatar, AvatarImage, AvatarFallback, MotionAvatar };

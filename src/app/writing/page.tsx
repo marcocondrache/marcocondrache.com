@@ -28,8 +28,8 @@ export default function Page() {
 
   return (
     <Section>
-      {posts.map((post, index) => (
-        <div key={index} className="mb-4 flex flex-row justify-between">
+      {posts.map((post) => (
+        <div key={post.slug} className="mb-4 flex flex-row justify-between">
           <div className="flex w-4/6 flex-col space-y-1">
             <Link href={`/writing/${post.slug}`}>
               <Balancer>{post.title}</Balancer>

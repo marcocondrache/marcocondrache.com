@@ -84,8 +84,7 @@ export default function RootLayout({
             </Motion>
           </BalanceProvider>
 
-          <Blur className="top-0 [mask-image:linear-gradient(to_bottom,black,transparent)]" />
-          <Blur className="bottom-0 [mask-image:linear-gradient(to_top,black,transparent)]" />
+          <Blur className="bottom-0 [mask-image:linear-gradient(to_bottom,transparent,#fff)]" />
         </ThemeProvider>
 
         <SpeedInsights />

@@ -1,4 +1,4 @@
-import { HTMLMotionProps, m } from "framer-motion";
+import { type HTMLMotionProps, m } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 

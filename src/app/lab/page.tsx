@@ -20,7 +20,7 @@ export default function Page() {
       {crafts.map((craft) => (
         <>
           <Craft key={craft.slug} craft={craft} />
-          <CraftContent content={craft.content} />
+          <CraftContent key={`${craft.slug}-content`} content={craft.content} />
         </>
       ))}
     </Section>

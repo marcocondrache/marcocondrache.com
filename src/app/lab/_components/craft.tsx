@@ -1,4 +1,4 @@
-import { Craft as CraftType } from "@/content";
+import type { Craft as CraftType } from "@/content";
 
 import { cn } from "@/lib/utils";
 import { ExternalLink } from "@/components/external-link";

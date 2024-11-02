@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { incrementView } from "@/server/db/queries";
 import { Balancer } from "react-wrap-balancer";
@@ -11,9 +11,10 @@ const baseUrl = "https://marcocondrache.com/writing";
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const post = getPostsIndex()[params.slug];
+  const { slug } = await params;
+  const post = getPostsIndex()[slug];
   if (!post) return notFound();
 
   const { title, summary: description, date } = post;
@@ -47,14 +48,13 @@ export async function generateMetadata({
 export default async function Page({
   params,
 }: {
-  params: {
-    slug: string;
-  };
+  params: Promise<{ slug: string }>;
 }) {
-  const post = getPostsIndex()[params.slug];
+  const { slug } = await params;
+  const post = getPostsIndex()[slug];
   if (!post) return notFound();
 
-  await incrementView(params.slug);
+  await incrementView(slug);
 
   return (
     <Section className="mb-10">

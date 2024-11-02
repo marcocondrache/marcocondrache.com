@@ -35,6 +35,7 @@ const crafts = defineCollection({
 });
 
 export default defineConfig({
+  root: "./src/content",
   collections: { crafts, posts },
   markdown: {
     rehypePlugins: [
@@ -44,10 +45,10 @@ export default defineConfig({
           keepBackground: true,
           theme: {
             dark: JSON.parse(
-              fs.readFileSync("./lib/themes/dark.json", "utf-8")
+              fs.readFileSync("./src/lib/themes/dark.json", "utf-8")
             ),
             light: JSON.parse(
-              fs.readFileSync("./lib/themes/light.json", "utf-8")
+              fs.readFileSync("./src/lib/themes/light.json", "utf-8")
             ),
           },
         },
