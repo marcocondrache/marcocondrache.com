@@ -46,7 +46,7 @@ const config = {
   },
   plugins: [
     require("@tailwindcss/typography"),
-    plugin(function ({ addVariant, addUtilities }) {
+    plugin(({ addVariant, addUtilities }) => {
       addVariant("fine", "@media (any-pointer: fine)");
       addVariant("coarse", "@media (any-pointer: coarse)");
 
