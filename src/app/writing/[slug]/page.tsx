@@ -1,4 +1,3 @@
-import { incrementView } from "@/server/db/queries";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Balancer } from "react-wrap-balancer";
@@ -8,10 +7,14 @@ import { getPostsIndex } from "@/lib/posts";
 
 const baseUrl = "https://marcocondrache.com/writing";
 
+type Params = {
+  slug: string;
+};
+
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<Params>;
 }) {
   const { slug } = await params;
   const post = getPostsIndex()[slug];
@@ -48,13 +51,13 @@ export async function generateMetadata({
 export default async function Page({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<Params>;
 }) {
   const { slug } = await params;
-  const post = getPostsIndex()[slug];
-  if (!post) return notFound();
 
-  await incrementView(slug);
+  const post = getPostsIndex()[slug];
+
+  if (!post) return notFound();
 
   return (
     <Section className="mb-10">
@@ -70,6 +73,7 @@ export default async function Page({
       </div>
       <article
         className="markdown"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: Content comes from the CMS
         dangerouslySetInnerHTML={{ __html: post.content }}
       />
     </Section>

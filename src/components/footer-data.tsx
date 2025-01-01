@@ -1,25 +1,16 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { useLayoutEffect, useState } from "react";
 
-import { useMounted } from "@/hooks/use-mounted";
-
-const singularize = (data: number, base: string) => {
-  return data === 1 ? `${data} ${base}` : `${data} ${base}s`;
-};
-
-const fetchData = (path: string) => {
-  return Intl.DateTimeFormat(undefined, { dateStyle: "long" }).format(
-    new Date(),
-  );
-};
-
+// https://nextjs.org/docs/messages/next-prerender-current-time
 export function FooterData() {
-  const isMounted = useMounted();
-  const pathname = usePathname();
-  const data = fetchData(pathname);
+  const [time, setTime] = useState<string | null>(null);
 
-  if (!isMounted) return null;
+  useLayoutEffect(() => {
+    setTime(
+      Intl.DateTimeFormat(undefined, { dateStyle: "long" }).format(new Date()),
+    );
+  }, []);
 
-  return <span className="block">{data}</span>;
+  return <span className="block">{time}</span>;
 }

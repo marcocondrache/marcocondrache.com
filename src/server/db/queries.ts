@@ -1,15 +1,13 @@
-import "server-only";
+"use server";
 
-import { sql } from "drizzle-orm";
-import { unstable_noStore as noStore } from "next/cache";
+import { eq, sql } from "drizzle-orm";
+import { unstable_cacheTag as cacheTag, revalidateTag } from "next/cache";
 
 import { db } from ".";
 import { view } from "./schema";
 
-export const incrementView = async (slug: string) => {
-  noStore();
-
-  return await db
+export async function incrementView(slug: string) {
+  await db
     .insert(view)
     .values({ slug, count: 1 })
     .onConflictDoUpdate({
@@ -18,10 +16,16 @@ export const incrementView = async (slug: string) => {
         count: sql`${view.count} + 1`,
       },
     });
-};
 
-export const getViews = async () => {
-  noStore();
+  revalidateTag(`views:${slug}`);
+}
 
-  return await db.query.view.findMany();
-};
+export async function getView(slug: string) {
+  "use cache";
+
+  cacheTag(`views:${slug}`);
+
+  return await db.query.view.findFirst({
+    where: eq(view.slug, slug),
+  });
+}

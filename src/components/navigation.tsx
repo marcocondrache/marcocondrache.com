@@ -11,7 +11,7 @@ export function Navigation({
       className={cn("flex flex-row justify-between", className)}
       {...props}
     >
-      <nav className="inline-flex flex-row items-start gap-3" role="navigation">
+      <nav className="inline-flex flex-row items-start gap-3">
         <Link className="exclude" href="/">
           home
         </Link>

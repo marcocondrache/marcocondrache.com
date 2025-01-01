@@ -9,7 +9,7 @@ export function useMDX(content: string) {
 
 export interface MDXProps {
   content: string;
-  components?: Record<string, React.ComponentType<any>>;
+  components?: Record<string, React.ComponentType<unknown>>;
 }
 
 export function MDXContent({ content, components }: MDXProps) {

@@ -1,10 +1,10 @@
-import Link from "next/link";
 import { Suspense } from "react";
 import { Balancer } from "react-wrap-balancer";
 
 import { Section } from "@/components/section";
 import { getPublishedPosts } from "@/lib/posts";
 
+import { PostLink } from "@/components/post-link";
 import { ViewsCounter } from "./_components/views-counter";
 
 export const metadata = {
@@ -31,9 +31,9 @@ export default function Page() {
       {posts.map((post) => (
         <div key={post.slug} className="mb-4 flex flex-row justify-between">
           <div className="flex w-4/6 flex-col space-y-1">
-            <Link href={`/writing/${post.slug}`}>
+            <PostLink slug={post.slug}>
               <Balancer>{post.title}</Balancer>
-            </Link>
+            </PostLink>
             <p className="truncate text-sm text-stone-500">{post.summary}</p>
           </div>
           <div className="flex flex-col justify-center">

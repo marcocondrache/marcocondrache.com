@@ -1,10 +1,7 @@
 import { crafts } from "@/content";
+import { cache } from "react";
 import { indexBy, prop } from "remeda";
 
-export function getCraftsIndex() {
-  return indexBy(getCrafts(), prop("slug"));
-}
+export const getCraftsIndex = cache(() => indexBy(getCrafts(), prop("slug")));
 
-export function getCrafts() {
-  return crafts.filter((c) => c.published);
-}
+export const getCrafts = cache(() => crafts.filter((c) => c.published));

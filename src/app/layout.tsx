@@ -14,6 +14,7 @@ import { Blur } from "@/components/blur";
 import { Footer } from "@/components/footer";
 import { Motion } from "@/components/motion";
 import { Navigation } from "@/components/navigation";
+import { Suspense } from "react";
 
 const newsreader = Newsreader({
   style: ["italic", "normal"],
@@ -76,7 +77,7 @@ export default function RootLayout({
                 <div className="grid h-full grid-flow-row grid-cols-1 gap-y-8 md:grid-cols-[1fr_42.5rem_1fr]">
                   <Navigation className="pb-4 pt-5 md:col-start-2 md:pt-10" />
 
-                  {children}
+                  <Suspense>{children}</Suspense>
                 </div>
               </main>
 

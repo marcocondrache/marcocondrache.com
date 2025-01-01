@@ -1,11 +1,8 @@
-import { getViews } from "@/server/db/queries";
-import { cache } from "react";
-
-const getData = cache(getViews);
+import { getView } from "@/server/db/queries";
 
 export async function ViewsCounter({ slug }: { slug: string }) {
-  const viewsForSlug = await getData();
-  const number = viewsForSlug?.find((view) => view.slug === slug)?.count || 0;
+  const view = await getView(slug);
+  const count = view?.count || 0;
 
-  return <span>{`${number.toLocaleString()} views`}</span>;
+  return <span>{`${count.toLocaleString()} views`}</span>;
 }

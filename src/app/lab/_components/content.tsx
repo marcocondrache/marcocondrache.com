@@ -4,7 +4,7 @@ import type { ComponentProps } from "react";
 import { MDXContent } from "@/components/mdx-content";
 import { cn } from "@/lib/utils";
 
-const MorphingNavbar = dynamic(
+const MorphingNavbar = dynamic<unknown>(
   () => import("@/components/crafts/morphing-navbar/navbar"),
 );
 
