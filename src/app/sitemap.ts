@@ -1,6 +1,5 @@
-import type { MetadataRoute } from "next";
-
 import { getPublishedPosts } from "@/lib/posts";
+import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getPublishedPosts().map((post) => ({
