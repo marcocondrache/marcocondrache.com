@@ -1,4 +1,4 @@
+import * as m from "motion/react-m";
 import Image from "next/image";
-import { m } from "framer-motion";
 
 export const MotionImage = m.create(Image);

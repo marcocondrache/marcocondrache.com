@@ -10,7 +10,7 @@ const singularize = (data: number, base: string) => {
 
 const fetchData = (path: string) => {
   return Intl.DateTimeFormat(undefined, { dateStyle: "long" }).format(
-    new Date()
+    new Date(),
   );
 };
 

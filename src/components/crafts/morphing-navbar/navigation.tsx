@@ -1,18 +1,16 @@
 "use client";
 
+import { AnimatePresence, LayoutGroup } from "motion/react";
+import * as m from "motion/react-m";
 import { useState } from "react";
-import {
-  AnimatePresence,
-  HTMLMotionProps,
-  LayoutGroup,
-  m,
-} from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
 const links = ["Products", "Pricing", "Features", "Benefits"];
 
-export function Navigation({ className, ...props }: HTMLMotionProps<"div">) {
+type NavigationProps = Parameters<typeof m.div>[0];
+
+export function Navigation({ className, ...props }: NavigationProps) {
   const [index, setIndex] = useState(0);
 
   return (
@@ -27,8 +25,7 @@ export function Navigation({ className, ...props }: HTMLMotionProps<"div">) {
             key={value}
             className=" flex flex-col items-center justify-center space-y-1"
           >
-            <m.a
-              href="#"
+            <m.button
               layout="position"
               onClick={(e) => {
                 e.preventDefault();
@@ -40,7 +37,7 @@ export function Navigation({ className, ...props }: HTMLMotionProps<"div">) {
               })}
             >
               {value}
-            </m.a>
+            </m.button>
 
             <AnimatePresence mode="popLayout">
               {i === index && (

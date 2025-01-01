@@ -1,5 +1,5 @@
-import type React from "react";
 import Link, { type LinkProps } from "next/link";
+import type React from "react";
 import { RxArrowTopRight } from "react-icons/rx";
 
 import { cn } from "@/lib/utils";

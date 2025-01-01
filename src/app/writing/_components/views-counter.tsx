@@ -1,5 +1,5 @@
-import { cache } from "react";
 import { getViews } from "@/server/db/queries";
+import { cache } from "react";
 
 const getData = cache(getViews);
 

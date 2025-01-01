@@ -1,8 +1,7 @@
 {
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "biomejs.biome",
   "editor.codeActionsOnSave": {
-    "source.removeUnusedImports": "explicit",
-    "source.fixAll.eslint": "explicit"
+    "source.removeUnusedImports": "explicit"
   }
 }

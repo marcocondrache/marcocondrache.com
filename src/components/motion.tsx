@@ -1,13 +1,8 @@
-"use client";
-
-import { LazyMotion } from "framer-motion";
+import { LazyMotion, domMax } from "motion/react";
 
 export function Motion({ children }: React.PropsWithChildren) {
   return (
-    <LazyMotion
-      strict={true}
-      features={() => import("framer-motion").then((res) => res.domMax)}
-    >
+    <LazyMotion strict features={domMax}>
       {children}
     </LazyMotion>
   );

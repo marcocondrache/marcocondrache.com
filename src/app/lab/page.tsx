@@ -1,5 +1,5 @@
-import { getCrafts } from "@/lib/crafts";
 import { Section } from "@/components/section";
+import { getCrafts } from "@/lib/crafts";
 
 import { CraftContent } from "./_components/content";
 import { Craft } from "./_components/craft";

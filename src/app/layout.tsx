@@ -2,12 +2,12 @@ import { cn } from "@/lib/utils";
 
 import "@/styles/globals.css";
 
-import type { Metadata } from "next";
-import { Newsreader } from "next/font/google";
-import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
+import { Newsreader } from "next/font/google";
+import localFont from "next/font/local";
 import { Provider as BalanceProvider } from "react-wrap-balancer";
 
 import { Blur } from "@/components/blur";

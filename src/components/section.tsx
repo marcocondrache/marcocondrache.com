@@ -1,4 +1,4 @@
-import { cva, VariantProps } from "class-variance-authority";
+import { type VariantProps, cva } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 
@@ -17,7 +17,7 @@ export const contentVariants = cva(
     defaultVariants: {
       size: "normal",
     },
-  }
+  },
 );
 
 export interface SectionProps

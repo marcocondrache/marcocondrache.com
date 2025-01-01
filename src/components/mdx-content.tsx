@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 import * as runtime from "react/jsx-runtime";
 
 export function useMDX(content: string) {

@@ -21,7 +21,7 @@ export function Footer() {
           href={"https://x.com/marcocondrache"}
           className={cn(
             buttonVariants({ variant: "ghost", size: "icon" }),
-            "size-8 rounded-full text-base"
+            "size-8 rounded-full text-base",
           )}
           target="_blank"
         >
@@ -32,7 +32,7 @@ export function Footer() {
           href={"https://www.linkedin.com/in/marco-mihai-condrache/"}
           className={cn(
             buttonVariants({ variant: "ghost", size: "icon" }),
-            "size-8 rounded-full text-base"
+            "size-8 rounded-full text-base",
           )}
           target="_blank"
         >

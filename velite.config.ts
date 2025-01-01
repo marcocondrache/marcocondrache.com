@@ -45,10 +45,10 @@ export default defineConfig({
           keepBackground: true,
           theme: {
             dark: JSON.parse(
-              fs.readFileSync("./src/lib/themes/dark.json", "utf-8")
+              fs.readFileSync("./src/lib/themes/dark.json", "utf-8"),
             ),
             light: JSON.parse(
-              fs.readFileSync("./src/lib/themes/light.json", "utf-8")
+              fs.readFileSync("./src/lib/themes/light.json", "utf-8"),
             ),
           },
         },

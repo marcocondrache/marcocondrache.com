@@ -1,7 +1,7 @@
 import type { Craft as CraftType } from "@/content";
 
-import { cn } from "@/lib/utils";
 import { ExternalLink } from "@/components/external-link";
+import { cn } from "@/lib/utils";
 
 export interface CraftProps extends React.ComponentProps<"article"> {
   craft: CraftType;

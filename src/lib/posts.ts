@@ -8,6 +8,6 @@ export function getPostsIndex() {
 export function getPublishedPosts() {
   return sortBy(
     posts.filter((post) => post.published),
-    [prop("date"), "desc"]
+    [prop("date"), "desc"],
   );
 }

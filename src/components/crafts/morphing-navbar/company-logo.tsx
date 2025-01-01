@@ -1,4 +1,4 @@
-import { m } from "framer-motion";
+import * as m from "motion/react-m";
 import type { ComponentPropsWithRef } from "react";
 
 export function CompanyLogo(props: ComponentPropsWithRef<"svg">) {
@@ -7,7 +7,6 @@ export function CompanyLogo(props: ComponentPropsWithRef<"svg">) {
       viewBox="0 0 113 98"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      
       {...props}
     >
       <title>Company Logo</title>
@@ -35,8 +34,6 @@ export function CompanyText(props: ComponentPropsWithRef<"svg">) {
   );
 }
 
-// @ts-expect-error
 export const MotionCompanyLogo = m.create(CompanyLogo);
 
-// @ts-expect-error
 export const MotionCompanyText = m.create(CompanyText);

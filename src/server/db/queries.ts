@@ -1,7 +1,7 @@
 import "server-only";
 
-import { unstable_noStore as noStore } from "next/cache";
 import { sql } from "drizzle-orm";
+import { unstable_noStore as noStore } from "next/cache";
 
 import { db } from ".";
 import { view } from "./schema";

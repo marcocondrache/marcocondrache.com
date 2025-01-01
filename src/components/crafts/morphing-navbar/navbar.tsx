@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { LayoutGroup, MotionConfig, useReducedMotion } from "motion/react";
+import * as m from "motion/react-m";
 import Image from "next/image";
-import { LayoutGroup, m, MotionConfig, useReducedMotion } from "framer-motion";
+import { useEffect, useState } from "react";
 
-import { cn } from "@/lib/utils";
 import { useMediaQuery } from "@/hooks/use-media-query";
+import { cn } from "@/lib/utils";
 
 import { Blob } from "./blob";
 import { CompanyLogo, MotionCompanyText } from "./company-logo";
@@ -59,7 +60,7 @@ export default function MorphingNavbar() {
                 layout
                 layoutDependency={isOpen}
                 className={cn(
-                  "elevation-border z-10 flex h-10 flex-row items-center bg-white contain-content dark:bg-stone-900"
+                  "elevation-border z-10 flex h-10 flex-row items-center bg-white contain-content dark:bg-stone-900",
                 )}
                 style={{
                   borderRadius: "9999px",

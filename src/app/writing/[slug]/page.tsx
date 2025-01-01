@@ -1,10 +1,10 @@
+import { incrementView } from "@/server/db/queries";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { incrementView } from "@/server/db/queries";
 import { Balancer } from "react-wrap-balancer";
 
-import { getPostsIndex } from "@/lib/posts";
 import { Section } from "@/components/section";
+import { getPostsIndex } from "@/lib/posts";
 
 const baseUrl = "https://marcocondrache.com/writing";
 

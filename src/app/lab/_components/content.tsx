@@ -1,11 +1,11 @@
-import type { ComponentProps } from "react";
 import dynamic from "next/dynamic";
+import type { ComponentProps } from "react";
 
-import { cn } from "@/lib/utils";
 import { MDXContent } from "@/components/mdx-content";
+import { cn } from "@/lib/utils";
 
 const MorphingNavbar = dynamic(
-  () => import("@/components/crafts/morphing-navbar/navbar")
+  () => import("@/components/crafts/morphing-navbar/navbar"),
 );
 
 export function CraftContent({
@@ -17,14 +17,11 @@ export function CraftContent({
     <div
       className={cn(
         "linear-border relative flex min-h-96 w-full items-center rounded-xl bg-stone-50 contain-strict dark:bg-stone-950 sm:justify-center",
-        className
+        className,
       )}
       {...props}
     >
-      <MDXContent
-        content={content}
-        components={{ MorphingNavbar }}
-      />
+      <MDXContent content={content} components={{ MorphingNavbar }} />
     </div>
   );
 }

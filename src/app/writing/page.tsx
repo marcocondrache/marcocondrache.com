@@ -1,9 +1,9 @@
-import { Suspense } from "react";
 import Link from "next/link";
+import { Suspense } from "react";
 import { Balancer } from "react-wrap-balancer";
 
-import { getPublishedPosts } from "@/lib/posts";
 import { Section } from "@/components/section";
+import { getPublishedPosts } from "@/lib/posts";
 
 import { ViewsCounter } from "./_components/views-counter";
 

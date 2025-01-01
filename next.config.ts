@@ -1,8 +1,8 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
   reactStrictMode: true,
   experimental: {
-    ppr: true,
     reactCompiler: true,
     optimizePackageImports: ["remeda"],
   },
@@ -15,7 +15,7 @@ const nextConfig = {
       },
     ],
   },
-  headers: () => [
+  headers: async () => [
     {
       source: "/(.*)",
       headers: [
