@@ -1,6 +1,8 @@
 import { posts } from "@/content";
 import { notFound } from "next/navigation";
 import { format } from "date-fns";
+import { ExternalLink } from "@/components/external-link";
+import { links } from "@/lib/links";
 
 export default async function WritingPost({
   params,
@@ -13,7 +15,7 @@ export default async function WritingPost({
   if (!post) return notFound();
 
   return (
-    <section>
+    <section className="pb-24">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -25,9 +27,8 @@ export default async function WritingPost({
             headline: post.title,
             datePublished: post.date,
             dateModified: post.date,
-            description: post.content,
             image: `/og?title=${encodeURIComponent(post.title)}`,
-            url: `marcocondrache.com/writing/${post.slug}`,
+            url: `${links.baseURL}/writing/${post.slug}`,
             author: {
               "@type": "Person",
               name: "My Portfolio",
@@ -46,6 +47,13 @@ export default async function WritingPost({
         // biome-ignore lint/security/noDangerouslySetInnerHtml: safe
         dangerouslySetInnerHTML={{ __html: post.content }}
       />
+      <nav className="flex justify-start items-center gap-3 py-8">
+        <ExternalLink href={new URL("/rss", links.baseURL).toString()}>
+          rss
+        </ExternalLink>
+        <ExternalLink href={links.github}>github</ExternalLink>
+        <ExternalLink href={links.github}>view source</ExternalLink>
+      </nav>
     </section>
   );
 }
