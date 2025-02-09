@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
     ppr: true,
     dynamicIO: true,
     reactCompiler: true,
+    optimizePackageImports: ["remeda"],
   },
   env: {
     NEXT_PUBLIC_GIT_HASH: getGitHash(),

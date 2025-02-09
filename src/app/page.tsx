@@ -3,7 +3,7 @@ export default function Home() {
     <section>
       <div className="mb-4 flex items-center justify-between">
         <div>
-          <h1 className="text-2xl">Marco Mihai Condrache</h1>
+          <h1 className="text-2xl tracking-tighter">Marco Mihai Condrache</h1>
           <h2 className="mt-1 text-muted-foreground">Software Engineer</h2>
         </div>
       </div>

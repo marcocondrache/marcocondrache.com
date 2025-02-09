@@ -54,8 +54,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={cn(fonts.map((f) => f.variable))}>
+    <html
+      lang="en"
+      className={cn(fonts.map((f) => f.variable))}
+      suppressHydrationWarning
+    >
+      <body>
         <Providers>
           <div className="container min-h-screen grid grid-cols-1 md:grid-cols-[1fr_42.5rem_1fr] mx-auto">
             <div className="flex flex-col gap-8 md:col-start-2">
