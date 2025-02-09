@@ -1,81 +1,59 @@
-import type { Metadata } from "next";
+import { posts } from "@/content";
 import { notFound } from "next/navigation";
-import { Balancer } from "react-wrap-balancer";
+import { format } from "date-fns";
+import { ExternalLink } from "@/components/external-link";
+import { links } from "@/lib/links";
 
-import { Section } from "@/components/section";
-import { getPostsIndex } from "@/lib/posts";
-
-const baseUrl = "https://marcocondrache.com/writing";
-
-type Params = {
-  slug: string;
-};
-
-export async function generateMetadata({
+export default async function WritingPost({
   params,
 }: {
-  params: Promise<Params>;
+  params: Promise<{ slug: string }>;
 }) {
-  const { slug } = await params;
-  const post = getPostsIndex()[slug];
-  if (!post) return notFound();
-
-  const { title, summary: description, date } = post;
-
-  const ogUrl = `${baseUrl}/${post.slug}/og`;
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      type: "article",
-      publishedTime: date,
-      url: `${baseUrl}/${post.slug}`,
-      authors: ["Marco Condrache"],
-      images: [{ url: ogUrl }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [ogUrl],
-    },
-    alternates: {
-      canonical: `${baseUrl}/${post.slug}`,
-    },
-  } satisfies Metadata;
-}
-
-export default async function Page({
-  params,
-}: {
-  params: Promise<Params>;
-}) {
-  const { slug } = await params;
-
-  const post = getPostsIndex()[slug];
+  const slug = (await params).slug;
+  const post = posts.find((post) => post.slug === slug);
 
   if (!post) return notFound();
 
   return (
-    <Section className="mb-10">
-      <h1 className="text-2xl">
-        <Balancer>{post.title}</Balancer>
-      </h1>
-      <div className="mb-8 mt-2 flex items-center justify-between text-sm text-stone-500">
-        <time dateTime={post.date}>
-          {Intl.DateTimeFormat(undefined, {
-            dateStyle: "full",
-          }).format(new Date(post.date))}
-        </time>
+    <section className="pb-24">
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: safe
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            headline: post.title,
+            datePublished: post.date,
+            dateModified: post.date,
+            image: `/og?title=${encodeURIComponent(post.title)}`,
+            url: `${links.baseURL}/writing/${post.slug}`,
+            author: {
+              "@type": "Person",
+              name: "My Portfolio",
+            },
+          }),
+        }}
+      />
+      <h1 className="title text-2xl tracking-tighter">{post.title}</h1>
+      <div className="flex justify-between items-center mt-2 mb-8 text-sm">
+        <p className="text-sm text-neutral-600 dark:text-neutral-400">
+          {format(new Date(post.date), "MMMM d, yyyy")}
+        </p>
       </div>
       <article
-        className="markdown"
-        // biome-ignore lint/security/noDangerouslySetInnerHtml: Content comes from the CMS
+        className="prose prose-stone dark:prose-invert max-w-none prose-headings:font-medium prose-a:font-normal prose-a:decoration-1 prose-a:underline-offset-[2.5px] prose-pre:border-1 prose-pre:bg-accent dark:prose-pre:bg-stone-900"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: safe
         dangerouslySetInnerHTML={{ __html: post.content }}
       />
-    </Section>
+      <nav className="flex justify-start items-center gap-3 py-8">
+        <ExternalLink href={new URL("/rss", links.baseURL).toString()}>
+          rss
+        </ExternalLink>
+        <ExternalLink href={links.github}>github</ExternalLink>
+        <ExternalLink href={links.github}>view source</ExternalLink>
+      </nav>
+    </section>
   );
 }

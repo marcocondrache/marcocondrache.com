@@ -1,15 +1,13 @@
-import { Section } from "@/components/section";
-
-export default async function Home() {
+export default function Home() {
   return (
-    <Section>
+    <section>
       <div className="mb-4 flex items-center justify-between">
         <div>
-          <h1 className="text-2xl">Marco Mihai Condrache</h1>
-          <h2 className="mt-1 text-stone-500">Software Engineer</h2>
+          <h1 className="text-2xl tracking-tighter">Marco Mihai Condrache</h1>
+          <h2 className="mt-1 text-muted-foreground">Software Engineer</h2>
         </div>
       </div>
-      <div className="mt-10 space-y-8 text-stone-800 dark:text-stone-100">
+      <div className="mt-10 space-y-8">
         <p>
           I work as a software engineer for <em>Danfoss</em> in Italy. My
           passion for learning and self-improvement drives my professional
@@ -27,6 +25,6 @@ export default async function Home() {
           process.
         </p>
       </div>
-    </Section>
+    </section>
   );
 }

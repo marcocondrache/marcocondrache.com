@@ -1,24 +1,21 @@
-import Link, { type LinkProps } from "next/link";
-import type React from "react";
-import { RxArrowTopRight } from "react-icons/rx";
+import { ArrowUpRight } from "lucide-react";
+import type { LinkProps } from "next/link";
+import Link from "next/link";
 
-import { cn } from "@/lib/utils";
+type ExternalLinkProps = React.PropsWithChildren<LinkProps> &
+  React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
-export type ExternalLinkProps = React.ComponentProps<"a"> & LinkProps;
-
-export function ExternalLink({
-  children,
-  className,
-  ...props
-}: ExternalLinkProps) {
+export function ExternalLink({ href, children, ...props }: ExternalLinkProps) {
   return (
     <Link
-      className={cn("inline-flex flex-row items-center gap-1", className)}
+      href={href}
       target="_blank"
+      className="flex font-light items-center gap-1.5 transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
+      rel="noopener noreferrer"
       {...props}
     >
-      <RxArrowTopRight />
-      {children}
+      <ArrowUpRight strokeWidth={1.5} className="size-6" />
+      <span className="text-base">{children}</span>
     </Link>
   );
 }

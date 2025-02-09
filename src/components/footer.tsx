@@ -1,44 +1,44 @@
+"use client";
+
+import { useTheme } from "next-themes";
+import { Button } from "./ui/button";
+import { FooterLink } from "./footer-link";
+import { ArrowUp } from "lucide-react";
+import { SocialIcons } from "./social-icons";
 import Link from "next/link";
-import { PiXLogo } from "react-icons/pi";
-import { RxLinkedinLogo } from "react-icons/rx";
-
-import { cn } from "@/lib/utils";
-
-import { FooterData } from "./footer-data";
-import { FooterToggle } from "./footer-toggle";
-import { ScrollButton } from "./scroll-button";
-import { buttonVariants } from "./ui/button";
+import { links } from "@/lib/links";
 
 export function Footer() {
-  return (
-    <footer className="elevation-border fixed inset-x-6 bottom-6 z-40 flex max-w-[calc(712px-2rem)] items-center justify-between overflow-hidden rounded-full bg-white p-1 pl-5 text-sm text-stone-600 contain-content dark:bg-stone-900 dark:text-stone-100 md:left-1/2 md:w-full md:-translate-x-1/2">
-      <FooterData />
+  const { theme, setTheme } = useTheme();
 
-      <div className="flex items-center text-base">
-        <ScrollButton />
-        <Link
-          aria-label="My profile on X"
-          href={"https://x.com/marcocondrache"}
-          className={cn(
-            buttonVariants({ variant: "ghost", size: "icon" }),
-            "size-8 rounded-full text-base",
-          )}
-          target="_blank"
+  return (
+    <footer className="fixed w-[42.5rem] inset-x-auto bottom-6 p-1 pl-4 shadow-border bg-white dark:bg-stone-900 rounded-full flex items-center justify-between">
+      <Link
+        className="text-sm text-muted-foreground"
+        href={links.commit}
+        target="_blank"
+      >
+        {process.env.NEXT_PUBLIC_GIT_HASH}
+      </Link>
+      <div className="flex items-center justify-center gap-1">
+        <Button variant="ghost" size="icon" className="size-8 rounded-full">
+          <ArrowUp className="size-4" />
+        </Button>
+        <FooterLink href={links.x}>
+          <SocialIcons.X className="size-3.5 fill-foreground" />
+        </FooterLink>
+        <FooterLink href={links.linkedin}>
+          <SocialIcons.LinkedIn className="size-3.5 fill-foreground" />
+        </FooterLink>
+
+        <Button
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          className="size-8 rounded-full text-base"
+          variant="ghost"
+          size="icon"
         >
-          <PiXLogo />
-        </Link>
-        <Link
-          aria-label="My profile on Linkedin"
-          href={"https://www.linkedin.com/in/marco-mihai-condrache/"}
-          className={cn(
-            buttonVariants({ variant: "ghost", size: "icon" }),
-            "size-8 rounded-full text-base",
-          )}
-          target="_blank"
-        >
-          <RxLinkedinLogo />
-        </Link>
-        <FooterToggle />
+          <div className="size-4 rounded-full bg-stone-900 dark:bg-stone-50" />
+        </Button>
       </div>
     </footer>
   );

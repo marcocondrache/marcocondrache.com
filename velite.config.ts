@@ -1,6 +1,5 @@
-import fs from "node:fs";
-import rehypePrettyCode from "rehype-pretty-code";
 import { defineCollection, defineConfig, s } from "velite";
+import { highlight } from "remark-sugar-high";
 
 const posts = defineCollection({
   name: "Post",
@@ -9,50 +8,15 @@ const posts = defineCollection({
     slug: s.slug("posts"),
     date: s.isodate(),
     title: s.string(),
-    summary: s.string(),
     content: s.markdown(),
-    published: s.boolean().default(false),
-  }),
-});
-
-const crafts = defineCollection({
-  name: "Craft",
-  pattern: "crafts/**/*.mdx",
-  schema: s.object({
-    title: s.string(),
-    summary: s.string(),
-
-    content: s.mdx(),
-
-    slug: s.slug("crafts"),
-    tags: s.array(s.string()),
-    published: s.boolean().default(false),
-    link: s.object({
-      url: s.string().url(),
-      text: s.string(),
-    }),
+    draft: s.boolean().default(true),
   }),
 });
 
 export default defineConfig({
   root: "./src/content",
-  collections: { crafts, posts },
+  collections: { posts },
   markdown: {
-    rehypePlugins: [
-      [
-        rehypePrettyCode,
-        {
-          keepBackground: true,
-          theme: {
-            dark: JSON.parse(
-              fs.readFileSync("./src/lib/themes/dark.json", "utf-8"),
-            ),
-            light: JSON.parse(
-              fs.readFileSync("./src/lib/themes/light.json", "utf-8"),
-            ),
-          },
-        },
-      ],
-    ],
+    remarkPlugins: [highlight],
   },
 });

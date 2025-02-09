@@ -1,19 +1,10 @@
-import { cn } from "@/lib/utils";
-
-import "@/styles/globals.css";
-
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import { ThemeProvider } from "next-themes";
-import { Newsreader } from "next/font/google";
-import localFont from "next/font/local";
-import { Provider as BalanceProvider } from "react-wrap-balancer";
-
-import { Blur } from "@/components/blur";
+import { Geist, Newsreader } from "next/font/google";
+import "@/styles/globals.css";
+import { cn } from "@/lib/utils";
+import { Providers } from "@/components/providers";
+import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { Motion } from "@/components/motion";
-import { Navigation } from "@/components/navigation";
 import { Suspense } from "react";
 
 const newsreader = Newsreader({
@@ -22,12 +13,12 @@ const newsreader = Newsreader({
   variable: "--font-newsreader",
 });
 
-const switzer = localFont({
-  src: "../fonts/switzer.ttf",
-  variable: "--font-switzer",
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
 });
 
-const fonts = [switzer, newsreader];
+const fonts = [geistSans, newsreader];
 
 export const metadata: Metadata = {
   title: "Marco Condrache",
@@ -70,26 +61,17 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body>
-        <ThemeProvider attribute="class" disableTransitionOnChange>
-          <BalanceProvider>
-            <Motion>
-              <main className="container relative min-h-screen max-w-6xl py-10">
-                <div className="grid h-full grid-flow-row grid-cols-1 gap-y-8 md:grid-cols-[1fr_42.5rem_1fr]">
-                  <Navigation className="pb-4 pt-5 md:col-start-2 md:pt-10" />
-
-                  <Suspense>{children}</Suspense>
-                </div>
+        <Providers>
+          <div className="container min-h-screen grid grid-cols-1 md:grid-cols-[1fr_42.5rem_1fr] mx-auto">
+            <div className="flex flex-col gap-8 md:col-start-2">
+              <Header />
+              <main>
+                <Suspense>{children}</Suspense>
               </main>
-
               <Footer />
-            </Motion>
-          </BalanceProvider>
-
-          <Blur className="bottom-0 [mask-image:linear-gradient(to_bottom,transparent,#fff)]" />
-        </ThemeProvider>
-
-        <SpeedInsights />
-        <Analytics />
+            </div>
+          </div>
+        </Providers>
       </body>
     </html>
   );

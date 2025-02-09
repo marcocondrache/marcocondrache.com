@@ -2,8 +2,7 @@
 slug: hooks-getters
 date: 07-14-2024
 title: A react pattern for writing hooks
-summary: Pattern that ensures efficient rendering by re-rendering components only when the specific state values they use change
-published: true
+draft: false
 ---
 
 In my journey with React, I've come across a powerful pattern known as the hook getter pattern. This approach, utilized by popular libraries like <a href="https://github.com/vercel/swr/blob/1585a3e37d90ad0df8097b099db38f1afb43c95d/src/core/use-swr.ts#L733" target="_blank">SWR</a> and <a href="https://github.com/react-hook-form/react-hook-form/blob/5e92c1b5634bbcf18e3df14d173bced620f7392d/src/logic/getProxyFormState.ts#L16" target="_blank">react-hook-form</a>, embodies a fundamental React principle: render only what changes.
