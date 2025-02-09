@@ -28,13 +28,16 @@
   --chart-4: hsl(43 74% 66%);
   --chart-5: hsl(27 87% 67%);
   --radius: 0.6rem;
-  --background: hsl(0 0% 100%);
+  --background: hsl(60 9.1% 97.8%);
   --foreground: hsl(20 14.3% 4.1%);
+
+  --shadow-border: 0 0 0 1px rgba(0, 0, 0, 0.08), 0 1px 1px rgba(0, 0, 0, 0.02),
+  0 4px 8px rgba(0, 0, 0, 0.04);
 }
 
 .dark {
   --background: hsl(20 14.3% 4.1%);
-  --foreground: hsl(60 9.1% 97.8%);
+  --foreground: hsl(0 0% 100%);
   --card: hsl(20 14.3% 4.1%);
   --card-foreground: hsl(60 9.1% 97.8%);
   --popover: hsl(20 14.3% 4.1%);
@@ -57,6 +60,8 @@
   --chart-3: hsl(30 80% 55%);
   --chart-4: hsl(280 65% 60%);
   --chart-5: hsl(340 75% 55%);
+
+  --shadow-border: 0 0 0 1px var(--color-stone-800);
 }
 
 @theme inline {
@@ -91,6 +96,8 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  --shadow-border: var(--shadow-border);
 }
 
 @layer base {
@@ -99,5 +106,13 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
+  }
+
+  em {
+    @apply font-serif font-medium italic text-base/5 text-[1.075rem];
+  }
+
+  ::selection {
+    @apply bg-stone-950 text-stone-50 dark:bg-stone-100/30 dark:text-current;
   }
 }

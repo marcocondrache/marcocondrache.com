@@ -10,11 +10,11 @@ export function Footer() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <footer className="fixed w-[42.5rem] inset-x-auto bottom-6 p-1 dark:bg-stone-900 rounded-full flex items-center justify-between">
-      <Button variant="ghost" size="icon" className="size-8 rounded-full">
-        <ArrowUp className="size-4" />
-      </Button>
+    <footer className="fixed w-[42.5rem] inset-x-auto bottom-6 p-1 shadow-border bg-white dark:bg-stone-900 rounded-full flex items-center justify-between">
       <div className="flex items-center justify-center gap-1">
+        <Button variant="ghost" size="icon" className="size-8 rounded-full">
+          <ArrowUp className="size-4" />
+        </Button>
         <FooterLink href="/">
           <SocialIcons.LinkedIn className="size-3.5 fill-foreground" />
         </FooterLink>
