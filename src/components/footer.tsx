@@ -8,7 +8,7 @@ export function Footer() {
   const theme = useStore(themeStore);
 
   return (
-    <footer className="fixed w-[42.5rem] inset-x-auto bottom-6 p-1 pl-4 shadow-border bg-white dark:bg-stone-900 rounded-full flex items-center justify-between">
+    <footer className="fixed left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] md:w-full max-w-[42.5rem] bottom-6 p-1 pl-4 shadow-border bg-white dark:bg-stone-900 rounded-full flex items-center justify-between">
       <a
         className="text-sm text-muted-foreground"
         href={"#"}

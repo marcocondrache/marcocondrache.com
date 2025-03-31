@@ -130,6 +130,10 @@
     @apply min-h-screen;
   }
 
+  em {
+    @apply font-serif font-medium italic text-base/5 text-[1.075rem];
+  }
+
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;

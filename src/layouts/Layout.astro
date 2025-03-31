@@ -4,6 +4,11 @@ import { Header } from "@/components/header";
 import "@/styles/global.css";
 import "@/styles/animation.css";
 import "@fontsource-variable/geist";
+
+const title =
+	Astro.props.title ?? new URL(Astro.url.pathname, Astro.site).hostname;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -13,18 +18,20 @@ import "@fontsource-variable/geist";
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
+
+		<link rel="canonical" href={canonical} />
 	</head>
 	<body>
 		<div
-			class="container min-h-screen grid grid-cols-1 md:grid-cols-[1fr_42.5rem_1fr] mx-auto"
+			class="container min-h-screen grid grid-cols-1 md:grid-cols-[1fr_42.5rem_1fr] mx-auto px-6"
 		>
 			<div class="flex flex-col gap-8 md:col-start-2">
 				<Header />
 				<main>
 					<slot />
 				</main>
-				<Footer client:visible />
+				<Footer client:load />
 			</div>
 		</div>
 	</body>

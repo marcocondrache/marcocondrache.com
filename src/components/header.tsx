@@ -1,5 +1,3 @@
-
-
 export function Header() {
   const links = [
     { title: "home", href: "/" },
