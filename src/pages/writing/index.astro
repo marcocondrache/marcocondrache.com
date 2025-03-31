@@ -1,0 +1,31 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { format } from "date-fns";
+import { getCollection } from "astro:content";
+
+const writings = await getCollection("writings");
+---
+
+<Layout>
+    <section data-animate data-animate-speed="fast">
+        <h1 class="text-2xl mb-8 tracking-tighter">Writing</h1>
+        <ul>
+            {
+                writings.map((writing) => (
+                    <a
+                        class="flex flex-row items-center gap-3 mb-4 w-full"
+                        href={`/writing/${writing.id}`}
+                    >
+                        <span class="text-muted-foreground">
+                            {format(
+                                new Date(writing.data.date),
+                                "MMMM d, yyyy",
+                            )}
+                        </span>
+                        <h2 class="text-foreground">{writing.data.title}</h2>
+                    </a>
+                ))
+            }
+        </ul>
+    </section>
+</Layout>

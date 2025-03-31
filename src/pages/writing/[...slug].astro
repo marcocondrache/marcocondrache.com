@@ -1,0 +1,38 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { format } from "date-fns";
+import { getCollection, getEntry, render } from "astro:content";
+
+export const prerender = true;
+
+const { slug } = Astro.params;
+
+export async function getStaticPaths() {
+    const writings = await getCollection("writings");
+
+    return writings.map((writing) => ({
+        params: { slug: writing.id },
+        props: writing,
+    }));
+}
+
+const { data } = Astro.props;
+const { Content } = await render(Astro.props);
+---
+
+<Layout>
+    <section>
+        <h1 class="title text-2xl tracking-tighter">{data.title}</h1>
+        <div class="flex justify-between items-center mt-2 mb-8 text-sm">
+            <p class="text-sm text-neutral-600 dark:text-neutral-400">
+                {format(new Date(data.date), "MMMM d, yyyy")}
+            </p>
+        </div>
+        <div
+            data-animate
+            class="prose prose-stone dark:prose-invert max-w-none prose-headings:font-medium prose-a:font-normal prose-a:decoration-1 prose-a:underline-offset-[2.5px] prose-pre:border-1 prose-pre:bg-accent dark:prose-pre:bg-stone-900"
+        >
+            <Content />
+        </div>
+    </section>
+</Layout>
