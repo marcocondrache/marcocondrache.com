@@ -23,6 +23,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 		<link rel="canonical" href={canonical} />
 	</head>
 	<body>
+		<div class="blur-layer" aria-hidden="true"></div>
 		<div
 			class="container min-h-screen grid grid-cols-1 md:grid-cols-[1fr_42.5rem_1fr] mx-auto px-6"
 		>

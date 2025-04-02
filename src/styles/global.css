@@ -130,6 +130,8 @@
     @apply min-h-screen;
   }
 
+  
+
   em {
     @apply font-serif font-medium italic text-base/5 text-[1.075rem];
   }
@@ -137,5 +139,24 @@
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;
+  }
+}
+
+@layer extra {
+  .blur-layer {
+    @apply fixed top-0 left-0 right-0 z-20;
+    @apply pointer-events-none select-none;
+    @apply h-24;
+    @apply backdrop-blur-[5px];
+    @apply opacity-95;
+
+    mask-image: linear-gradient(to bottom, #000000 25%, transparent);
+  }
+
+  .blur-layer:after {
+    @apply absolute inset-0;
+    @apply bg-gradient-to-b from-background to-transparent;
+
+    content: '';
   }
 }
