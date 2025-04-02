@@ -4,6 +4,6 @@ export default {
     'body-max-line-length': [2, 'always', 500],
   },
   ignores: [
-    (commit) => commit.includes('[skip ci]')
+    (commit) => commit.includes('chore(release)') || /\d+\.\d+\.\d+/g.test(commit)
   ]
 }; 
