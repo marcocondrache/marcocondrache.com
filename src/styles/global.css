@@ -150,7 +150,7 @@
     @apply backdrop-blur-[5px];
     @apply opacity-95;
 
-    mask-image: linear-gradient(to bottom, #000000 25%, transparent);
+    mask-image: linear-gradient(to bottom, #000000 26%, transparent);
   }
 
   .blur-layer:after {
