@@ -6,10 +6,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "release": "semantic-release",
-    "prepare": "husky",
-    "commit": "cz"
+    "astro": "astro"
   },
   "dependencies": {
     "@astrojs/node": "^9.1.3",
@@ -35,22 +32,9 @@
     "tw-animate-css": "^1.2.5"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.8.0",
-    "@commitlint/config-conventional": "^19.8.0",
-    "@semantic-release/commit-analyzer": "^13.0.1",
-    "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^11.0.1",
-    "@semantic-release/release-notes-generator": "^14.0.3",
     "@tailwindcss/typography": "^0.5.16",
     "@types/bun": "^1.2.8",
-    "commitizen": "^4.3.1",
-    "cz-conventional-changelog": "^3.3.0",
-    "husky": "^9.1.7",
+    "conventional-changelog-conventionalcommits": "^8.0.0",
     "semantic-release": "^24.2.3"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   }
 }
