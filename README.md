@@ -7,6 +7,7 @@ bun create astro@latest -- --template basics
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
 [![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+[![semantic-release: angular](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
 
 > 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
@@ -42,6 +43,12 @@ All commands are run from the root of the project, from a terminal:
 | `bun preview`         | Preview your build locally, before deploying     |
 | `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `bun astro -- --help` | Get help using the Astro CLI                     |
+| `bun commit`          | Create a formatted commit with commitizen        |
+| `bun semantic-release` | Manually trigger a release (normally done by CI) |
+
+## 📦 Release Process
+
+This project uses semantic-release for automated versioning and releases. See [RELEASE.md](./RELEASE.md) for details on the release process.
 
 ## 👀 Want to learn more?
 
