@@ -1,8 +1,10 @@
-import { Button } from "./ui/button";
+import { Button, buttonVariants } from "./ui/button";
 import { ArrowUp } from "lucide-react";
-// import { links } from "@/lib/links";
+import { links } from "@/lib/links";
 import { useStore } from "@nanostores/react";
 import { themes, themeStore } from "@/lib/stores/theme";
+import { SocialIcons } from "./icons";
+import { cn } from "@/lib/utils";
 
 export function Footer() {
   const theme = useStore(themeStore);
@@ -20,12 +22,10 @@ export function Footer() {
         <Button variant="ghost" size="icon" className="size-8 rounded-full">
           <ArrowUp className="size-4" />
         </Button>
-        {/* <FooterLink href={links.x}>
+
+        <a className={cn(buttonVariants({ variant: "ghost", size: "icon" }), "size-8 rounded-full")} href={links.x} target="_blank">
           <SocialIcons.X className="size-3.5 fill-foreground" />
-        </FooterLink>
-        <FooterLink href={links.linkedin}>
-          <SocialIcons.LinkedIn className="size-3.5 fill-foreground" />
-        </FooterLink> */}
+        </a>
 
         <Button
           onClick={() => themeStore.set(theme === themes.dark ? themes.light : themes.dark)}
