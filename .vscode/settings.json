@@ -1,8 +1,19 @@
 {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "astro-build.astro-vscode",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "biomejs.biome",
 
-    "files.associations": {
-        "*.css": "tailwindcss"
+  "[typescript]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
+      "source.organizeImports": "explicit"
     }
+  },
+
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
+  },
+
+  "files.associations": {
+    "*.css": "tailwindcss"
+  }
 }

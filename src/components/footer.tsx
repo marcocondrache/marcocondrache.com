@@ -1,20 +1,21 @@
-import { Button, buttonVariants } from "./ui/button";
-import { ArrowUp } from "lucide-react";
-import { links } from "@/lib/links";
-import { useStore } from "@nanostores/react";
-import { themes, themeStore } from "@/lib/stores/theme";
-import { SocialIcons } from "./icons";
-import { cn } from "@/lib/utils";
+import { links } from '@/lib/links';
+import { themeStore, themes } from '@/lib/stores/theme';
+import { cn } from '@/lib/utils';
+import { useStore } from '@nanostores/react';
+import { ArrowUp } from 'lucide-react';
+import { SocialIcons } from './icons';
+import { Button, buttonVariants } from './ui/button';
 
 export function Footer() {
   const theme = useStore(themeStore);
 
   return (
-    <footer className="fixed left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] md:w-full max-w-[42.5rem] bottom-6 p-1 pl-4 shadow-border bg-white dark:bg-stone-900 rounded-full flex items-center justify-between">
+    <footer className="-translate-x-1/2 fixed bottom-6 left-1/2 flex w-[calc(100%-2rem)] max-w-[42.5rem] items-center justify-between rounded-full bg-white p-1 pl-4 shadow-border md:w-full dark:bg-stone-900">
       <a
-        className="text-sm text-muted-foreground"
-        href={"#"}
+        href={'/'}
+        className="text-muted-foreground text-sm"
         target="_blank"
+        rel="noreferrer"
       >
         {/* {process.env.NEXT_PUBLIC_GIT_HASH} */}
       </a>
@@ -23,12 +24,34 @@ export function Footer() {
           <ArrowUp className="size-4" />
         </Button>
 
-        <a className={cn(buttonVariants({ variant: "ghost", size: "icon" }), "size-8 rounded-full")} href={links.x} target="_blank">
+        <a
+          className={cn(
+            buttonVariants({ variant: 'ghost', size: 'icon' }),
+            'size-8 rounded-full'
+          )}
+          href={links.x}
+          target="_blank"
+          rel="noreferrer"
+        >
           <SocialIcons.X className="size-3.5 fill-foreground" />
         </a>
 
+        <a
+          className={cn(
+            buttonVariants({ variant: 'ghost', size: 'icon' }),
+            'size-8 rounded-full'
+          )}
+          href={links.x}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <SocialIcons.Linkedin className="size-3.5 fill-foreground" />
+        </a>
+
         <Button
-          onClick={() => themeStore.set(theme === themes.dark ? themes.light : themes.dark)}
+          onClick={() =>
+            themeStore.set(theme === themes.dark ? themes.light : themes.dark)
+          }
           className="size-8 rounded-full text-base"
           variant="ghost"
           size="icon"
