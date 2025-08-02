@@ -15,6 +15,14 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
+    // https://github.com/withastro/astro/issues/12824
+    resolve: {
+      alias: import.meta.env.PROD
+        ? {
+            'react-dom/server': 'react-dom/server.edge',
+          }
+        : undefined,
+    },
   },
 
   adapter: cloudflare(),
