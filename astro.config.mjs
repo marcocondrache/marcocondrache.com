@@ -14,6 +14,7 @@ export default defineConfig({
   integrations: [react(), sitemap()],
 
   vite: {
+    // @ts-expect-error
     plugins: [tailwindcss()],
     // https://github.com/withastro/astro/issues/12824
     resolve: {
