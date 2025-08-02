@@ -1,4 +1,5 @@
 ---
+import ThemeLoader from "@/components/theme-loader.astro";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import "@/styles/global.css";
@@ -21,6 +22,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 		<title>{title}</title>
 
 		<link rel="canonical" href={canonical} />
+
+		<ThemeLoader />
 	</head>
 	<body>
 		<div class="blur-layer" aria-hidden="true"></div>
@@ -32,7 +35,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 				<main>
 					<slot />
 				</main>
-				<Footer client:load />
+				<Footer client:visible />
 			</div>
 		</div>
 	</body>

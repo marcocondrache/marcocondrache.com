@@ -3,7 +3,7 @@ import { themeStore, themes } from '@/lib/stores/theme';
 import { cn } from '@/lib/utils';
 import { useStore } from '@nanostores/react';
 import { ArrowUp } from 'lucide-react';
-import { SocialIcons } from './icons';
+import { Icons } from './icons';
 import { Button, buttonVariants } from './ui/button';
 
 export function Footer() {
@@ -17,7 +17,7 @@ export function Footer() {
         target="_blank"
         rel="noreferrer"
       >
-        {/* {process.env.NEXT_PUBLIC_GIT_HASH} */}
+        Copyright © {new Date().getFullYear()}
       </a>
       <div className="flex items-center justify-center gap-1">
         <Button variant="ghost" size="icon" className="size-8 rounded-full">
@@ -33,7 +33,7 @@ export function Footer() {
           target="_blank"
           rel="noreferrer"
         >
-          <SocialIcons.X className="size-3.5 fill-foreground" />
+          <Icons.X className="size-3.5 fill-foreground" />
         </a>
 
         <a
@@ -45,7 +45,7 @@ export function Footer() {
           target="_blank"
           rel="noreferrer"
         >
-          <SocialIcons.Linkedin className="size-3.5 fill-foreground" />
+          <Icons.Linkedin className="size-3.5 fill-foreground" />
         </a>
 
         <Button

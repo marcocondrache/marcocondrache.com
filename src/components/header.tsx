@@ -1,7 +1,7 @@
 export function Header() {
   const links = [
-    { title: "home", href: "/" },
-    { title: "writing", href: "/writing" },
+    { title: 'home', href: '/' },
+    { title: 'writing', href: '/writing' },
   ];
 
   return (
